@@ -1,49 +1,49 @@
 # panteamkhh.github.io
 
-My personal portfolio & resume site — a playful cartoon "adventure" where you
-click characters on a map to reveal each part of my resume, with a Three.js
-scene behind it.
+My personal portfolio & resume site — the whole page is a **jigsaw puzzle**.
+Click a piece and that part of my resume snaps into place, with floating 3D
+puzzle pieces in the background.
 
 Live at **https://panteamkhh.github.io**
 
 ## How it works
 
-Instead of one long scroll, the site is a small **interactive map**:
+The page is an interactive **puzzle board** (generated as an SVG jigsaw, so the
+pieces really interlock):
 
 - **Home** — intro plus a portrait card (with a graceful fallback if the image
   is missing).
-- **Explore** — a cartoon map with seven characters. Clicking one opens a panel
-  with that section:
+- **Solve the puzzle** — six interlocking pieces, each with a cartoon character.
+  Clicking a piece opens a panel with that section:
+  - 🙂 **About me** — the professional summary
   - 🦉 **Education** — MBA, M.Sc. AI & Robotics, B.Sc. Industrial Engineering
   - 💼 **Experience** — Adrin Darou Iranian, MAPNA/TUGA
   - 🤖 **Projects** — data / ML / AI repositories
   - 🧰 **Skills** — grouped skill chips
   - ⭐ **Extras** — certifications, publication, teaching, languages
-  - ✉️ **Contact** — email, LinkedIn, GitHub
-  - 🙂 **About** — the professional summary
-- Each character you open gets a ✓ and a **discovery counter** (`n / 7`), so it
-  feels like exploring. Progress is remembered in `localStorage`.
+- Each solved piece gets a ✓ and a **discovery counter** (`n / 6`), so it feels
+  like a game. Progress is remembered in `localStorage`.
 - A **CV ↓** button opens the browser print dialog with a print stylesheet, so
   the page can be saved as a clean PDF.
 
 ## Tech
 
-- **Three.js** (`r160`, CDN via import map) — a friendly cel-shaded planet with
-  orbiting pastel shapes.
+- **Three.js** (`r160`, CDN via import map) — floating 3D puzzle pieces with
+  toon shading.
 - **Vanilla HTML/CSS/JS** — no build step, deployed straight from `main` with
-  GitHub Pages. Cartoon characters are inline SVG.
+  GitHub Pages. The jigsaw is generated as SVG; characters are inline SVG.
 - **Google Fonts** — Fredoka + Nunito.
 
 ## Structure
 
 ```
 .
-├── index.html          # markup: hero, adventure map, modal + section templates
+├── index.html          # markup: hero, puzzle board, modal + section templates
 ├── css/style.css       # cartoon theme + print styles
 ├── js/
-│   ├── three-scene.js  # Three.js planet scene
+│   ├── three-scene.js  # Three.js floating puzzle pieces
 │   ├── projects.js     # project + skills data
-│   └── main.js         # map discovery, modal, scrollspy, print
+│   └── main.js         # jigsaw generation, discovery, modal, print
 ├── assets/
 │   ├── favicon.svg
 │   └── portrait.jpg    # ← your portrait
@@ -53,8 +53,8 @@ Instead of one long scroll, the site is a small **interactive map**:
 ## Editing content
 
 - **Resume text** lives in `<template id="tpl-...">` blocks in `index.html`
-  (about, education, experience, extras, contact), so it is easy to edit and
-  indexable by search engines.
+  (about, education, experience, extras), so it is easy to edit and indexable
+  by search engines.
 - **Projects and skills** are data-driven — edit `js/projects.js`:
 
 ```js
@@ -68,7 +68,9 @@ Instead of one long scroll, the site is a small **interactive map**:
 }
 ```
 
-- **Characters** are inline SVG inside each `.station` in `index.html`.
+- **Puzzle pieces and characters** are defined by the `SECTIONS` array and
+  `CHARACTERS` map at the top of `js/main.js`. Add a section by adding an entry
+  (and a matching `<template id="tpl-...">`).
 
 ## Local preview
 
@@ -84,7 +86,8 @@ python -m http.server 8000
 
 - The 3D background is decorative (`aria-hidden`) and skipped when WebGL is
   missing.
-- The map is a grid of real `<button>`s on small screens; the modal closes with
-  `Esc` and traps focus back to the map.
+- Puzzle pieces are real `<button>`s; the modal closes with `Esc` and returns
+  focus to the piece you clicked.
 - Animations respect `prefers-reduced-motion`.
+
 
