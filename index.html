@@ -5,19 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pantea Mohamadkhani — Data Science &amp; AI</title>
   <meta name="description" content="Pantea Mohamadkhani — Data Scientist / ML Analyst. Resume, projects and experience across AI, NLP, machine learning and business intelligence." />
-  <meta name="theme-color" content="#ffe066" />
+  <meta name="theme-color" content="#0a0a0f" />
   <meta property="og:title" content="Pantea Mohamadkhani — Data Science & AI" />
   <meta property="og:description" content="Data Science, Machine Learning and Business Intelligence portfolio." />
   <meta property="og:type" content="website" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <div id="scene-container" aria-hidden="true"></div>
-  <div class="doodle-bg" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
 
   <!-- ============ TOOLBAR ============ -->
   <header class="toolbar" id="toolbar">
@@ -28,9 +29,9 @@
     <nav class="toolbar-links" id="toolbar-links" aria-label="Sections">
       <a href="#home" class="is-active">Home</a>
       <a href="#about">About</a>
+      <a href="#education">Education</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
-      <a href="#education">Education</a>
       <a href="#skills">Skills</a>
       <a href="#extras">Extras</a>
     </nav>
@@ -49,10 +50,10 @@
       <div class="hero-copy">
         <span class="pill reveal">Data Science · Machine Learning · BI</span>
         <h1 class="reveal">
-          Hi, I'm <span class="hl hl-pink">Pantea</span> —<br />
+          Hi, I'm <span class="hl hl-teal">Pantea</span> —<br />
           I turn messy data into
-          <span class="hl hl-teal">stories</span> and
-          <span class="hl hl-yellow">models</span>.
+          <span class="hl hl-magenta">stories</span> and
+          <span class="hl hl-violet">models</span>.
         </h1>
         <p class="hero-sub reveal">
           Data Scientist / ML Analyst with an M.Sc. in AI &amp; Robotics, a B.Sc.
@@ -72,30 +73,22 @@
       </div>
 
       <div class="hero-visual reveal">
-        <div class="morph" id="morph">
-          <img class="morph-img morph-photo" src="assets/city-photo.svg" alt="A realistic city skyline" />
-          <img class="morph-img morph-cartoon" src="assets/city-cartoon.svg" alt="The same skyline reimagined as a cartoon" />
-          <div class="morph-handle" aria-hidden="true"><span>↔</span></div>
-          <span class="morph-label morph-label-left" aria-hidden="true">photo</span>
-          <span class="morph-label morph-label-right" aria-hidden="true">cartoon</span>
+        <div class="portrait" id="portrait">
+          <div class="portrait-inner">
+            <img class="portrait-img" id="portrait-img" src="assets/portrait.jpg" alt="Portrait of Pantea Mohamadkhani" />
+            <div class="portrait-fallback" aria-hidden="true"><span>PM</span></div>
+            <span class="portrait-tag">● Open to work</span>
+          </div>
         </div>
-        <label class="morph-control">
-          <span class="sr-only">Reveal the cartoon version</span>
-          <input type="range" id="morph-range" min="0" max="100" value="45" />
-        </label>
-        <p class="morph-hint">Drag to turn a real scene into a cartoon — data, but make it fun.</p>
+        <p class="portrait-caption">Tehran, Iran · Data Science &amp; AI</p>
       </div>
     </section>
-
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track" id="marquee-track"></div>
-    </div>
 
     <!-- ============ ABOUT ============ -->
     <section class="section" id="about">
       <div class="about-grid">
-        <div class="about-copy reveal">
-          <h2>About <span class="hl hl-yellow">me</span></h2>
+        <div class="about-card about-card--text reveal">
+          <h2>About <span class="hl hl-violet">me</span></h2>
           <p>
             I'm a data professional who enjoys the unglamorous parts as much as
             the modelling: cleaning, validation, tests and reproducibility. My
@@ -114,7 +107,8 @@
             <span class="chip">🚀 Open to data / ML roles</span>
           </div>
         </div>
-        <aside class="about-card reveal">
+
+        <aside class="about-card about-card--facts reveal">
           <h3>At a glance</h3>
           <ul>
             <li><span>Focus</span><strong>Data Science · ML · BI</strong></li>
@@ -126,10 +120,51 @@
       </div>
     </section>
 
-    <!-- ============ EXPERIENCE ============ -->
-    <section class="section section-alt" id="experience">
+    <!-- ============ EDUCATION ============ -->
+    <section class="section" id="education">
       <div class="section-head reveal">
-        <h2>Work <span class="hl hl-pink">experience</span></h2>
+        <h2>Edu<span class="hl hl-violet">cation</span></h2>
+        <p>AI &amp; robotics, industrial engineering and business — the theory behind the models.</p>
+      </div>
+      <ol class="timeline timeline-edu">
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-card">
+            <div class="timeline-head">
+              <h3>M.Sc. Artificial Intelligence &amp; Robotics</h3>
+              <span class="when">2022 – 2025</span>
+            </div>
+            <p class="where">Kharazmi University</p>
+            <p class="note">Thesis: <em>Addressing Data Sparsity in Recommender Systems via Reinforcement Learning</em></p>
+          </div>
+        </li>
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-card">
+            <div class="timeline-head">
+              <h3>Master of Business Administration (MBA)</h3>
+              <span class="when">2025 – 2026</span>
+            </div>
+            <p class="where">University of Tehran</p>
+          </div>
+        </li>
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-card">
+            <div class="timeline-head">
+              <h3>B.Sc. Industrial Engineering</h3>
+              <span class="when">2017 – 2021</span>
+            </div>
+            <p class="where">Islamic Azad University</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section" id="experience">
+      <div class="section-head reveal">
+        <h2>Work <span class="hl hl-magenta">experience</span></h2>
         <p>Turning operational and sales data into reporting people rely on.</p>
       </div>
       <ol class="timeline">
@@ -182,58 +217,17 @@
       </div>
     </section>
 
-    <!-- ============ EDUCATION ============ -->
-    <section class="section section-alt" id="education">
-      <div class="section-head reveal">
-        <h2>Edu<span class="hl hl-yellow">cation</span></h2>
-        <p>AI &amp; robotics, industrial engineering and business — the theory behind the models.</p>
-      </div>
-      <ol class="timeline timeline-edu">
-        <li class="timeline-item reveal">
-          <div class="timeline-marker"></div>
-          <div class="timeline-card">
-            <div class="timeline-head">
-              <h3>Master of Business Administration (MBA)</h3>
-              <span class="when">2025 – 2026</span>
-            </div>
-            <p class="where">University of Tehran</p>
-          </div>
-        </li>
-        <li class="timeline-item reveal">
-          <div class="timeline-marker"></div>
-          <div class="timeline-card">
-            <div class="timeline-head">
-              <h3>M.Sc. Artificial Intelligence &amp; Robotics</h3>
-              <span class="when">2022 – 2025</span>
-            </div>
-            <p class="where">Kharazmi University</p>
-            <p class="note">Thesis: <em>Addressing Data Sparsity in Recommender Systems via Reinforcement Learning</em></p>
-          </div>
-        </li>
-        <li class="timeline-item reveal">
-          <div class="timeline-marker"></div>
-          <div class="timeline-card">
-            <div class="timeline-head">
-              <h3>B.Sc. Industrial Engineering</h3>
-              <span class="when">2017 – 2021</span>
-            </div>
-            <p class="where">Islamic Azad University</p>
-          </div>
-        </li>
-      </ol>
-    </section>
-
     <!-- ============ SKILLS ============ -->
     <section class="section" id="skills">
       <div class="section-head reveal">
-        <h2>Tools I <span class="hl hl-pink">reach for</span></h2>
+        <h2>Tools I <span class="hl hl-magenta">reach for</span></h2>
         <p>From notebooks and pipelines to dashboards and deployed models.</p>
       </div>
       <div class="skills-grid" id="skills-grid"></div>
     </section>
 
     <!-- ============ EXTRAS ============ -->
-    <section class="section section-alt" id="extras">
+    <section class="section" id="extras">
       <div class="section-head reveal">
         <h2>Certifications, <span class="hl hl-teal">publication</span> &amp; teaching</h2>
         <p>Continuous learning, research and sharing what I know.</p>
@@ -243,10 +237,10 @@
         <div class="extras-col reveal">
           <h3 class="extras-title">Certifications</h3>
           <ul class="cert-list">
-            <li><span class="cert-badge" style="background:#2ec4b6">AI</span><div><strong>Generative AI for Beginners</strong><em>Microsoft · 2026</em></div></li>
-            <li><span class="cert-badge" style="background:#7c5cff">PE</span><div><strong>Prompt Engineering for Developers</strong><em>DeepLearning.AI · 2026</em></div></li>
-            <li><span class="cert-badge" style="background:#ff7a3d">DA</span><div><strong>Complete Data Analyst Bootcamp (62h)</strong><em>Udemy · 2025</em></div></li>
-            <li><span class="cert-badge" style="background:#ff5d8f">ML</span><div><strong>Machine Learning</strong><em>Andrew Ng · Coursera · 2023</em></div></li>
+            <li><span class="cert-badge" style="background:linear-gradient(135deg,#35d0c8,#8b5cf6)">AI</span><div><strong>Generative AI for Beginners</strong><em>Microsoft · 2026</em></div></li>
+            <li><span class="cert-badge" style="background:linear-gradient(135deg,#8b5cf6,#ff3d8b)">PE</span><div><strong>Prompt Engineering for Developers</strong><em>DeepLearning.AI · 2026</em></div></li>
+            <li><span class="cert-badge" style="background:linear-gradient(135deg,#ff3d8b,#ffc857)">DA</span><div><strong>Complete Data Analyst Bootcamp (62h)</strong><em>Udemy · 2025</em></div></li>
+            <li><span class="cert-badge" style="background:linear-gradient(135deg,#4aa8ff,#35d0c8)">ML</span><div><strong>Machine Learning</strong><em>Andrew Ng · Coursera · 2023</em></div></li>
           </ul>
         </div>
 
@@ -278,7 +272,7 @@
     <!-- ============ CONTACT ============ -->
     <section class="section section-cta" id="contact">
       <div class="cta-card reveal">
-        <h2>Let's build something <span class="hl hl-pink">together</span></h2>
+        <h2>Let's build something <span class="hl hl-magenta">together</span></h2>
         <p>
           Have a dataset that needs a story, or a model that needs shipping?
           I'd love to hear about it.
@@ -298,8 +292,8 @@
   </main>
 
   <footer class="footer">
-    <p>© <span id="year"></span> Pantea Mohamadkhani · built with Three.js &amp; a lot of pandas</p>
-    <p class="footer-sub">Data Science · Machine Learning · Business Intelligence</p>
+    <p>© <span id="year"></span> Pantea Mohamadkhani · Data Science · Machine Learning · BI</p>
+    <p class="footer-sub">Built with Three.js and a lot of pandas</p>
   </footer>
 
   <script type="importmap">

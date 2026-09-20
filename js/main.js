@@ -1,4 +1,4 @@
-import { projects, skills, marqueeItems } from "./projects.js";
+import { projects, skills } from "./projects.js";
 
 /* ---------- project cards ---------- */
 const grid = document.getElementById("projects-grid");
@@ -9,7 +9,7 @@ function projectCard(project, index) {
   el.style.transitionDelay = `${Math.min(index * 40, 320)}ms`;
   el.innerHTML = `
     <div class="project-top">
-      <div class="project-emoji" style="background:${project.color}">${project.emoji}</div>
+      <div class="project-emoji" style="background:${project.color}1f;border-color:${project.color}66">${project.emoji}</div>
       <h3>${project.name}</h3>
     </div>
     <p>${project.description}</p>
@@ -43,48 +43,12 @@ if (skillsGrid) {
   });
 }
 
-/* ---------- marquee (duplicated for a seamless loop) ---------- */
-const marquee = document.getElementById("marquee-track");
+/* ---------- portrait fallback ---------- */
+const portrait = document.getElementById("portrait");
+const portraitImg = document.getElementById("portrait-img");
 
-if (marquee) {
-  const items = marqueeItems.map((item) => `<span>${item}</span>`).join("");
-  marquee.innerHTML = items + items;
-}
-
-/* ---------- before/after morph slider ---------- */
-const morph = document.getElementById("morph");
-const morphRange = document.getElementById("morph-range");
-
-if (morph && morphRange) {
-  const setPosition = (value) => {
-    const pct = Math.min(100, Math.max(0, value));
-    morph.style.setProperty("--pos", `${pct}%`);
-    morphRange.value = String(pct);
-  };
-
-  const fromPointer = (clientX) => {
-    const rect = morph.getBoundingClientRect();
-    setPosition(((clientX - rect.left) / rect.width) * 100);
-  };
-
-  let dragging = false;
-  morph.addEventListener("pointerdown", (event) => {
-    dragging = true;
-    if (morph.setPointerCapture) morph.setPointerCapture(event.pointerId);
-    fromPointer(event.clientX);
-  });
-  morph.addEventListener("pointermove", (event) => {
-    if (dragging) fromPointer(event.clientX);
-  });
-  const stop = () => {
-    dragging = false;
-  };
-  morph.addEventListener("pointerup", stop);
-  morph.addEventListener("pointercancel", stop);
-
-  morphRange.addEventListener("input", (event) => setPosition(Number(event.target.value)));
-
-  setPosition(Number(morphRange.value));
+if (portrait && portraitImg) {
+  portraitImg.addEventListener("error", () => portrait.classList.add("is-missing"));
 }
 
 /* ---------- scroll reveal ---------- */
