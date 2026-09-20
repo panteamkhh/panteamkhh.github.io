@@ -183,18 +183,48 @@ function saveFound(set) {
 }
 
 const found = loadFound();
+const validKeys = new Set(SECTIONS.map((section) => section.key));
+[...found].forEach((key) => {
+  if (!validKeys.has(key)) found.delete(key);
+});
+saveFound(found);
+
 const progressEl = document.getElementById("progress");
 
 function updateProgress() {
-  if (progressEl) progressEl.textContent = `${found.size} / ${SECTIONS.length} discovered`;
+  if (!progressEl) return;
+  const solved = Math.min(found.size, SECTIONS.length);
+  const complete = solved === SECTIONS.length;
+  progressEl.textContent = complete
+    ? `🎉 ${solved} / ${SECTIONS.length} — puzzle complete!`
+    : `${solved} / ${SECTIONS.length} discovered`;
+  progressEl.classList.toggle("is-complete", complete);
+}
+
+let toastTimer = null;
+function showToast(message) {
+  let toast = document.getElementById("puzzle-toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "puzzle-toast";
+    toast.className = "puzzle-toast";
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add("is-visible");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 1800);
 }
 
 function markFound(name) {
+  const isNew = !found.has(name);
   found.add(name);
   saveFound(found);
   updateProgress();
   document.querySelectorAll(`.piece-btn[data-target="${name}"]`).forEach((el) => el.classList.add("is-found"));
   document.querySelectorAll(`.puzzle-piece[data-target="${name}"]`).forEach((el) => el.classList.add("is-found"));
+  const section = SECTIONS.find((item) => item.key === name);
+  if (isNew && section) showToast(`✓ ${section.label} discovered!`);
 }
 
 const modal = document.getElementById("modal");

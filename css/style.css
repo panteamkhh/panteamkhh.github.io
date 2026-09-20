@@ -179,7 +179,7 @@ main, .toolbar, .footer { position: relative; z-index: 2; }
   transform-box: fill-box; transform-origin: center;
 }
 .puzzle-piece:hover { filter: brightness(1.05); transform: translateY(-6px); }
-.puzzle-piece.is-found { stroke-width: 5; }
+.puzzle-piece.is-found { stroke-width: 5; filter: saturate(1.25) brightness(1.03); }
 
 .puzzle-icons { position: absolute; inset: 0; pointer-events: none; }
 
@@ -205,12 +205,29 @@ main, .toolbar, .footer { position: relative; z-index: 2; }
   font-weight: 600; box-shadow: 3px 3px 0 var(--ink); white-space: nowrap;
 }
 .piece-check {
-  position: absolute; top: -10px; right: -10px; width: 28px; height: 28px;
+  position: absolute; top: -10px; right: -10px; width: 30px; height: 30px;
   display: none; place-items: center; background: var(--green); color: #fff;
-  border: 3px solid var(--ink); border-radius: 50%; font-weight: 700; font-size: 0.85rem;
+  border: 3px solid var(--ink); border-radius: 50%; font-weight: 700; font-size: 0.95rem;
 }
-.piece-btn.is-found .piece-check { display: grid; }
+.piece-btn.is-found .piece-check { display: grid; animation: check-pop 0.35s ease; }
+@keyframes check-pop {
+  0% { transform: scale(0) rotate(-25deg); }
+  70% { transform: scale(1.25) rotate(6deg); }
+  100% { transform: scale(1) rotate(0); }
+}
 .puzzle-note { text-align: center; margin-top: 1.4rem; color: var(--muted); font-weight: 700; }
+
+.progress-pill.is-complete { background: var(--green); color: #fff; }
+
+.puzzle-toast {
+  position: fixed; left: 50%; bottom: 26px; z-index: 60;
+  transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+  background: var(--green); color: #fff; border: 3px solid var(--ink);
+  border-radius: 999px; padding: 0.5rem 1.1rem;
+  font-family: "Fredoka", sans-serif; font-weight: 600; box-shadow: var(--shadow-sm);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.puzzle-toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
 
 /* ---------- contact strip ---------- */
 .contact-strip { max-width: var(--maxw); margin: 0 auto; padding: 1rem 1.1rem 5rem; }
