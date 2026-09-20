@@ -14,12 +14,12 @@ const CHARACTERS = {
 };
 
 const SECTIONS = [
-  { key: "about", label: "About me", color: "#ffc2dc" },
-  { key: "education", label: "Education", color: "#d4c2ff" },
-  { key: "experience", label: "Experience", color: "#ffd0ab" },
-  { key: "projects", label: "Projects", color: "#bcdcff" },
-  { key: "skills", label: "Skills", color: "#b6efd6" },
-  { key: "extras", label: "Extras", color: "#ffe79a" },
+  { key: "about", label: "About me", color: "#ffa8c9" },
+  { key: "education", label: "Education", color: "#b9a2ff" },
+  { key: "experience", label: "Experience", color: "#ffbf8f" },
+  { key: "projects", label: "Projects", color: "#8fc7ff" },
+  { key: "skills", label: "Skills", color: "#7fe3bd" },
+  { key: "extras", label: "Extras", color: "#ffe07a" },
 ];
 
 const COLS = 3;
