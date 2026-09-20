@@ -229,6 +229,21 @@ main, .toolbar, .footer { position: relative; z-index: 2; }
 }
 .puzzle-toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
 
+.puzzle-complete {
+  text-align: center; margin: 0 auto 1.6rem; max-width: 640px;
+  background: var(--green); color: #fff; border: 3px solid var(--ink);
+  border-radius: 999px; padding: 0.6rem 1.2rem; font-family: "Fredoka", sans-serif;
+  font-weight: 600; box-shadow: var(--shadow-sm); animation: check-pop 0.4s ease;
+}
+.confetti {
+  position: fixed; top: -40px; z-index: 70; pointer-events: none;
+  animation: confetti-fall 3s linear forwards;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(105vh) rotate(360deg); opacity: 0.85; }
+}
+
 /* ---------- contact strip ---------- */
 .contact-strip { max-width: var(--maxw); margin: 0 auto; padding: 1rem 1.1rem 5rem; }
 .cta-card {

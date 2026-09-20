@@ -190,15 +190,41 @@ const validKeys = new Set(SECTIONS.map((section) => section.key));
 saveFound(found);
 
 const progressEl = document.getElementById("progress");
+const completeBanner = document.getElementById("puzzle-complete");
+let celebrated = false;
+
+function celebrate() {
+  const emojis = ["🎉", "🎊", "⭐", "🧩", "✨"];
+  for (let i = 0; i < 26; i += 1) {
+    const bit = document.createElement("span");
+    bit.className = "confetti";
+    bit.textContent = emojis[i % emojis.length];
+    bit.style.left = `${Math.random() * 100}%`;
+    bit.style.animationDelay = `${Math.random() * 0.6}s`;
+    bit.style.fontSize = `${0.9 + Math.random() * 1.2}rem`;
+    document.body.appendChild(bit);
+    setTimeout(() => bit.remove(), 3400);
+  }
+  showToast("🎉 Puzzle complete!");
+}
 
 function updateProgress() {
-  if (!progressEl) return;
-  const solved = Math.min(found.size, SECTIONS.length);
+  const solved = SECTIONS.filter((section) => found.has(section.key)).length;
   const complete = solved === SECTIONS.length;
-  progressEl.textContent = complete
-    ? `🎉 ${solved} / ${SECTIONS.length} — puzzle complete!`
-    : `${solved} / ${SECTIONS.length} discovered`;
-  progressEl.classList.toggle("is-complete", complete);
+
+  if (progressEl) {
+    progressEl.textContent = complete
+      ? `🎉 ${solved} / ${SECTIONS.length} — puzzle complete!`
+      : `${solved} / ${SECTIONS.length} discovered`;
+    progressEl.classList.toggle("is-complete", complete);
+  }
+
+  if (completeBanner) completeBanner.hidden = !complete;
+
+  if (complete && !celebrated) {
+    celebrated = true;
+    celebrate();
+  }
 }
 
 let toastTimer = null;
@@ -274,6 +300,7 @@ found.forEach((name) => {
   document.querySelectorAll(`.piece-btn[data-target="${name}"]`).forEach((el) => el.classList.add("is-found"));
   document.querySelectorAll(`.puzzle-piece[data-target="${name}"]`).forEach((el) => el.classList.add("is-found"));
 });
+celebrated = SECTIONS.every((section) => found.has(section.key));
 updateProgress();
 
 /* ---------- portrait fallback ---------- */

@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pantea Mohamadkhani â€” Data Science &amp; AI</title>
-  <meta name="description" content="Pantea Mohamadkhani â€” Data Scientist / ML Analyst. A puzzle of my education, experience, projects and skills." />
+  <title>Pantea Mohamadkhani — Data Science &amp; AI</title>
+  <meta name="description" content="Pantea Mohamadkhani — Data Scientist / ML Analyst. A puzzle of my education, experience, projects and skills." />
   <meta name="theme-color" content="#fff7e6" />
-  <meta property="og:title" content="Pantea Mohamadkhani â€” Data Science & AI" />
+  <meta property="og:title" content="Pantea Mohamadkhani — Data Science & AI" />
   <meta property="og:description" content="Solve the puzzle to explore my data & AI work." />
   <meta property="og:type" content="website" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=9" />
+  <link rel="stylesheet" href="css/style.css?v=10" />
 </head>
 <body>
   <div id="scene-container" aria-hidden="true"></div>
@@ -31,7 +31,7 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="toolbar-actions">
-      <button class="btn btn-small btn-ghost" id="print-btn" type="button" title="Print / save as PDF">CV â†“</button>
+      <button class="btn btn-small btn-ghost" id="print-btn" type="button" title="Print / save as PDF">CV ↓</button>
       <button class="toolbar-toggle" id="toolbar-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -42,9 +42,9 @@
     <!-- ============ HERO ============ -->
     <section class="hero" id="home">
       <div class="hero-copy">
-        <span class="pill reveal">Data Science Â· Machine Learning Â· BI</span>
+        <span class="pill reveal">Data Science · Machine Learning · BI</span>
         <h1 class="reveal">
-          Hi, I'm <span class="hl hl-pink">Pantea</span> â€”<br />
+          Hi, I'm <span class="hl hl-pink">Pantea</span> —<br />
           I turn messy data into
           <span class="hl hl-teal">stories</span> and
           <span class="hl hl-yellow">models</span>.
@@ -56,8 +56,8 @@
           makers actually use.
         </p>
         <div class="hero-actions reveal">
-          <a class="btn btn-primary" href="#explore">Solve the puzzle â†“</a>
-          <a class="btn btn-ghost" href="https://github.com/panteamkhh" target="_blank" rel="noopener">GitHub â†—</a>
+          <a class="btn btn-primary" href="#explore">Solve the puzzle ↓</a>
+          <a class="btn btn-ghost" href="https://github.com/panteamkhh" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
         <ul class="hero-stats reveal">
           <li><strong>20+</strong><span>projects</span></li>
@@ -71,10 +71,10 @@
           <div class="portrait-inner">
             <img class="portrait-img" id="portrait-img" src="assets/portrait.jpg" alt="Portrait of Pantea Mohamadkhani" />
             <div class="portrait-fallback" aria-hidden="true"><span>PM</span></div>
-            <span class="portrait-tag">â— Open to work</span>
+            <span class="portrait-tag">● Open to work</span>
           </div>
         </div>
-        <p class="portrait-caption">Tehran, Iran Â· Data Science &amp; AI</p>
+        <p class="portrait-caption">Tehran, Iran · Data Science &amp; AI</p>
       </div>
     </section>
 
@@ -89,6 +89,10 @@
         </p>
       </div>
 
+      <p class="puzzle-complete" id="puzzle-complete" hidden>
+        🎉 Puzzle complete! You discovered every piece — thanks for exploring.
+      </p>
+
       <div class="puzzle reveal" id="puzzle" role="group" aria-label="Resume puzzle"></div>
 
       <p class="puzzle-note reveal" id="puzzle-note">Tip: hover a piece to see who lives there.</p>
@@ -101,20 +105,20 @@
         <p>Have a dataset that needs a story, or a model that needs shipping? I'd love to hear about it.</p>
         <div class="cta-actions">
           <a class="btn btn-primary" href="mailto:pantea.mohamadkhani1999@gmail.com">Email me</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/panteamkh" target="_blank" rel="noopener">LinkedIn â†—</a>
-          <a class="btn btn-ghost" href="https://github.com/panteamkhh" target="_blank" rel="noopener">GitHub â†—</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/panteamkh" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn btn-ghost" href="https://github.com/panteamkhh" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
         <ul class="contact-meta">
-          <li>ðŸ“§ pantea.mohamadkhani1999@gmail.com</li>
-          <li>ðŸ“ž +98 910 961 2974</li>
-          <li>ðŸ“ Tehran, Iran</li>
+          <li>📧 pantea.mohamadkhani1999@gmail.com</li>
+          <li>📞 +98 910 961 2974</li>
+          <li>📍 Tehran, Iran</li>
         </ul>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>Â© <span id="year"></span> Pantea Mohamadkhani Â· Data Science Â· Machine Learning Â· BI</p>
+    <p>© <span id="year"></span> Pantea Mohamadkhani · Data Science · Machine Learning · BI</p>
     <p class="footer-sub">Built with Three.js and a lot of pandas</p>
   </footer>
 
@@ -122,7 +126,7 @@
   <div class="modal" id="modal" hidden>
     <div class="modal-backdrop" data-close></div>
     <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button class="modal-close" data-close aria-label="Close">Ã—</button>
+      <button class="modal-close" data-close aria-label="Close">×</button>
       <div class="modal-body" id="modal-body"></div>
     </div>
   </div>
@@ -131,17 +135,17 @@
   <template id="tpl-about">
     <h2 class="modal-title" id="modal-title">About <span class="hl hl-violet">me</span></h2>
     <p>I'm a data professional who enjoys the unglamorous parts as much as the modelling: cleaning, validation, tests and reproducibility. My work spans applied machine learning, NLP and business intelligence, always aimed at decision-ready insights for stakeholders.</p>
-    <p>I work mostly in Python (pandas, scikit-learn, matplotlib) and Power BI, and I've been building with LLMs, embeddings and agents lately. I care about honest metrics â€” macro-F1 over a flattering accuracy score, loss ratios over vanity dashboards.</p>
+    <p>I work mostly in Python (pandas, scikit-learn, matplotlib) and Power BI, and I've been building with LLMs, embeddings and agents lately. I care about honest metrics — macro-F1 over a flattering accuracy score, loss ratios over vanity dashboards.</p>
     <div class="about-tags">
-      <span class="chip">ðŸ“ Tehran, Iran</span>
-      <span class="chip">ðŸŒ English (upper-intermediate)</span>
-      <span class="chip">ðŸš€ Open to data / ML roles</span>
+      <span class="chip">📍 Tehran, Iran</span>
+      <span class="chip">🌍 English (upper-intermediate)</span>
+      <span class="chip">🚀 Open to data / ML roles</span>
     </div>
     <ul class="facts">
-      <li><span>Focus</span><strong>Data Science Â· ML Â· BI</strong></li>
-      <li><span>Core stack</span><strong>Python Â· SQL Â· Power BI</strong></li>
-      <li><span>Lately</span><strong>NLP Â· LLMs Â· agents</strong></li>
-      <li><span>Values</span><strong>Reproducibility Â· clarity</strong></li>
+      <li><span>Focus</span><strong>Data Science · ML · BI</strong></li>
+      <li><span>Core stack</span><strong>Python · SQL · Power BI</strong></li>
+      <li><span>Lately</span><strong>NLP · LLMs · agents</strong></li>
+      <li><span>Values</span><strong>Reproducibility · clarity</strong></li>
     </ul>
   </template>
 
@@ -151,7 +155,7 @@
       <li class="timeline-item">
         <div class="timeline-marker"></div>
         <div class="timeline-card">
-          <div class="timeline-head"><h3>M.Sc. Artificial Intelligence &amp; Robotics</h3><span class="when">2022 â€“ 2025</span></div>
+          <div class="timeline-head"><h3>M.Sc. Artificial Intelligence &amp; Robotics</h3><span class="when">2022 – 2025</span></div>
           <p class="where">Kharazmi University</p>
           <p class="note">Thesis: <em>Addressing Data Sparsity in Recommender Systems via Reinforcement Learning</em></p>
         </div>
@@ -159,14 +163,14 @@
       <li class="timeline-item">
         <div class="timeline-marker"></div>
         <div class="timeline-card">
-          <div class="timeline-head"><h3>Master of Business Administration (MBA)</h3><span class="when">2025 â€“ 2026</span></div>
+          <div class="timeline-head"><h3>Master of Business Administration (MBA)</h3><span class="when">2025 – 2026</span></div>
           <p class="where">University of Tehran</p>
         </div>
       </li>
       <li class="timeline-item">
         <div class="timeline-marker"></div>
         <div class="timeline-card">
-          <div class="timeline-head"><h3>B.Sc. Industrial Engineering</h3><span class="when">2017 â€“ 2021</span></div>
+          <div class="timeline-head"><h3>B.Sc. Industrial Engineering</h3><span class="when">2017 – 2021</span></div>
           <p class="where">Islamic Azad University</p>
         </div>
       </li>
@@ -179,8 +183,8 @@
       <li class="timeline-item">
         <div class="timeline-marker"></div>
         <div class="timeline-card">
-          <div class="timeline-head"><h3>Data Analyst</h3><span class="when">2024 â€“ 2025</span></div>
-          <p class="where">Adrin Darou Iranian Â· Karaj, Iran</p>
+          <div class="timeline-head"><h3>Data Analyst</h3><span class="when">2024 – 2025</span></div>
+          <p class="where">Adrin Darou Iranian · Karaj, Iran</p>
           <ul>
             <li>Built and maintained Excel and Power BI reports and dashboards giving management recurring visibility into sales performance, product profitability and top/low performers.</li>
             <li>Analysed sales and pricing data for pharmaceutical, supplement and medical-equipment lines, identifying demand patterns and margin trends for pricing and purchasing decisions.</li>
@@ -193,8 +197,8 @@
       <li class="timeline-item">
         <div class="timeline-marker"></div>
         <div class="timeline-card">
-          <div class="timeline-head"><h3>Data Analyst Intern</h3><span class="when">Mar 2022 â€“ Jun 2022</span></div>
-          <p class="where">MAPNA Turbine Engineering &amp; Manufacturing (TUGA) Â· Alborz Industrial City, Iran</p>
+          <div class="timeline-head"><h3>Data Analyst Intern</h3><span class="when">Mar 2022 – Jun 2022</span></div>
+          <p class="where">MAPNA Turbine Engineering &amp; Manufacturing (TUGA) · Alborz Industrial City, Iran</p>
           <ul>
             <li>Supported analytical workflows in an industrial turbine manufacturing facility, processing production and operational datasets.</li>
             <li>Implemented standardised data-cleaning procedures and reporting practices to improve operational visibility.</li>
@@ -207,7 +211,7 @@
 
   <template id="tpl-projects">
     <h2 class="modal-title">Selected <span class="hl hl-teal">projects</span></h2>
-    <p class="modal-lead">Raw data â†’ cleaning â†’ analysis â†’ models â†’ dashboards.</p>
+    <p class="modal-lead">Raw data → cleaning → analysis → models → dashboards.</p>
     <div class="projects-grid" id="projects-grid"></div>
   </template>
 
@@ -220,14 +224,14 @@
     <h2 class="modal-title">Certifications, <span class="hl hl-teal">publication</span> &amp; teaching</h2>
     <h3 class="extras-title">Certifications</h3>
     <ul class="cert-list">
-      <li><span class="cert-badge" style="background:linear-gradient(135deg,#a9d9ff,#7c5cff)">AI</span><div><strong>Generative AI for Beginners</strong><em>Microsoft Â· 2026</em></div></li>
-      <li><span class="cert-badge" style="background:linear-gradient(135deg,#7c5cff,#ff8fb1)">PE</span><div><strong>Prompt Engineering for Developers</strong><em>DeepLearning.AI Â· 2026</em></div></li>
-      <li><span class="cert-badge" style="background:linear-gradient(135deg,#ff8fb1,#ffd23f)">DA</span><div><strong>Complete Data Analyst Bootcamp (62h)</strong><em>Udemy Â· 2025</em></div></li>
-      <li><span class="cert-badge" style="background:linear-gradient(135deg,#a9d9ff,#2ec4b6)">ML</span><div><strong>Machine Learning</strong><em>Andrew Ng Â· Coursera Â· 2023</em></div></li>
+      <li><span class="cert-badge" style="background:linear-gradient(135deg,#a9d9ff,#7c5cff)">AI</span><div><strong>Generative AI for Beginners</strong><em>Microsoft · 2026</em></div></li>
+      <li><span class="cert-badge" style="background:linear-gradient(135deg,#7c5cff,#ff8fb1)">PE</span><div><strong>Prompt Engineering for Developers</strong><em>DeepLearning.AI · 2026</em></div></li>
+      <li><span class="cert-badge" style="background:linear-gradient(135deg,#ff8fb1,#ffd23f)">DA</span><div><strong>Complete Data Analyst Bootcamp (62h)</strong><em>Udemy · 2025</em></div></li>
+      <li><span class="cert-badge" style="background:linear-gradient(135deg,#a9d9ff,#2ec4b6)">ML</span><div><strong>Machine Learning</strong><em>Andrew Ng · Coursera · 2023</em></div></li>
     </ul>
     <h3 class="extras-title">Publication</h3>
     <article class="pub-card">
-      <span class="pub-year">2026 Â· accepted</span>
+      <span class="pub-year">2026 · accepted</span>
       <h4>Resolving Data Sparsity in Recommender Systems Using Reinforcement Learning</h4>
       <p>Babol Noshirvani University of Technology</p>
     </article>
@@ -235,13 +239,13 @@
     <article class="pub-card">
       <span class="pub-year">Instructor</span>
       <h4>Data Storytelling: From Data to Effective Narrative</h4>
-      <p><a href="https://maktabkhooneh.org/course/mk16581" target="_blank" rel="noopener">maktabkhooneh.org/course/mk16581 â†—</a></p>
+      <p><a href="https://maktabkhooneh.org/course/mk16581" target="_blank" rel="noopener">maktabkhooneh.org/course/mk16581 ↗</a></p>
     </article>
     <h3 class="extras-title">Languages</h3>
     <div class="lang-row">
-      <span class="chip">Persian Â· native</span>
-      <span class="chip">English Â· upper-intermediate</span>
-      <span class="chip">Spanish Â· basic</span>
+      <span class="chip">Persian · native</span>
+      <span class="chip">English · upper-intermediate</span>
+      <span class="chip">Spanish · basic</span>
     </div>
   </template>
 
@@ -252,7 +256,7 @@
       }
     }
   </script>
-  <script type="module" src="js/three-scene.js?v=9"></script>
-  <script type="module" src="js/main.js?v=9"></script>
+  <script type="module" src="js/three-scene.js?v=10"></script>
+  <script type="module" src="js/main.js?v=10"></script>
 </body>
 </html>
