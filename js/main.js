@@ -5,21 +5,21 @@ import { projects, skills } from "./projects.js";
    ============================================================ */
 
 const CHARACTERS = {
-  about: `<circle cx="60" cy="64" r="40" fill="#a9d9ff" stroke="#1b1b2f" stroke-width="5"/><path d="M34 44 q10 -22 26 -22 q16 0 26 22" fill="#7c5cff" stroke="#1b1b2f" stroke-width="5" stroke-linejoin="round"/><circle cx="47" cy="62" r="10" fill="#fff" stroke="#1b1b2f" stroke-width="4"/><circle cx="73" cy="62" r="10" fill="#fff" stroke="#1b1b2f" stroke-width="4"/><circle cx="47" cy="63" r="4.5" fill="#1b1b2f"/><circle cx="73" cy="63" r="4.5" fill="#1b1b2f"/><path d="M50 82 q10 8 20 0" fill="none" stroke="#1b1b2f" stroke-width="4" stroke-linecap="round"/>`,
-  education: `<ellipse cx="60" cy="68" rx="38" ry="40" fill="#cdc0ff" stroke="#1b1b2f" stroke-width="5"/><circle cx="47" cy="60" r="13" fill="#fff" stroke="#1b1b2f" stroke-width="4"/><circle cx="73" cy="60" r="13" fill="#fff" stroke="#1b1b2f" stroke-width="4"/><circle cx="47" cy="61" r="6" fill="#1b1b2f"/><circle cx="73" cy="61" r="6" fill="#1b1b2f"/><path d="M60 70 l-6 8 h12 z" fill="#ffd23f" stroke="#1b1b2f" stroke-width="4" stroke-linejoin="round"/><path d="M30 34 L60 18 L90 34 Z" fill="#7c5cff" stroke="#1b1b2f" stroke-width="5" stroke-linejoin="round"/><rect x="34" y="32" width="52" height="9" rx="4" fill="#1b1b2f"/><line x1="86" y1="36" x2="86" y2="52" stroke="#1b1b2f" stroke-width="4"/><circle cx="86" cy="55" r="4.5" fill="#ffd23f" stroke="#1b1b2f" stroke-width="3"/>`,
-  experience: `<path d="M46 50 v-9 a9 9 0 0 1 9 -9 h10 a9 9 0 0 1 9 9 v9" fill="none" stroke="#1b1b2f" stroke-width="5"/><rect x="22" y="50" width="76" height="52" rx="14" fill="#ffd6ba" stroke="#1b1b2f" stroke-width="5"/><rect x="22" y="66" width="76" height="6" fill="#1b1b2f" opacity="0.18"/><circle cx="50" cy="80" r="8" fill="#fff" stroke="#1b1b2f" stroke-width="4"/><circle cx="72" cy="80" r="8" fill="#fff" stroke="#1b1b2f" stroke-width="4"/><circle cx="50" cy="81" r="3.5" fill="#1b1b2f"/><circle cx="72" cy="81" r="3.5" fill="#1b1b2f"/><path d="M53 92 q7 5 14 0" fill="none" stroke="#1b1b2f" stroke-width="4" stroke-linecap="round"/>`,
-  projects: `<rect x="30" y="40" width="60" height="52" rx="16" fill="#a9d9ff" stroke="#1b1b2f" stroke-width="5"/><line x1="60" y1="40" x2="60" y2="24" stroke="#1b1b2f" stroke-width="5"/><circle cx="60" cy="20" r="6" fill="#ff8fb1" stroke="#1b1b2f" stroke-width="4"/><rect x="16" y="54" width="11" height="24" rx="5" fill="#a9d9ff" stroke="#1b1b2f" stroke-width="4"/><rect x="93" y="54" width="11" height="24" rx="5" fill="#a9d9ff" stroke="#1b1b2f" stroke-width="4"/><circle cx="48" cy="62" r="9" fill="#fff" stroke="#1b1b2f" stroke-width="4"/><circle cx="72" cy="62" r="9" fill="#fff" stroke="#1b1b2f" stroke-width="4"/><circle cx="48" cy="62" r="4" fill="#1b1b2f"/><circle cx="72" cy="62" r="4" fill="#1b1b2f"/><path d="M48 80 q12 8 24 0" fill="none" stroke="#1b1b2f" stroke-width="4" stroke-linecap="round"/>`,
-  skills: `<path d="M46 56 v-10 h28 v10" fill="none" stroke="#1b1b2f" stroke-width="5"/><rect x="24" y="56" width="72" height="44" rx="12" fill="#4cc38a" stroke="#1b1b2f" stroke-width="5"/><rect x="24" y="56" width="72" height="13" rx="7" fill="#2ec4b6" stroke="#1b1b2f" stroke-width="5"/><circle cx="50" cy="82" r="7" fill="#fff" stroke="#1b1b2f" stroke-width="4"/><circle cx="70" cy="82" r="7" fill="#fff" stroke="#1b1b2f" stroke-width="4"/><circle cx="50" cy="83" r="3" fill="#1b1b2f"/><circle cx="70" cy="83" r="3" fill="#1b1b2f"/>`,
-  extras: `<path d="M60 18 l11 24 26 3 -19 18 5 26 -23 -12 -23 12 5 -26 -19 -18 26 -3 z" fill="#ffd23f" stroke="#1b1b2f" stroke-width="5" stroke-linejoin="round"/><circle cx="50" cy="58" r="4.5" fill="#1b1b2f"/><circle cx="70" cy="58" r="4.5" fill="#1b1b2f"/><path d="M52 68 q8 6 16 0" fill="none" stroke="#1b1b2f" stroke-width="4" stroke-linecap="round"/>`,
+  about: `<circle cx="60" cy="54" r="34" fill="#ffd9c0"/><path d="M25 48 q4 -32 35 -32 q31 0 35 32 q-17 -13 -35 -13 q-18 0 -35 13 z" fill="#5a4a6a"/><circle cx="47" cy="56" r="6.5" fill="#2f2b45"/><circle cx="73" cy="56" r="6.5" fill="#2f2b45"/><circle cx="49" cy="53.5" r="2.2" fill="#fff"/><circle cx="75" cy="53.5" r="2.2" fill="#fff"/><circle cx="35" cy="65" r="6" fill="#ff9ec2" opacity="0.65"/><circle cx="85" cy="65" r="6" fill="#ff9ec2" opacity="0.65"/><path d="M52 70 q8 7 16 0" fill="none" stroke="#2f2b45" stroke-width="3.6" stroke-linecap="round"/>`,
+  education: `<ellipse cx="60" cy="68" rx="35" ry="37" fill="#c9b8ff"/><ellipse cx="60" cy="76" rx="20" ry="24" fill="#e6ddff"/><circle cx="47" cy="62" r="12.5" fill="#fff"/><circle cx="73" cy="62" r="12.5" fill="#fff"/><circle cx="47" cy="63" r="5.8" fill="#2f2b45"/><circle cx="73" cy="63" r="5.8" fill="#2f2b45"/><circle cx="49" cy="60.5" r="1.9" fill="#fff"/><circle cx="75" cy="60.5" r="1.9" fill="#fff"/><path d="M60 70 l-5.5 9 h11 z" fill="#ffd23f" stroke="#2f2b45" stroke-width="3" stroke-linejoin="round"/><path d="M26 34 L60 17 L94 34 Z" fill="#7c5cff" stroke="#2f2b45" stroke-width="4" stroke-linejoin="round"/><rect x="33" y="32" width="54" height="8" rx="4" fill="#2f2b45"/><line x1="89" y1="36" x2="89" y2="53" stroke="#2f2b45" stroke-width="3.5"/><circle cx="89" cy="56" r="4" fill="#ffd23f" stroke="#2f2b45" stroke-width="2.5"/>`,
+  experience: `<rect x="20" y="48" width="80" height="54" rx="14" fill="#ffcf9e" stroke="#2f2b45" stroke-width="4"/><path d="M46 48 v-8 a8 8 0 0 1 8 -8 h12 a8 8 0 0 1 8 8 v8" fill="none" stroke="#2f2b45" stroke-width="4"/><rect x="20" y="66" width="80" height="5" fill="#2f2b45" opacity="0.14"/><circle cx="50" cy="80" r="7.5" fill="#fff" stroke="#2f2b45" stroke-width="3.5"/><circle cx="70" cy="80" r="7.5" fill="#fff" stroke="#2f2b45" stroke-width="3.5"/><circle cx="50" cy="81" r="3.2" fill="#2f2b45"/><circle cx="70" cy="81" r="3.2" fill="#2f2b45"/><path d="M53 91 q7 5 14 0" fill="none" stroke="#2f2b45" stroke-width="3.5" stroke-linecap="round"/><circle cx="33" cy="84" r="4.5" fill="#ff9ec2" opacity="0.65"/><circle cx="87" cy="84" r="4.5" fill="#ff9ec2" opacity="0.65"/>`,
+  projects: `<rect x="30" y="42" width="60" height="52" rx="16" fill="#a9d9ff" stroke="#2f2b45" stroke-width="4"/><line x1="60" y1="42" x2="60" y2="26" stroke="#2f2b45" stroke-width="4"/><circle cx="60" cy="22" r="6" fill="#ff8fb1" stroke="#2f2b45" stroke-width="3.5"/><rect x="14" y="56" width="12" height="24" rx="6" fill="#a9d9ff" stroke="#2f2b45" stroke-width="3.5"/><rect x="94" y="56" width="12" height="24" rx="6" fill="#a9d9ff" stroke="#2f2b45" stroke-width="3.5"/><circle cx="48" cy="64" r="9" fill="#fff" stroke="#2f2b45" stroke-width="3.5"/><circle cx="72" cy="64" r="9" fill="#fff" stroke="#2f2b45" stroke-width="3.5"/><circle cx="48" cy="64" r="4" fill="#2f2b45"/><circle cx="72" cy="64" r="4" fill="#2f2b45"/><path d="M48 82 q12 8 24 0" fill="none" stroke="#2f2b45" stroke-width="3.5" stroke-linecap="round"/>`,
+  skills: `<path d="M46 56 v-10 h28 v10" fill="none" stroke="#2f2b45" stroke-width="4"/><rect x="22" y="56" width="76" height="46" rx="12" fill="#8fe3c0" stroke="#2f2b45" stroke-width="4"/><rect x="22" y="56" width="76" height="13" rx="7" fill="#2ec4b6" stroke="#2f2b45" stroke-width="4"/><circle cx="50" cy="82" r="7" fill="#fff" stroke="#2f2b45" stroke-width="3.5"/><circle cx="70" cy="82" r="7" fill="#fff" stroke="#2f2b45" stroke-width="3.5"/><circle cx="50" cy="83" r="3" fill="#2f2b45"/><circle cx="70" cy="83" r="3" fill="#2f2b45"/>`,
+  extras: `<path d="M60 16 l12 26 28 3 -20 19 5 28 -25 -13 -25 13 5 -28 -20 -19 28 -3 z" fill="#ffe08a" stroke="#2f2b45" stroke-width="4" stroke-linejoin="round"/><circle cx="50" cy="56" r="4.5" fill="#2f2b45"/><circle cx="70" cy="56" r="4.5" fill="#2f2b45"/><path d="M52 66 q8 6 16 0" fill="none" stroke="#2f2b45" stroke-width="3.5" stroke-linecap="round"/>`,
 };
 
 const SECTIONS = [
-  { key: "about", label: "About me", color: "#dbeafe" },
-  { key: "education", label: "Education", color: "#e6ddff" },
-  { key: "experience", label: "Experience", color: "#ffe0cc" },
-  { key: "projects", label: "Projects", color: "#d6f2ff" },
-  { key: "skills", label: "Skills", color: "#d8f7e6" },
-  { key: "extras", label: "Extras", color: "#fff0c2" },
+  { key: "about", label: "About me", color: "#ffc2dc" },
+  { key: "education", label: "Education", color: "#d4c2ff" },
+  { key: "experience", label: "Experience", color: "#ffd0ab" },
+  { key: "projects", label: "Projects", color: "#bcdcff" },
+  { key: "skills", label: "Skills", color: "#b6efd6" },
+  { key: "extras", label: "Extras", color: "#ffe79a" },
 ];
 
 const COLS = 3;
@@ -302,6 +302,21 @@ found.forEach((name) => {
 });
 celebrated = SECTIONS.every((section) => found.has(section.key));
 updateProgress();
+
+/* ---------- reset / play again ---------- */
+const resetButton = document.getElementById("reset-puzzle");
+if (resetButton) {
+  resetButton.addEventListener("click", () => {
+    found.clear();
+    saveFound(found);
+    celebrated = false;
+    document
+      .querySelectorAll(".piece-btn.is-found, .puzzle-piece.is-found")
+      .forEach((el) => el.classList.remove("is-found"));
+    updateProgress();
+    showToast("↺ Puzzle reset — have fun!");
+  });
+}
 
 /* ---------- portrait fallback ---------- */
 const portrait = document.getElementById("portrait");
