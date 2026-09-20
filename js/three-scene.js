@@ -5,6 +5,7 @@ import * as THREE from "three";
 
 const container = document.getElementById("scene-container");
 const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const smallScreen = window.innerWidth < 760;
 
 function supportsWebGL() {
   try {
@@ -31,7 +32,7 @@ if (container && supportsWebGL()) {
   camera.position.set(0, 0, 12);
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, smallScreen ? 1.5 : 2));
   renderer.setSize(container.clientWidth, container.clientHeight);
   container.appendChild(renderer.domElement);
 
@@ -102,7 +103,7 @@ if (container && supportsWebGL()) {
   scene.add(world);
 
   const pieces = [];
-  const COUNT = 12;
+  const COUNT = smallScreen ? 6 : 12;
   for (let i = 0; i < COUNT; i += 1) {
     const mesh = new THREE.Mesh(makePieceGeometry(), toon(COLORS[i % COLORS.length]));
     const scale = 0.9 + Math.random() * 1.0;
@@ -132,7 +133,7 @@ if (container && supportsWebGL()) {
   }
 
   // --- soft pastel dots -------------------------------------------------
-  const DOT_COUNT = 150;
+  const DOT_COUNT = smallScreen ? 60 : 150;
   const positions = new Float32Array(DOT_COUNT * 3);
   const colors = new Float32Array(DOT_COUNT * 3);
   const dotPalette = COLORS.map((hex) => new THREE.Color(hex));
