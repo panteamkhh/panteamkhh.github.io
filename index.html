@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pantea Mohamadkhani — Data Science &amp; AI</title>
-  <meta name="description" content="Pantea Mohamadkhani — Data Scientist / ML Analyst. Resume, projects and experience across AI, NLP, machine learning and business intelligence." />
-  <meta name="theme-color" content="#fbf7ff" />
+  <meta name="description" content="Pantea Mohamadkhani — Data Scientist / ML Analyst. Explore an interactive map of my education, experience, projects and skills." />
+  <meta name="theme-color" content="#fff7e6" />
   <meta property="og:title" content="Pantea Mohamadkhani — Data Science & AI" />
-  <meta property="og:description" content="Data Science, Machine Learning and Business Intelligence portfolio." />
+  <meta property="og:description" content="An interactive adventure through my data & AI work." />
   <meta property="og:type" content="website" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,8 +17,7 @@
 </head>
 <body>
   <div id="scene-container" aria-hidden="true"></div>
-  <div class="bg-grid" aria-hidden="true"></div>
-  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="bg-doodles" aria-hidden="true"></div>
 
   <!-- ============ TOOLBAR ============ -->
   <header class="toolbar" id="toolbar">
@@ -27,17 +26,12 @@
       <span>Pantea<span class="brand-light">.ai</span></span>
     </a>
     <nav class="toolbar-links" id="toolbar-links" aria-label="Sections">
-      <a href="#home" class="is-active">Home</a>
-      <a href="#about">About</a>
-      <a href="#education">Education</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#extras">Extras</a>
+      <a href="#home">Home</a>
+      <a href="#explore">Explore</a>
+      <a href="#contact-strip">Contact</a>
     </nav>
     <div class="toolbar-actions">
       <button class="btn btn-small btn-ghost" id="print-btn" type="button" title="Print / save as PDF">CV ↓</button>
-      <a class="btn btn-small btn-primary" href="#contact">Hire me</a>
       <button class="toolbar-toggle" id="toolbar-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -50,10 +44,10 @@
       <div class="hero-copy">
         <span class="pill reveal">Data Science · Machine Learning · BI</span>
         <h1 class="reveal">
-          Hi, I'm <span class="hl hl-teal">Pantea</span> —<br />
+          Hi, I'm <span class="hl hl-pink">Pantea</span> —<br />
           I turn messy data into
-          <span class="hl hl-magenta">stories</span> and
-          <span class="hl hl-violet">models</span>.
+          <span class="hl hl-teal">stories</span> and
+          <span class="hl hl-yellow">models</span>.
         </h1>
         <p class="hero-sub reveal">
           Data Scientist / ML Analyst with an M.Sc. in AI &amp; Robotics, a B.Sc.
@@ -62,7 +56,7 @@
           makers actually use.
         </p>
         <div class="hero-actions reveal">
-          <a class="btn btn-primary" href="#projects">See my work</a>
+          <a class="btn btn-primary" href="#explore">Start exploring ↓</a>
           <a class="btn btn-ghost" href="https://github.com/panteamkhh" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
         <ul class="hero-stats reveal">
@@ -84,199 +78,145 @@
       </div>
     </section>
 
-    <!-- ============ ABOUT ============ -->
-    <section class="section" id="about">
-      <div class="about-grid">
-        <div class="about-card about-card--text reveal">
-          <h2>About <span class="hl hl-violet">me</span></h2>
-          <p>
-            I'm a data professional who enjoys the unglamorous parts as much as
-            the modelling: cleaning, validation, tests and reproducibility. My
-            work spans applied machine learning, NLP and business intelligence,
-            always aimed at decision-ready insights for stakeholders.
-          </p>
-          <p>
-            I work mostly in Python (pandas, scikit-learn, matplotlib) and Power
-            BI, and I've been building with LLMs, embeddings and agents lately. I
-            care about honest metrics — macro-F1 over a flattering accuracy
-            score, loss ratios over vanity dashboards.
-          </p>
-          <div class="about-tags">
-            <span class="chip">📍 Tehran, Iran</span>
-            <span class="chip">🌍 English (upper-intermediate)</span>
-            <span class="chip">🚀 Open to data / ML roles</span>
-          </div>
-        </div>
-
-        <aside class="about-card about-card--facts reveal">
-          <h3>At a glance</h3>
-          <ul>
-            <li><span>Focus</span><strong>Data Science · ML · BI</strong></li>
-            <li><span>Core stack</span><strong>Python · SQL · Power BI</strong></li>
-            <li><span>Lately</span><strong>NLP · LLMs · agents</strong></li>
-            <li><span>Values</span><strong>Reproducibility · clarity</strong></li>
-          </ul>
-        </aside>
-      </div>
-    </section>
-
-    <!-- ============ EDUCATION ============ -->
-    <section class="section" id="education">
-      <div class="section-head reveal">
-        <h2>Edu<span class="hl hl-violet">cation</span></h2>
-        <p>AI &amp; robotics, industrial engineering and business — the theory behind the models.</p>
-      </div>
-      <ol class="timeline timeline-edu">
-        <li class="timeline-item reveal">
-          <div class="timeline-marker"></div>
-          <div class="timeline-card">
-            <div class="timeline-head">
-              <h3>M.Sc. Artificial Intelligence &amp; Robotics</h3>
-              <span class="when">2022 – 2025</span>
-            </div>
-            <p class="where">Kharazmi University</p>
-            <p class="note">Thesis: <em>Addressing Data Sparsity in Recommender Systems via Reinforcement Learning</em></p>
-          </div>
-        </li>
-        <li class="timeline-item reveal">
-          <div class="timeline-marker"></div>
-          <div class="timeline-card">
-            <div class="timeline-head">
-              <h3>Master of Business Administration (MBA)</h3>
-              <span class="when">2025 – 2026</span>
-            </div>
-            <p class="where">University of Tehran</p>
-          </div>
-        </li>
-        <li class="timeline-item reveal">
-          <div class="timeline-marker"></div>
-          <div class="timeline-card">
-            <div class="timeline-head">
-              <h3>B.Sc. Industrial Engineering</h3>
-              <span class="when">2017 – 2021</span>
-            </div>
-            <p class="where">Islamic Azad University</p>
-          </div>
-        </li>
-      </ol>
-    </section>
-
-    <!-- ============ EXPERIENCE ============ -->
-    <section class="section" id="experience">
-      <div class="section-head reveal">
-        <h2>Work <span class="hl hl-magenta">experience</span></h2>
-        <p>Turning operational and sales data into reporting people rely on.</p>
-      </div>
-      <ol class="timeline">
-        <li class="timeline-item reveal">
-          <div class="timeline-marker"></div>
-          <div class="timeline-card">
-            <div class="timeline-head">
-              <h3>Data Analyst</h3>
-              <span class="when">2024 – 2025</span>
-            </div>
-            <p class="where">Adrin Darou Iranian · Karaj, Iran</p>
-            <ul>
-              <li>Built and maintained Excel and Power BI reports and dashboards giving management recurring visibility into sales performance, product profitability and top/low performers.</li>
-              <li>Analysed sales and pricing data for pharmaceutical, supplement and medical-equipment lines, identifying demand patterns and margin trends for pricing and purchasing decisions.</li>
-              <li>Cleaned, consolidated and validated transaction, product and customer data into structured datasets, improving reporting reliability and cutting manual spreadsheet effort.</li>
-              <li>Evaluated product profitability and price competitiveness across categories, flagging high-margin and underperforming items to guide commercial decisions.</li>
-              <li>Presented findings and recommendations to non-technical management, translating sales data into practical actions.</li>
-            </ul>
-          </div>
-        </li>
-        <li class="timeline-item reveal">
-          <div class="timeline-marker"></div>
-          <div class="timeline-card">
-            <div class="timeline-head">
-              <h3>Data Analyst Intern</h3>
-              <span class="when">Mar 2022 – Jun 2022</span>
-            </div>
-            <p class="where">MAPNA Turbine Engineering &amp; Manufacturing (TUGA) · Alborz Industrial City, Iran</p>
-            <ul>
-              <li>Supported analytical workflows in an industrial turbine manufacturing facility, processing production and operational datasets.</li>
-              <li>Implemented standardised data-cleaning procedures and reporting practices to improve operational visibility.</li>
-              <li>Collaborated with cross-functional teams to streamline data-preparation pipelines for manufacturing analytics.</li>
-            </ul>
-          </div>
-        </li>
-      </ol>
-    </section>
-
-    <!-- ============ PROJECTS ============ -->
-    <section class="section" id="projects">
-      <div class="section-head reveal">
-        <h2>Selected <span class="hl hl-teal">projects</span></h2>
-        <p>End-to-end work: raw data → cleaning → analysis → models → dashboards.</p>
-      </div>
-      <div class="projects-grid" id="projects-grid"></div>
-      <div class="projects-more reveal">
-        <a class="btn btn-ghost" href="https://github.com/panteamkhh?tab=repositories" target="_blank" rel="noopener">
-          Browse all repositories ↗
-        </a>
-      </div>
-    </section>
-
-    <!-- ============ SKILLS ============ -->
-    <section class="section" id="skills">
-      <div class="section-head reveal">
-        <h2>Tools I <span class="hl hl-magenta">reach for</span></h2>
-        <p>From notebooks and pipelines to dashboards and deployed models.</p>
-      </div>
-      <div class="skills-grid" id="skills-grid"></div>
-    </section>
-
-    <!-- ============ EXTRAS ============ -->
-    <section class="section" id="extras">
-      <div class="section-head reveal">
-        <h2>Certifications, <span class="hl hl-teal">publication</span> &amp; teaching</h2>
-        <p>Continuous learning, research and sharing what I know.</p>
-      </div>
-
-      <div class="extras-grid">
-        <div class="extras-col reveal">
-          <h3 class="extras-title">Certifications</h3>
-          <ul class="cert-list">
-            <li><span class="cert-badge" style="background:linear-gradient(135deg,#35d0c8,#8b5cf6)">AI</span><div><strong>Generative AI for Beginners</strong><em>Microsoft · 2026</em></div></li>
-            <li><span class="cert-badge" style="background:linear-gradient(135deg,#8b5cf6,#ff3d8b)">PE</span><div><strong>Prompt Engineering for Developers</strong><em>DeepLearning.AI · 2026</em></div></li>
-            <li><span class="cert-badge" style="background:linear-gradient(135deg,#ff3d8b,#ffc857)">DA</span><div><strong>Complete Data Analyst Bootcamp (62h)</strong><em>Udemy · 2025</em></div></li>
-            <li><span class="cert-badge" style="background:linear-gradient(135deg,#4aa8ff,#35d0c8)">ML</span><div><strong>Machine Learning</strong><em>Andrew Ng · Coursera · 2023</em></div></li>
-          </ul>
-        </div>
-
-        <div class="extras-col reveal">
-          <h3 class="extras-title">Publication</h3>
-          <article class="pub-card">
-            <span class="pub-year">2026 · accepted</span>
-            <h4>Resolving Data Sparsity in Recommender Systems Using Reinforcement Learning</h4>
-            <p>Babol Noshirvani University of Technology</p>
-          </article>
-
-          <h3 class="extras-title">Teaching</h3>
-          <article class="pub-card">
-            <span class="pub-year">Instructor</span>
-            <h4>Data Storytelling: From Data to Effective Narrative</h4>
-            <p><a href="https://maktabkhooneh.org/course/mk16581" target="_blank" rel="noopener">maktabkhooneh.org/course/mk16581 ↗</a></p>
-          </article>
-
-          <h3 class="extras-title">Languages</h3>
-          <div class="lang-row">
-            <span class="chip">Persian · native</span>
-            <span class="chip">English · upper-intermediate</span>
-            <span class="chip">Spanish · basic</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section class="section section-cta" id="contact">
-      <div class="cta-card reveal">
-        <h2>Let's build something <span class="hl hl-magenta">together</span></h2>
+    <!-- ============ ADVENTURE MAP ============ -->
+    <section class="adventure" id="explore">
+      <div class="adventure-head reveal">
+        <h2>Pick a spot to <span class="hl hl-teal">explore</span></h2>
         <p>
-          Have a dataset that needs a story, or a model that needs shipping?
-          I'd love to hear about it.
+          This is my little data world. Click a character and a piece of my
+          story opens up.
+          <span class="progress-pill" id="progress">0 / 7 discovered</span>
         </p>
+      </div>
+
+      <div class="map reveal" id="map">
+        <svg class="map-path" viewBox="0 0 1000 620" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M140,180 Q260,50 380,80 T680,140 Q830,215 860,330 Q765,480 620,480 Q470,570 340,520 Q180,480 100,400"
+                fill="none" stroke="#7c5cff" stroke-width="4" stroke-linecap="round"
+                stroke-dasharray="2 18" opacity="0.5" />
+        </svg>
+
+        <button class="station" data-target="about" style="--x:14%;--y:29%">
+          <span class="station-art">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle cx="60" cy="64" r="40" fill="#a9d9ff" stroke="#1b1b2f" stroke-width="5"/>
+              <path d="M34 44 q10 -22 26 -22 q16 0 26 22" fill="#7c5cff" stroke="#1b1b2f" stroke-width="5" stroke-linejoin="round"/>
+              <circle cx="47" cy="62" r="10" fill="#fff" stroke="#1b1b2f" stroke-width="4"/>
+              <circle cx="73" cy="62" r="10" fill="#fff" stroke="#1b1b2f" stroke-width="4"/>
+              <circle cx="47" cy="63" r="4.5" fill="#1b1b2f"/>
+              <circle cx="73" cy="63" r="4.5" fill="#1b1b2f"/>
+              <path d="M50 82 q10 8 20 0" fill="none" stroke="#1b1b2f" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="36" cy="78" r="5" fill="#ff8fb1" opacity="0.8"/>
+              <circle cx="84" cy="78" r="5" fill="#ff8fb1" opacity="0.8"/>
+            </svg>
+          </span>
+          <span class="station-label">About me</span>
+        </button>
+
+        <button class="station" data-target="education" style="--x:38%;--y:13%">
+          <span class="station-art">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <ellipse cx="60" cy="68" rx="38" ry="40" fill="#cdc0ff" stroke="#1b1b2f" stroke-width="5"/>
+              <circle cx="47" cy="60" r="13" fill="#fff" stroke="#1b1b2f" stroke-width="4"/>
+              <circle cx="73" cy="60" r="13" fill="#fff" stroke="#1b1b2f" stroke-width="4"/>
+              <circle cx="47" cy="61" r="6" fill="#1b1b2f"/>
+              <circle cx="73" cy="61" r="6" fill="#1b1b2f"/>
+              <path d="M60 70 l-6 8 h12 z" fill="#ffd23f" stroke="#1b1b2f" stroke-width="4" stroke-linejoin="round"/>
+              <path d="M30 34 L60 18 L90 34 Z" fill="#7c5cff" stroke="#1b1b2f" stroke-width="5" stroke-linejoin="round"/>
+              <rect x="34" y="32" width="52" height="9" rx="4" fill="#1b1b2f"/>
+              <line x1="86" y1="36" x2="86" y2="52" stroke="#1b1b2f" stroke-width="4"/>
+              <circle cx="86" cy="55" r="4.5" fill="#ffd23f" stroke="#1b1b2f" stroke-width="3"/>
+            </svg>
+          </span>
+          <span class="station-label">Education</span>
+        </button>
+
+        <button class="station" data-target="experience" style="--x:69%;--y:21%">
+          <span class="station-art">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <path d="M46 50 v-9 a9 9 0 0 1 9 -9 h10 a9 9 0 0 1 9 9 v9" fill="none" stroke="#1b1b2f" stroke-width="5"/>
+              <rect x="22" y="50" width="76" height="52" rx="14" fill="#ffd6ba" stroke="#1b1b2f" stroke-width="5"/>
+              <rect x="22" y="66" width="76" height="6" fill="#1b1b2f" opacity="0.18"/>
+              <circle cx="50" cy="80" r="8" fill="#fff" stroke="#1b1b2f" stroke-width="4"/>
+              <circle cx="72" cy="80" r="8" fill="#fff" stroke="#1b1b2f" stroke-width="4"/>
+              <circle cx="50" cy="81" r="3.5" fill="#1b1b2f"/>
+              <circle cx="72" cy="81" r="3.5" fill="#1b1b2f"/>
+              <path d="M53 92 q7 5 14 0" fill="none" stroke="#1b1b2f" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="station-label">Experience</span>
+        </button>
+
+        <button class="station" data-target="projects" style="--x:86%;--y:54%">
+          <span class="station-art">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <rect x="30" y="40" width="60" height="52" rx="16" fill="#a9d9ff" stroke="#1b1b2f" stroke-width="5"/>
+              <line x1="60" y1="40" x2="60" y2="24" stroke="#1b1b2f" stroke-width="5"/>
+              <circle cx="60" cy="20" r="6" fill="#ff8fb1" stroke="#1b1b2f" stroke-width="4"/>
+              <rect x="16" y="54" width="11" height="24" rx="5" fill="#a9d9ff" stroke="#1b1b2f" stroke-width="4"/>
+              <rect x="93" y="54" width="11" height="24" rx="5" fill="#a9d9ff" stroke="#1b1b2f" stroke-width="4"/>
+              <circle cx="48" cy="62" r="9" fill="#fff" stroke="#1b1b2f" stroke-width="4"/>
+              <circle cx="72" cy="62" r="9" fill="#fff" stroke="#1b1b2f" stroke-width="4"/>
+              <circle cx="48" cy="62" r="4" fill="#1b1b2f"/>
+              <circle cx="72" cy="62" r="4" fill="#1b1b2f"/>
+              <path d="M48 80 q12 8 24 0" fill="none" stroke="#1b1b2f" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="station-label">Projects</span>
+        </button>
+
+        <button class="station" data-target="skills" style="--x:62%;--y:79%">
+          <span class="station-art">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <path d="M46 56 v-10 h28 v10" fill="none" stroke="#1b1b2f" stroke-width="5"/>
+              <rect x="24" y="56" width="72" height="44" rx="12" fill="#4cc38a" stroke="#1b1b2f" stroke-width="5"/>
+              <rect x="24" y="56" width="72" height="13" rx="7" fill="#2ec4b6" stroke="#1b1b2f" stroke-width="5"/>
+              <circle cx="50" cy="82" r="7" fill="#fff" stroke="#1b1b2f" stroke-width="4"/>
+              <circle cx="70" cy="82" r="7" fill="#fff" stroke="#1b1b2f" stroke-width="4"/>
+              <circle cx="50" cy="83" r="3" fill="#1b1b2f"/>
+              <circle cx="70" cy="83" r="3" fill="#1b1b2f"/>
+            </svg>
+          </span>
+          <span class="station-label">Skills</span>
+        </button>
+
+        <button class="station" data-target="extras" style="--x:34%;--y:84%">
+          <span class="station-art">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <path d="M60 18 l11 24 26 3 -19 18 5 26 -23 -12 -23 12 5 -26 -19 -18 26 -3 z"
+                    fill="#ffd23f" stroke="#1b1b2f" stroke-width="5" stroke-linejoin="round"/>
+              <circle cx="50" cy="58" r="4.5" fill="#1b1b2f"/>
+              <circle cx="70" cy="58" r="4.5" fill="#1b1b2f"/>
+              <path d="M52 68 q8 6 16 0" fill="none" stroke="#1b1b2f" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="station-label">Extras</span>
+        </button>
+
+        <button class="station" data-target="contact" style="--x:10%;--y:64%">
+          <span class="station-art">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <rect x="30" y="50" width="60" height="46" rx="14" fill="#ffb3c7" stroke="#1b1b2f" stroke-width="5"/>
+              <rect x="30" y="50" width="60" height="16" rx="8" fill="#ff8fb1" stroke="#1b1b2f" stroke-width="5"/>
+              <rect x="56" y="66" width="8" height="18" rx="3" fill="#1b1b2f"/>
+              <circle cx="47" cy="80" r="6" fill="#fff" stroke="#1b1b2f" stroke-width="3"/>
+              <circle cx="73" cy="80" r="6" fill="#fff" stroke="#1b1b2f" stroke-width="3"/>
+              <circle cx="47" cy="81" r="2.5" fill="#1b1b2f"/>
+              <circle cx="73" cy="81" r="2.5" fill="#1b1b2f"/>
+            </svg>
+          </span>
+          <span class="station-label">Contact</span>
+        </button>
+
+        <div class="map-hint" aria-hidden="true">👆 click me</div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT STRIP ============ -->
+    <section class="contact-strip" id="contact-strip">
+      <div class="cta-card reveal">
+        <h2>Let's build something <span class="hl hl-pink">together</span></h2>
+        <p>Have a dataset that needs a story, or a model that needs shipping? I'd love to hear about it.</p>
         <div class="cta-actions">
           <a class="btn btn-primary" href="mailto:pantea.mohamadkhani1999@gmail.com">Email me</a>
           <a class="btn btn-ghost" href="https://www.linkedin.com/in/panteamkh" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -295,6 +235,148 @@
     <p>© <span id="year"></span> Pantea Mohamadkhani · Data Science · Machine Learning · BI</p>
     <p class="footer-sub">Built with Three.js and a lot of pandas</p>
   </footer>
+
+  <!-- ============ MODAL ============ -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" data-close aria-label="Close">×</button>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION TEMPLATES ============ -->
+  <template id="tpl-about">
+    <h2 class="modal-title" id="modal-title">About <span class="hl hl-violet">me</span></h2>
+    <p>I'm a data professional who enjoys the unglamorous parts as much as the modelling: cleaning, validation, tests and reproducibility. My work spans applied machine learning, NLP and business intelligence, always aimed at decision-ready insights for stakeholders.</p>
+    <p>I work mostly in Python (pandas, scikit-learn, matplotlib) and Power BI, and I've been building with LLMs, embeddings and agents lately. I care about honest metrics — macro-F1 over a flattering accuracy score, loss ratios over vanity dashboards.</p>
+    <div class="about-tags">
+      <span class="chip">📍 Tehran, Iran</span>
+      <span class="chip">🌍 English (upper-intermediate)</span>
+      <span class="chip">🚀 Open to data / ML roles</span>
+    </div>
+    <ul class="facts">
+      <li><span>Focus</span><strong>Data Science · ML · BI</strong></li>
+      <li><span>Core stack</span><strong>Python · SQL · Power BI</strong></li>
+      <li><span>Lately</span><strong>NLP · LLMs · agents</strong></li>
+      <li><span>Values</span><strong>Reproducibility · clarity</strong></li>
+    </ul>
+  </template>
+
+  <template id="tpl-education">
+    <h2 class="modal-title">Edu<span class="hl hl-violet">cation</span></h2>
+    <ol class="timeline timeline-edu">
+      <li class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-card">
+          <div class="timeline-head"><h3>M.Sc. Artificial Intelligence &amp; Robotics</h3><span class="when">2022 – 2025</span></div>
+          <p class="where">Kharazmi University</p>
+          <p class="note">Thesis: <em>Addressing Data Sparsity in Recommender Systems via Reinforcement Learning</em></p>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-card">
+          <div class="timeline-head"><h3>Master of Business Administration (MBA)</h3><span class="when">2025 – 2026</span></div>
+          <p class="where">University of Tehran</p>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-card">
+          <div class="timeline-head"><h3>B.Sc. Industrial Engineering</h3><span class="when">2017 – 2021</span></div>
+          <p class="where">Islamic Azad University</p>
+        </div>
+      </li>
+    </ol>
+  </template>
+
+  <template id="tpl-experience">
+    <h2 class="modal-title">Work <span class="hl hl-pink">experience</span></h2>
+    <ol class="timeline">
+      <li class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-card">
+          <div class="timeline-head"><h3>Data Analyst</h3><span class="when">2024 – 2025</span></div>
+          <p class="where">Adrin Darou Iranian · Karaj, Iran</p>
+          <ul>
+            <li>Built and maintained Excel and Power BI reports and dashboards giving management recurring visibility into sales performance, product profitability and top/low performers.</li>
+            <li>Analysed sales and pricing data for pharmaceutical, supplement and medical-equipment lines, identifying demand patterns and margin trends for pricing and purchasing decisions.</li>
+            <li>Cleaned, consolidated and validated transaction, product and customer data into structured datasets, improving reporting reliability and cutting manual spreadsheet effort.</li>
+            <li>Evaluated product profitability and price competitiveness across categories, flagging high-margin and underperforming items to guide commercial decisions.</li>
+            <li>Presented findings and recommendations to non-technical management, translating sales data into practical actions.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-card">
+          <div class="timeline-head"><h3>Data Analyst Intern</h3><span class="when">Mar 2022 – Jun 2022</span></div>
+          <p class="where">MAPNA Turbine Engineering &amp; Manufacturing (TUGA) · Alborz Industrial City, Iran</p>
+          <ul>
+            <li>Supported analytical workflows in an industrial turbine manufacturing facility, processing production and operational datasets.</li>
+            <li>Implemented standardised data-cleaning procedures and reporting practices to improve operational visibility.</li>
+            <li>Collaborated with cross-functional teams to streamline data-preparation pipelines for manufacturing analytics.</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </template>
+
+  <template id="tpl-projects">
+    <h2 class="modal-title">Selected <span class="hl hl-teal">projects</span></h2>
+    <p class="modal-lead">Raw data → cleaning → analysis → models → dashboards.</p>
+    <div class="projects-grid" id="projects-grid"></div>
+  </template>
+
+  <template id="tpl-skills">
+    <h2 class="modal-title">Tools I <span class="hl hl-pink">reach for</span></h2>
+    <div class="skills-grid" id="skills-grid"></div>
+  </template>
+
+  <template id="tpl-extras">
+    <h2 class="modal-title">Certifications, <span class="hl hl-teal">publication</span> &amp; teaching</h2>
+    <h3 class="extras-title">Certifications</h3>
+    <ul class="cert-list">
+      <li><span class="cert-badge" style="background:linear-gradient(135deg,#a9d9ff,#7c5cff)">AI</span><div><strong>Generative AI for Beginners</strong><em>Microsoft · 2026</em></div></li>
+      <li><span class="cert-badge" style="background:linear-gradient(135deg,#7c5cff,#ff8fb1)">PE</span><div><strong>Prompt Engineering for Developers</strong><em>DeepLearning.AI · 2026</em></div></li>
+      <li><span class="cert-badge" style="background:linear-gradient(135deg,#ff8fb1,#ffd23f)">DA</span><div><strong>Complete Data Analyst Bootcamp (62h)</strong><em>Udemy · 2025</em></div></li>
+      <li><span class="cert-badge" style="background:linear-gradient(135deg,#a9d9ff,#2ec4b6)">ML</span><div><strong>Machine Learning</strong><em>Andrew Ng · Coursera · 2023</em></div></li>
+    </ul>
+    <h3 class="extras-title">Publication</h3>
+    <article class="pub-card">
+      <span class="pub-year">2026 · accepted</span>
+      <h4>Resolving Data Sparsity in Recommender Systems Using Reinforcement Learning</h4>
+      <p>Babol Noshirvani University of Technology</p>
+    </article>
+    <h3 class="extras-title">Teaching</h3>
+    <article class="pub-card">
+      <span class="pub-year">Instructor</span>
+      <h4>Data Storytelling: From Data to Effective Narrative</h4>
+      <p><a href="https://maktabkhooneh.org/course/mk16581" target="_blank" rel="noopener">maktabkhooneh.org/course/mk16581 ↗</a></p>
+    </article>
+    <h3 class="extras-title">Languages</h3>
+    <div class="lang-row">
+      <span class="chip">Persian · native</span>
+      <span class="chip">English · upper-intermediate</span>
+      <span class="chip">Spanish · basic</span>
+    </div>
+  </template>
+
+  <template id="tpl-contact">
+    <h2 class="modal-title">Say <span class="hl hl-pink">hi</span></h2>
+    <p class="modal-lead">Have a dataset that needs a story, or a model that needs shipping? I'd love to hear about it.</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="mailto:pantea.mohamadkhani1999@gmail.com">Email me</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/panteamkh" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn btn-ghost" href="https://github.com/panteamkhh" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+    <ul class="contact-meta">
+      <li>📧 pantea.mohamadkhani1999@gmail.com</li>
+      <li>📞 +98 910 961 2974</li>
+      <li>📍 Tehran, Iran</li>
+    </ul>
+  </template>
 
   <script type="importmap">
     {

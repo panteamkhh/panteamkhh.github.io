@@ -1,47 +1,123 @@
 import { projects, skills } from "./projects.js";
 
-/* ---------- project cards ---------- */
-const grid = document.getElementById("projects-grid");
-
-function projectCard(project, index) {
-  const el = document.createElement("article");
-  el.className = "project-card reveal";
-  el.style.transitionDelay = `${Math.min(index * 40, 320)}ms`;
-  el.innerHTML = `
-    <div class="project-top">
-      <div class="project-emoji" style="background:${project.color}1f;border-color:${project.color}66">${project.emoji}</div>
-      <h3>${project.name}</h3>
-    </div>
-    <p>${project.description}</p>
-    <div class="project-tags">
-      ${project.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
-    </div>
-    <a class="project-link" href="${project.url}" target="_blank" rel="noopener">View on GitHub ↗</a>
-  `;
-  return el;
+/* ---------- shared renderers (used inside the modal) ---------- */
+function renderProjects(container) {
+  if (!container) return;
+  container.innerHTML = projects
+    .map(
+      (project) => `
+      <article class="project-card">
+        <div class="project-top">
+          <div class="project-emoji" style="background:${project.color}">${project.emoji}</div>
+          <h3>${project.name}</h3>
+        </div>
+        <p>${project.description}</p>
+        <div class="project-tags">${project.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+        <a class="project-link" href="${project.url}" target="_blank" rel="noopener">View on GitHub ↗</a>
+      </article>`
+    )
+    .join("");
 }
 
-if (grid) {
-  projects.forEach((project, index) => grid.appendChild(projectCard(project, index)));
+function renderSkills(container) {
+  if (!container) return;
+  container.innerHTML = skills
+    .map(
+      (group) => `
+      <div class="skill-card">
+        <h3>${group.title}</h3>
+        <div class="skill-chips">${group.items.map((i) => `<span class="chip">${i}</span>`).join("")}</div>
+      </div>`
+    )
+    .join("");
 }
 
-/* ---------- skills ---------- */
-const skillsGrid = document.getElementById("skills-grid");
+/* ---------- adventure: stations, discovery + modal ---------- */
+const STATIONS = ["about", "education", "experience", "projects", "skills", "extras", "contact"];
+const FOUND_KEY = "pantea-found-sections";
 
-if (skillsGrid) {
-  skills.forEach((group, index) => {
-    const card = document.createElement("div");
-    card.className = "skill-card reveal";
-    card.style.transitionDelay = `${Math.min(index * 60, 300)}ms`;
-    card.innerHTML = `
-      <h3>${group.title}</h3>
-      <div class="skill-chips">
-        ${group.items.map((item) => `<span class="chip">${item}</span>`).join("")}
-      </div>
-    `;
-    skillsGrid.appendChild(card);
+function loadFound() {
+  try {
+    return new Set(JSON.parse(localStorage.getItem(FOUND_KEY) || "[]"));
+  } catch (error) {
+    return new Set();
+  }
+}
+
+function saveFound(set) {
+  try {
+    localStorage.setItem(FOUND_KEY, JSON.stringify([...set]));
+  } catch (error) {
+    /* storage unavailable — discovery just won't persist */
+  }
+}
+
+const found = loadFound();
+const progressEl = document.getElementById("progress");
+const stationEls = Array.from(document.querySelectorAll(".station"));
+
+function updateProgress() {
+  if (progressEl) progressEl.textContent = `${found.size} / ${STATIONS.length} discovered`;
+}
+
+function markFound(name) {
+  found.add(name);
+  saveFound(found);
+  updateProgress();
+  stationEls
+    .filter((el) => el.dataset.target === name)
+    .forEach((el) => el.classList.add("is-found"));
+}
+
+const modal = document.getElementById("modal");
+const modalBody = document.getElementById("modal-body");
+let lastFocused = null;
+
+function openSection(name) {
+  const template = document.getElementById(`tpl-${name}`);
+  if (!template || !modal || !modalBody) return;
+
+  lastFocused = document.activeElement;
+  modalBody.innerHTML = "";
+  modalBody.appendChild(template.content.cloneNode(true));
+
+  if (name === "projects") renderProjects(modalBody.querySelector("#projects-grid"));
+  if (name === "skills") renderSkills(modalBody.querySelector("#skills-grid"));
+
+  modal.hidden = false;
+  document.body.classList.add("modal-open");
+  markFound(name);
+  const closeButton = modal.querySelector(".modal-close");
+  if (closeButton) closeButton.focus();
+}
+
+function closeModal() {
+  if (!modal) return;
+  modal.hidden = true;
+  document.body.classList.remove("modal-open");
+  if (modalBody) modalBody.innerHTML = "";
+  if (lastFocused && lastFocused.focus) lastFocused.focus();
+}
+
+stationEls.forEach((button) => {
+  button.addEventListener("click", () => openSection(button.dataset.target));
+});
+
+if (modal) {
+  modal.addEventListener("click", (event) => {
+    if (event.target.dataset.close !== undefined) closeModal();
   });
 }
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && modal && !modal.hidden) closeModal();
+});
+
+/* restore discovery state from a previous visit */
+found.forEach((name) =>
+  stationEls.filter((el) => el.dataset.target === name).forEach((el) => el.classList.add("is-found"))
+);
+updateProgress();
 
 /* ---------- portrait fallback ---------- */
 const portrait = document.getElementById("portrait");
@@ -71,28 +147,7 @@ if ("IntersectionObserver" in window) {
   revealTargets.forEach((el) => el.classList.add("is-visible"));
 }
 
-/* ---------- toolbar: active section (scrollspy) ---------- */
-const toolbarLinks = Array.from(document.querySelectorAll(".toolbar-links a[href^='#']"));
-const sections = toolbarLinks
-  .map((link) => document.querySelector(link.getAttribute("href")))
-  .filter(Boolean);
-
-if ("IntersectionObserver" in window && sections.length) {
-  const spy = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        toolbarLinks.forEach((link) =>
-          link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`)
-        );
-      });
-    },
-    { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
-  );
-  sections.forEach((section) => spy.observe(section));
-}
-
-/* ---------- toolbar: mobile menu ---------- */
+/* ---------- toolbar ---------- */
 const toggle = document.getElementById("toolbar-toggle");
 const links = document.getElementById("toolbar-links");
 
