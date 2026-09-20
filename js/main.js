@@ -51,6 +51,42 @@ if (marquee) {
   marquee.innerHTML = items + items;
 }
 
+/* ---------- before/after morph slider ---------- */
+const morph = document.getElementById("morph");
+const morphRange = document.getElementById("morph-range");
+
+if (morph && morphRange) {
+  const setPosition = (value) => {
+    const pct = Math.min(100, Math.max(0, value));
+    morph.style.setProperty("--pos", `${pct}%`);
+    morphRange.value = String(pct);
+  };
+
+  const fromPointer = (clientX) => {
+    const rect = morph.getBoundingClientRect();
+    setPosition(((clientX - rect.left) / rect.width) * 100);
+  };
+
+  let dragging = false;
+  morph.addEventListener("pointerdown", (event) => {
+    dragging = true;
+    if (morph.setPointerCapture) morph.setPointerCapture(event.pointerId);
+    fromPointer(event.clientX);
+  });
+  morph.addEventListener("pointermove", (event) => {
+    if (dragging) fromPointer(event.clientX);
+  });
+  const stop = () => {
+    dragging = false;
+  };
+  morph.addEventListener("pointerup", stop);
+  morph.addEventListener("pointercancel", stop);
+
+  morphRange.addEventListener("input", (event) => setPosition(Number(event.target.value)));
+
+  setPosition(Number(morphRange.value));
+}
+
 /* ---------- scroll reveal ---------- */
 const revealTargets = document.querySelectorAll(".reveal");
 
@@ -71,9 +107,30 @@ if ("IntersectionObserver" in window) {
   revealTargets.forEach((el) => el.classList.add("is-visible"));
 }
 
-/* ---------- mobile nav ---------- */
-const toggle = document.getElementById("nav-toggle");
-const links = document.getElementById("nav-links");
+/* ---------- toolbar: active section (scrollspy) ---------- */
+const toolbarLinks = Array.from(document.querySelectorAll(".toolbar-links a[href^='#']"));
+const sections = toolbarLinks
+  .map((link) => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
+
+if ("IntersectionObserver" in window && sections.length) {
+  const spy = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        toolbarLinks.forEach((link) =>
+          link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`)
+        );
+      });
+    },
+    { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+  );
+  sections.forEach((section) => spy.observe(section));
+}
+
+/* ---------- toolbar: mobile menu ---------- */
+const toggle = document.getElementById("toolbar-toggle");
+const links = document.getElementById("toolbar-links");
 
 if (toggle && links) {
   toggle.addEventListener("click", () => {
@@ -87,6 +144,9 @@ if (toggle && links) {
     })
   );
 }
+
+/* ---------- print / save as PDF ---------- */
+document.getElementById("print-btn")?.addEventListener("click", () => window.print());
 
 /* ---------- footer year ---------- */
 const year = document.getElementById("year");

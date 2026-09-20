@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pantea Mohamadkhani — Data & AI</title>
-  <meta name="description" content="Portfolio of Pantea Mohamadkhani: data analysis, machine learning and AI engineering projects — insurance, NLP, forecasting, dashboards and agents." />
+  <title>Pantea Mohamadkhani — Data Science &amp; AI</title>
+  <meta name="description" content="Pantea Mohamadkhani — Data Scientist / ML Analyst. Resume, projects and experience across AI, NLP, machine learning and business intelligence." />
   <meta name="theme-color" content="#ffe066" />
-  <meta property="og:title" content="Pantea Mohamadkhani — Data & AI" />
-  <meta property="og:description" content="Data analysis, machine learning and AI engineering projects." />
+  <meta property="og:title" content="Pantea Mohamadkhani — Data Science & AI" />
+  <meta property="og:description" content="Data Science, Machine Learning and Business Intelligence portfolio." />
   <meta property="og:type" content="website" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,26 +19,35 @@
   <div id="scene-container" aria-hidden="true"></div>
   <div class="doodle-bg" aria-hidden="true"></div>
 
-  <header class="nav" id="nav">
-    <a class="brand" href="#top">
+  <!-- ============ TOOLBAR ============ -->
+  <header class="toolbar" id="toolbar">
+    <a class="brand" href="#home">
       <span class="brand-dot"></span>
-      <span>Pantea<span class="brand-light">.dev</span></span>
+      <span>Pantea<span class="brand-light">.ai</span></span>
     </a>
-    <nav class="nav-links" id="nav-links">
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
+    <nav class="toolbar-links" id="toolbar-links" aria-label="Sections">
+      <a href="#home" class="is-active">Home</a>
       <a href="#about">About</a>
-      <a href="#contact" class="nav-cta">Say hi</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#extras">Extras</a>
     </nav>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="toolbar-actions">
+      <button class="btn btn-small btn-ghost" id="print-btn" type="button" title="Print / save as PDF">CV ↓</button>
+      <a class="btn btn-small btn-primary" href="#contact">Hire me</a>
+      <button class="toolbar-toggle" id="toolbar-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </header>
 
-  <main id="top">
-    <section class="hero">
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
       <div class="hero-copy">
-        <span class="pill reveal">Data · Machine Learning · AI</span>
+        <span class="pill reveal">Data Science · Machine Learning · BI</span>
         <h1 class="reveal">
           Hi, I'm <span class="hl hl-pink">Pantea</span> —<br />
           I turn messy data into
@@ -46,9 +55,10 @@
           <span class="hl hl-yellow">models</span>.
         </h1>
         <p class="hero-sub reveal">
-          Data analyst &amp; ML builder. I ship reproducible pipelines, tested
-          code, honest charts and the occasional word cloud — from insurance
-          claims and retail sales to NLP, forecasting and AI agents.
+          Data Scientist / ML Analyst with an M.Sc. in AI &amp; Robotics, a B.Sc.
+          in Industrial Engineering and a completed MBA. I build reproducible
+          pipelines, tested code, honest charts and dashboards that decision
+          makers actually use.
         </p>
         <div class="hero-actions reveal">
           <a class="btn btn-primary" href="#projects">See my work</a>
@@ -56,15 +66,24 @@
         </div>
         <ul class="hero-stats reveal">
           <li><strong>20+</strong><span>projects</span></li>
-          <li><strong>10+</strong><span>ML models</span></li>
-          <li><strong>∞</strong><span>curiosity</span></li>
+          <li><strong>2+</strong><span>yrs analytics</span></li>
+          <li><strong>1</strong><span>publication</span></li>
         </ul>
       </div>
-      <div class="hero-badge reveal" aria-hidden="true">
-        <div class="badge-card">
-          <span class="badge-emoji">🧠</span>
-          <p>pandas · scikit-learn<br />Power BI · Three.js</p>
+
+      <div class="hero-visual reveal">
+        <div class="morph" id="morph">
+          <img class="morph-img morph-photo" src="assets/city-photo.svg" alt="A realistic city skyline" />
+          <img class="morph-img morph-cartoon" src="assets/city-cartoon.svg" alt="The same skyline reimagined as a cartoon" />
+          <div class="morph-handle" aria-hidden="true"><span>↔</span></div>
+          <span class="morph-label morph-label-left" aria-hidden="true">photo</span>
+          <span class="morph-label morph-label-right" aria-hidden="true">cartoon</span>
         </div>
+        <label class="morph-control">
+          <span class="sr-only">Reveal the cartoon version</span>
+          <input type="range" id="morph-range" min="0" max="100" value="45" />
+        </label>
+        <p class="morph-hint">Drag to turn a real scene into a cartoon — data, but make it fun.</p>
       </div>
     </section>
 
@@ -72,9 +91,87 @@
       <div class="marquee-track" id="marquee-track"></div>
     </div>
 
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+      <div class="about-grid">
+        <div class="about-copy reveal">
+          <h2>About <span class="hl hl-yellow">me</span></h2>
+          <p>
+            I'm a data professional who enjoys the unglamorous parts as much as
+            the modelling: cleaning, validation, tests and reproducibility. My
+            work spans applied machine learning, NLP and business intelligence,
+            always aimed at decision-ready insights for stakeholders.
+          </p>
+          <p>
+            I work mostly in Python (pandas, scikit-learn, matplotlib) and Power
+            BI, and I've been building with LLMs, embeddings and agents lately. I
+            care about honest metrics — macro-F1 over a flattering accuracy
+            score, loss ratios over vanity dashboards.
+          </p>
+          <div class="about-tags">
+            <span class="chip">📍 Tehran, Iran</span>
+            <span class="chip">🌍 English (upper-intermediate)</span>
+            <span class="chip">🚀 Open to data / ML roles</span>
+          </div>
+        </div>
+        <aside class="about-card reveal">
+          <h3>At a glance</h3>
+          <ul>
+            <li><span>Focus</span><strong>Data Science · ML · BI</strong></li>
+            <li><span>Core stack</span><strong>Python · SQL · Power BI</strong></li>
+            <li><span>Lately</span><strong>NLP · LLMs · agents</strong></li>
+            <li><span>Values</span><strong>Reproducibility · clarity</strong></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section section-alt" id="experience">
+      <div class="section-head reveal">
+        <h2>Work <span class="hl hl-pink">experience</span></h2>
+        <p>Turning operational and sales data into reporting people rely on.</p>
+      </div>
+      <ol class="timeline">
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-card">
+            <div class="timeline-head">
+              <h3>Data Analyst</h3>
+              <span class="when">2024 – 2025</span>
+            </div>
+            <p class="where">Adrin Darou Iranian · Karaj, Iran</p>
+            <ul>
+              <li>Built and maintained Excel and Power BI reports and dashboards giving management recurring visibility into sales performance, product profitability and top/low performers.</li>
+              <li>Analysed sales and pricing data for pharmaceutical, supplement and medical-equipment lines, identifying demand patterns and margin trends for pricing and purchasing decisions.</li>
+              <li>Cleaned, consolidated and validated transaction, product and customer data into structured datasets, improving reporting reliability and cutting manual spreadsheet effort.</li>
+              <li>Evaluated product profitability and price competitiveness across categories, flagging high-margin and underperforming items to guide commercial decisions.</li>
+              <li>Presented findings and recommendations to non-technical management, translating sales data into practical actions.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-card">
+            <div class="timeline-head">
+              <h3>Data Analyst Intern</h3>
+              <span class="when">Mar 2022 – Jun 2022</span>
+            </div>
+            <p class="where">MAPNA Turbine Engineering &amp; Manufacturing (TUGA) · Alborz Industrial City, Iran</p>
+            <ul>
+              <li>Supported analytical workflows in an industrial turbine manufacturing facility, processing production and operational datasets.</li>
+              <li>Implemented standardised data-cleaning procedures and reporting practices to improve operational visibility.</li>
+              <li>Collaborated with cross-functional teams to streamline data-preparation pipelines for manufacturing analytics.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
     <section class="section" id="projects">
       <div class="section-head reveal">
-        <h2>Selected <span class="hl hl-pink">projects</span></h2>
+        <h2>Selected <span class="hl hl-teal">projects</span></h2>
         <p>End-to-end work: raw data → cleaning → analysis → models → dashboards.</p>
       </div>
       <div class="projects-grid" id="projects-grid"></div>
@@ -85,48 +182,100 @@
       </div>
     </section>
 
-    <section class="section section-alt" id="skills">
+    <!-- ============ EDUCATION ============ -->
+    <section class="section section-alt" id="education">
       <div class="section-head reveal">
-        <h2>Tools I <span class="hl hl-teal">reach for</span></h2>
+        <h2>Edu<span class="hl hl-yellow">cation</span></h2>
+        <p>AI &amp; robotics, industrial engineering and business — the theory behind the models.</p>
+      </div>
+      <ol class="timeline timeline-edu">
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-card">
+            <div class="timeline-head">
+              <h3>Master of Business Administration (MBA)</h3>
+              <span class="when">2025 – 2026</span>
+            </div>
+            <p class="where">University of Tehran</p>
+          </div>
+        </li>
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-card">
+            <div class="timeline-head">
+              <h3>M.Sc. Artificial Intelligence &amp; Robotics</h3>
+              <span class="when">2022 – 2025</span>
+            </div>
+            <p class="where">Kharazmi University</p>
+            <p class="note">Thesis: <em>Addressing Data Sparsity in Recommender Systems via Reinforcement Learning</em></p>
+          </div>
+        </li>
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-card">
+            <div class="timeline-head">
+              <h3>B.Sc. Industrial Engineering</h3>
+              <span class="when">2017 – 2021</span>
+            </div>
+            <p class="where">Islamic Azad University</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section" id="skills">
+      <div class="section-head reveal">
+        <h2>Tools I <span class="hl hl-pink">reach for</span></h2>
         <p>From notebooks and pipelines to dashboards and deployed models.</p>
       </div>
       <div class="skills-grid" id="skills-grid"></div>
     </section>
 
-    <section class="section" id="about">
-      <div class="about-grid">
-        <div class="about-copy reveal">
-          <h2>About <span class="hl hl-yellow">me</span></h2>
-          <p>
-            I'm a data analyst and machine-learning enthusiast who likes the
-            unglamorous parts as much as the modelling: cleaning, validation,
-            tests and reproducibility. Most of my projects come with a
-            documented pipeline, a pytest suite and charts I'd be happy to
-            defend.
-          </p>
-          <p>
-            I work mostly in Python (pandas, scikit-learn, matplotlib) and
-            Power BI, and I've been building with LLMs and agents lately. I care
-            about honest metrics — macro-F1 over a flattering accuracy score,
-            loss ratios over vanity dashboards.
-          </p>
-          <div class="about-tags">
-            <span class="chip">📍 Open to data / ML roles</span>
-            <span class="chip">🌱 Always learning</span>
+    <!-- ============ EXTRAS ============ -->
+    <section class="section section-alt" id="extras">
+      <div class="section-head reveal">
+        <h2>Certifications, <span class="hl hl-teal">publication</span> &amp; teaching</h2>
+        <p>Continuous learning, research and sharing what I know.</p>
+      </div>
+
+      <div class="extras-grid">
+        <div class="extras-col reveal">
+          <h3 class="extras-title">Certifications</h3>
+          <ul class="cert-list">
+            <li><span class="cert-badge" style="background:#2ec4b6">AI</span><div><strong>Generative AI for Beginners</strong><em>Microsoft · 2026</em></div></li>
+            <li><span class="cert-badge" style="background:#7c5cff">PE</span><div><strong>Prompt Engineering for Developers</strong><em>DeepLearning.AI · 2026</em></div></li>
+            <li><span class="cert-badge" style="background:#ff7a3d">DA</span><div><strong>Complete Data Analyst Bootcamp (62h)</strong><em>Udemy · 2025</em></div></li>
+            <li><span class="cert-badge" style="background:#ff5d8f">ML</span><div><strong>Machine Learning</strong><em>Andrew Ng · Coursera · 2023</em></div></li>
+          </ul>
+        </div>
+
+        <div class="extras-col reveal">
+          <h3 class="extras-title">Publication</h3>
+          <article class="pub-card">
+            <span class="pub-year">2026 · accepted</span>
+            <h4>Resolving Data Sparsity in Recommender Systems Using Reinforcement Learning</h4>
+            <p>Babol Noshirvani University of Technology</p>
+          </article>
+
+          <h3 class="extras-title">Teaching</h3>
+          <article class="pub-card">
+            <span class="pub-year">Instructor</span>
+            <h4>Data Storytelling: From Data to Effective Narrative</h4>
+            <p><a href="https://maktabkhooneh.org/course/mk16581" target="_blank" rel="noopener">maktabkhooneh.org/course/mk16581 ↗</a></p>
+          </article>
+
+          <h3 class="extras-title">Languages</h3>
+          <div class="lang-row">
+            <span class="chip">Persian · native</span>
+            <span class="chip">English · upper-intermediate</span>
+            <span class="chip">Spanish · basic</span>
           </div>
         </div>
-        <aside class="about-card reveal">
-          <h3>Quick facts</h3>
-          <ul>
-            <li><span>Focus</span><strong>Data analysis, ML, BI</strong></li>
-            <li><span>Core stack</span><strong>Python · SQL · Power BI</strong></li>
-            <li><span>Lately</span><strong>NLP · LLMs · agents</strong></li>
-            <li><span>Values</span><strong>Reproducibility · clarity</strong></li>
-          </ul>
-        </aside>
       </div>
     </section>
 
+    <!-- ============ CONTACT ============ -->
     <section class="section section-cta" id="contact">
       <div class="cta-card reveal">
         <h2>Let's build something <span class="hl hl-pink">together</span></h2>
@@ -135,16 +284,22 @@
           I'd love to hear about it.
         </p>
         <div class="cta-actions">
-          <a class="btn btn-primary" href="mailto:pantea.mkh18@gmail.com">Email me</a>
-          <a class="btn btn-ghost" href="https://github.com/panteamkhh" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-primary" href="mailto:pantea.mohamadkhani1999@gmail.com">Email me</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/panteamkh" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn btn-ghost" href="https://github.com/panteamkhh" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
+        <ul class="contact-meta">
+          <li>📧 pantea.mohamadkhani1999@gmail.com</li>
+          <li>📞 +98 910 961 2974</li>
+          <li>📍 Tehran, Iran</li>
+        </ul>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <p>© <span id="year"></span> Pantea Mohamadkhani · built with Three.js &amp; a lot of pandas</p>
-    <p class="footer-sub">Hosted on GitHub Pages</p>
+    <p class="footer-sub">Data Science · Machine Learning · Business Intelligence</p>
   </footer>
 
   <script type="importmap">
