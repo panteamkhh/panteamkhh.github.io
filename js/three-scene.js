@@ -1,5 +1,5 @@
-// Three.js background — floating 3D puzzle pieces on a light canvas.
-// Each piece is a toon-shaded tile with a little tab, drifting gently.
+// Three.js background — real jigsaw pieces (extruded from tab/blank shapes)
+// floating on a light canvas. Pastel palette, no orange.
 
 import * as THREE from "three";
 
@@ -19,8 +19,7 @@ function supportsWebGL() {
 }
 
 if (container && supportsWebGL()) {
-  const INK = 0x1b1b2f;
-  const PASTEL = [0xff8fb1, 0xffd23f, 0x2ec4b6, 0x7c5cff, 0xff7a3d, 0xa9d9ff, 0xcdc0ff, 0x4cc38a];
+  const COLORS = [0xff8fb1, 0xffd23f, 0x2ec4b6, 0x7c5cff, 0xa9d9ff, 0xcdc0ff, 0x4cc38a, 0xa8e6cf];
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
@@ -36,7 +35,7 @@ if (container && supportsWebGL()) {
   renderer.setSize(container.clientWidth, container.clientHeight);
   container.appendChild(renderer.domElement);
 
-  const ramp = new Uint8Array([140, 200, 255]);
+  const ramp = new Uint8Array([150, 205, 255]);
   const gradientMap = new THREE.DataTexture(ramp, ramp.length, 1, THREE.RedFormat);
   gradientMap.needsUpdate = true;
 
@@ -44,23 +43,49 @@ if (container && supportsWebGL()) {
     return new THREE.MeshToonMaterial({ color, gradientMap });
   }
 
-  function makePiece(color) {
-    const group = new THREE.Group();
+  // --- build a jigsaw piece outline (unit cell with tabs/blanks) --------
+  function addEdge(shape, ax, ay, bx, by, nx, ny, tab) {
+    if (!tab) {
+      shape.lineTo(bx, by);
+      return;
+    }
+    const bump = 0.22;
+    const point = (t) => [ax + (bx - ax) * t, ay + (by - ay) * t];
+    const [ax2, ay2] = point(0.38);
+    const [bx2, by2] = point(0.62);
+    const [c1x, c1y] = point(0.45);
+    const [c2x, c2y] = point(0.55);
+    const o = tab * bump;
+    shape.lineTo(ax2, ay2);
+    shape.bezierCurveTo(c1x + nx * o, c1y + ny * o, c2x + nx * o, c2y + ny * o, bx2, by2);
+    shape.lineTo(bx, by);
+  }
 
-    const base = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 0.24), toon(color));
-    group.add(base);
+  function makePieceGeometry() {
+    const shape = new THREE.Shape();
+    const tabs = [
+      Math.random() > 0.5 ? 1 : -1, // top
+      Math.random() > 0.5 ? 1 : -1, // right
+      Math.random() > 0.5 ? 1 : -1, // bottom
+      Math.random() > 0.5 ? 1 : -1, // left
+    ];
 
-    const tab = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.24, 18), toon(color));
-    tab.rotation.x = Math.PI / 2;
-    tab.position.set(0.5, 0, 0);
-    group.add(tab);
+    shape.moveTo(0, 0);
+    addEdge(shape, 0, 0, 1, 0, 0, -1, tabs[0]);
+    addEdge(shape, 1, 0, 1, 1, 1, 0, tabs[1]);
+    addEdge(shape, 1, 1, 0, 1, 0, 1, tabs[2]);
+    addEdge(shape, 0, 1, 0, 0, -1, 0, tabs[3]);
 
-    const tabBottom = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.24, 18), toon(color));
-    tabBottom.rotation.x = Math.PI / 2;
-    tabBottom.position.set(-0.5, 0, 0);
-    group.add(tabBottom);
-
-    return group;
+    const geometry = new THREE.ExtrudeGeometry(shape, {
+      depth: 0.24,
+      bevelEnabled: true,
+      bevelThickness: 0.03,
+      bevelSize: 0.035,
+      bevelSegments: 2,
+      curveSegments: 10,
+    });
+    geometry.center();
+    return geometry;
   }
 
   // --- lights -----------------------------------------------------------
@@ -72,20 +97,28 @@ if (container && supportsWebGL()) {
   fill.position.set(-6, -4, 4);
   scene.add(fill);
 
-  // --- floating pieces --------------------------------------------------
+  // --- floating jigsaw pieces ------------------------------------------
   const world = new THREE.Group();
   scene.add(world);
 
   const pieces = [];
-  const COUNT = 14;
+  const COUNT = 12;
   for (let i = 0; i < COUNT; i += 1) {
-    const piece = makePiece(PASTEL[i % PASTEL.length]);
-    const scale = 0.7 + Math.random() * 0.7;
-    piece.scale.setScalar(scale);
-    piece.position.set((Math.random() - 0.5) * 20, (Math.random() - 0.5) * 13, (Math.random() - 0.5) * 8 - 3);
-    piece.rotation.set((Math.random() - 0.5) * 0.8, (Math.random() - 0.5) * 0.8, (Math.random() - 0.5) * 0.6);
-    piece.userData = {
-      base: piece.position.clone(),
+    const mesh = new THREE.Mesh(makePieceGeometry(), toon(COLORS[i % COLORS.length]));
+    const scale = 0.9 + Math.random() * 1.0;
+    mesh.scale.setScalar(scale);
+    mesh.position.set(
+      (Math.random() - 0.5) * 20,
+      (Math.random() - 0.5) * 13,
+      (Math.random() - 0.5) * 8 - 3
+    );
+    mesh.rotation.set(
+      (Math.random() - 0.5) * 0.9,
+      (Math.random() - 0.5) * 0.9,
+      (Math.random() - 0.5) * 0.7
+    );
+    mesh.userData = {
+      base: mesh.position.clone(),
       phase: Math.random() * Math.PI * 2,
       speed: 0.3 + Math.random() * 0.4,
       spin: new THREE.Vector3(
@@ -94,15 +127,15 @@ if (container && supportsWebGL()) {
         (Math.random() - 0.5) * 0.2
       ),
     };
-    world.add(piece);
-    pieces.push(piece);
+    world.add(mesh);
+    pieces.push(mesh);
   }
 
   // --- soft pastel dots -------------------------------------------------
-  const DOT_COUNT = 160;
+  const DOT_COUNT = 150;
   const positions = new Float32Array(DOT_COUNT * 3);
   const colors = new Float32Array(DOT_COUNT * 3);
-  const dotPalette = PASTEL.map((hex) => new THREE.Color(hex));
+  const dotPalette = COLORS.map((hex) => new THREE.Color(hex));
   for (let i = 0; i < DOT_COUNT; i += 1) {
     positions[i * 3] = (Math.random() - 0.5) * 26;
     positions[i * 3 + 1] = (Math.random() - 0.5) * 16;
