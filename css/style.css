@@ -361,8 +361,9 @@ body.modal-open { overflow: hidden; }
   }
   .toolbar-links.open { display: flex; }
   .toolbar-toggle { display: block; }
-  .hero { grid-template-columns: 1fr; gap: 2.2rem; min-height: auto; padding-top: 2.4rem; }
+  .hero { grid-template-columns: 1fr; gap: 2rem; min-height: auto; padding-top: 2rem; }
   .hero-visual { order: -1; }
+  .portrait { width: min(250px, 62vw); }
 }
 
 @media (max-width: 760px) {
@@ -375,7 +376,8 @@ body.modal-open { overflow: hidden; }
 @media (max-width: 520px) {
   .hero-stats { gap: 1.4rem; }
   .contact-meta { flex-direction: column; gap: 0.4rem; }
-  .modal-body { padding: 2.2rem 1.2rem 1.4rem; }
+  .portrait { width: min(185px, 54vw); }
+  .portrait-caption { font-size: 0.76rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
