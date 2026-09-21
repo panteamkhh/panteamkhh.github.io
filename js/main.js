@@ -363,9 +363,6 @@ if (toggle && links) {
   );
 }
 
-/* ---------- print / save as PDF ---------- */
-document.getElementById("print-btn")?.addEventListener("click", () => window.print());
-
 /* ---------- footer year ---------- */
 const year = document.getElementById("year");
 if (year) year.textContent = new Date().getFullYear();
