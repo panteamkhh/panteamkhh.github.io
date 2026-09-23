@@ -3,6 +3,132 @@
 
 export const projects = [
   {
+    name: "movie-recommender-system",
+    url: "https://github.com/panteamkhh/movie-recommender-system",
+    emoji: "🎬",
+    color: "#ffb3c7",
+    description:
+      "Movie recommendations on MovieLens 100k with item/user collaborative filtering and SVD, packaged as a FastAPI service with Docker.",
+    tags: ["Recommenders", "SVD", "FastAPI"],
+  },
+  {
+    name: "yelp-review-classification",
+    url: "https://github.com/panteamkhh/yelp-review-classification",
+    emoji: "🍽️",
+    color: "#a8e6cf",
+    description:
+      "Yelp review sentiment analysis with TF-IDF and linear models — 0.95 F1 across 25 figures, served with FastAPI and Docker.",
+    tags: ["NLP", "TF-IDF", "FastAPI"],
+  },
+  {
+    name: "spam-email-classifier",
+    url: "https://github.com/panteamkhh/spam-email-classifier",
+    emoji: "📧",
+    color: "#a9d9ff",
+    description:
+      "Spam email classification with TF-IDF and Naive Bayes / linear models — 99% F1, with a FastAPI + Docker deployment.",
+    tags: ["NLP", "Naive Bayes", "FastAPI"],
+  },
+  {
+    name: "traffic-sign-classification",
+    url: "https://github.com/panteamkhh/traffic-sign-classification",
+    emoji: "🚦",
+    color: "#cdc0ff",
+    description:
+      "German traffic sign recognition across 43 classes with a PyTorch LeNet CNN — 93% accuracy, FastAPI + Docker.",
+    tags: ["PyTorch", "CNN", "Computer vision"],
+  },
+  {
+    name: "avocado-price-forecasting",
+    url: "https://github.com/panteamkhh/avocado-price-forecasting",
+    emoji: "🥑",
+    color: "#c3f0ca",
+    description:
+      "Avocado price forecasting using seasonality, lag features and gradient boosting, deployed behind FastAPI + Docker.",
+    tags: ["Time series", "Boosting", "Forecasting"],
+  },
+  {
+    name: "chicago-crime-rate-forecasting",
+    url: "https://github.com/panteamkhh/chicago-crime-rate-forecasting",
+    emoji: "🏙️",
+    color: "#ffe6a7",
+    description:
+      "Chicago crime-rate time-series forecasting with statsmodels and XGBoost, wrapped in a FastAPI + Docker service.",
+    tags: ["Time series", "XGBoost", "Forecasting"],
+  },
+  {
+    name: "cifar10-image-classification",
+    url: "https://github.com/panteamkhh/cifar10-image-classification",
+    emoji: "🖼️",
+    color: "#ffb3c7",
+    description:
+      "CIFAR-10 image classification with a PyTorch CNN — EDA, training curves and evaluation, served with FastAPI + Docker.",
+    tags: ["PyTorch", "CNN", "Deep learning"],
+  },
+  {
+    name: "sales-data-analysis",
+    url: "https://github.com/panteamkhh/sales-data-analysis",
+    emoji: "📊",
+    color: "#a8e6cf",
+    description:
+      "Retail sales analysis with Power BI and Python — sales, profit, products, discounts, trends and geographic performance.",
+    tags: ["Power BI", "pandas", "EDA"],
+  },
+  {
+    name: "python-self-study-course",
+    url: "https://github.com/panteamkhh/python-self-study-course",
+    emoji: "📗",
+    color: "#a9d9ff",
+    description:
+      "A complete, self-paced Python course from zero to advanced: 15 lessons with runnable examples, exercises, solutions and quizzes.",
+    tags: ["Python", "Education", "Course"],
+  },
+  {
+    name: "Audio-Merger-Telegram-Bot",
+    url: "https://github.com/panteamkhh/Audio-Merger-Telegram-Bot",
+    emoji: "🎵",
+    color: "#cdc0ff",
+    description:
+      "Self-hosted Telegram bot (aiogram 3 + FFmpeg) that merges many audio tracks into one file, in the exact order they're sent.",
+    tags: ["aiogram", "FFmpeg", "Docker"],
+  },
+  {
+    name: "spotify-powerbi-analytics",
+    url: "https://github.com/panteamkhh/spotify-powerbi-analytics",
+    emoji: "🎧",
+    color: "#c3f0ca",
+    description:
+      "End-to-end Power BI analytics on Spotify music data — cleaning, transformation, data modelling and interactive dashboards.",
+    tags: ["Power BI", "Power Query", "Modelling"],
+  },
+  {
+    name: "task-reminder-telegram",
+    url: "https://github.com/panteamkhh/task-reminder-telegram",
+    emoji: "⏰",
+    color: "#ffe6a7",
+    description:
+      "Lightweight Telegram task manager and reminder bot with JSON persistence, built on pyTelegramBotAPI.",
+    tags: ["Telegram", "Python", "Bots"],
+  },
+  {
+    name: "Mini-Projects",
+    url: "https://github.com/panteamkhh/Mini-Projects",
+    emoji: "🎯",
+    color: "#ffb3c7",
+    description:
+      "A collection of 20 practical Python mini projects, from core language fundamentals to basic data analysis.",
+    tags: ["Python", "OOP", "Practice"],
+  },
+  {
+    name: "Math-for-AI-From-Zero-to-Intelligence",
+    url: "https://github.com/panteamkhh/Math-for-AI-From-Zero-to-Intelligence",
+    emoji: "➗",
+    color: "#a8e6cf",
+    description:
+      "The intuitive math behind AI — one 10-minute lesson a day for 80 days across linear algebra, calculus, probability and statistics.",
+    tags: ["Math", "AI", "Education"],
+  },
+  {
     name: "insurance-data-analysis",
     url: "https://github.com/panteamkhh/insurance-data-analysis",
     emoji: "🛡️",

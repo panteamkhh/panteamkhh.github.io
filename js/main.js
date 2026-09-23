@@ -1,4 +1,4 @@
-import { projects, skills } from "./projects.js";
+import { projects, skills } from "./projects.js?v=19";
 
 /* ============================================================
    The whole page is a jigsaw puzzle. Each piece is a section.
