@@ -276,8 +276,11 @@ export const projects = [
 
 export const skills = [
   { title: "Languages & data", items: ["Python", "SQL", "pandas", "NumPy", "Jupyter"] },
-  { title: "Machine learning", items: ["scikit-learn", "XGBoost", "LightGBM", "Optuna", "SHAP"] },
-  { title: "NLP & AI", items: ["sentence-transformers", "LLM APIs", "RAG", "Agents"] },
-  { title: "BI & visualization", items: ["Power BI", "DAX", "Power Query", "matplotlib", "seaborn", "Streamlit"] },
-  { title: "Engineering", items: ["pytest", "ruff", "black", "Git", "Docker", "GitHub Actions"] },
+  { title: "Machine learning", items: ["scikit-learn", "XGBoost", "LightGBM", "Optuna", "SHAP", "Clustering", "Recommenders"] },
+  { title: "NLP & AI", items: ["sentence-transformers", "LLM APIs", "RAG", "Agents", "Prompt Engineering"] },
+  { title: "BI & visualization", items: ["Power BI", "DAX", "Power Query", "Star Schema", "Excel", "matplotlib", "seaborn", "Streamlit"] },
+  { title: "Databases", items: ["SQL Server (T-SQL)", "Snowflake", "OLAP", "CTEs", "Window Functions"] },
+  { title: "Data engineering", items: ["ETL", "Apache Spark", "Databricks", "Data Warehouse", "Pipelines"] },
+  { title: "Data governance", items: ["Data Quality", "Metadata Management", "Data Lineage", "Access Control"] },
+  { title: "Engineering", items: ["Git", "GitHub", "GitLab", "pytest", "ruff", "black", "Docker", "GitHub Actions", "REST APIs"] },
 ];
