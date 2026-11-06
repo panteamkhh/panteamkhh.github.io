@@ -275,12 +275,15 @@ export const projects = [
 ];
 
 export const skills = [
-  { title: "Languages & data", items: ["Python", "SQL", "pandas", "NumPy", "Jupyter"] },
-  { title: "Machine learning", items: ["scikit-learn", "XGBoost", "LightGBM", "Optuna", "SHAP", "Clustering", "Recommenders"] },
-  { title: "NLP & AI", items: ["sentence-transformers", "LLM APIs", "RAG", "Agents", "Prompt Engineering"] },
-  { title: "BI & visualization", items: ["Power BI", "DAX", "Power Query", "Star Schema", "Excel", "matplotlib", "seaborn", "Streamlit"] },
-  { title: "Databases", items: ["SQL Server (T-SQL)", "Snowflake", "OLAP", "CTEs", "Window Functions"] },
-  { title: "Data engineering", items: ["ETL", "Apache Spark", "Databricks", "Data Warehouse", "Pipelines"] },
-  { title: "Data governance", items: ["Data Quality", "Metadata Management", "Data Lineage", "Access Control"] },
-  { title: "Engineering", items: ["Git", "GitHub", "GitLab", "pytest", "ruff", "black", "Docker", "GitHub Actions", "REST APIs"] },
+  { title: "Languages", items: ["Python", "SQL"] },
+  { title: "Libraries", items: ["Pandas", "NumPy", "Scikit-learn", "Matplotlib", "Seaborn"] },
+  { title: "BI & Analytics", items: ["Power BI", "Power Query", "DAX", "Data Modeling", "Star Schema", "Dashboard Development", "Data Visualization", "Excel", "Word", "PowerPoint"] },
+  { title: "Databases", items: ["SQL Server (T-SQL)", "Snowflake", "OLAP Databases", "Querying", "Joins", "Aggregations", "Subqueries", "CTEs", "Window Functions"] },
+  { title: "Data Engineering", items: ["ETL", "Apache Spark", "Databricks", "Data Warehouse", "Data Pipelines"] },
+  { title: "Data Governance", items: ["Data Quality", "Metadata Management", "Data Lineage", "Access Control"] },
+  { title: "Version Control", items: ["Git", "GitHub", "Gitlab"] },
+  { title: "REST API Fundamentals", items: ["HTTP methods", "Endpoints", "JSON", "Request/response concepts", "Python Requests", "JSON data handling"] },
+  { title: "Data & ML", items: ["EDA", "Data Cleaning", "Data Transformation", "Feature Engineering", "Statistical Analysis", "Machine Learning", "Classification", "Regression", "Model Evaluation", "Clustering", "Unsupervised Learning", "NLP & Embeddings", "Recommender Systems"] },
+  { title: "Business Analytics", items: ["KPI Analysis", "Sales Analysis", "Trend Analysis", "Customer Segmentation", "Sales & Customer Behavior Analysis", "Management Reporting"] },
+  { title: "Other", items: ["Reinforcement Learning", "Prompt Engineering", "Business Model Design"] },
 ];
