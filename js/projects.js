@@ -1,289 +1,422 @@
-// Project data for the portfolio grid.
-// Descriptions are kept short on purpose; the full story lives in each repo.
+// Curated project data. Charts and dashboard screenshots are pulled from each
+// repository into assets/projects/<slug>/ and rendered as real figures.
+// `art` stays as the fallback visual for repos without a usable figure.
 
-export const projects = [
+export const featured = [
   {
-    name: "movie-recommender-system",
-    url: "https://github.com/panteamkhh/movie-recommender-system",
-    emoji: "🎬",
-    color: "#ffb3c7",
-    description:
-      "Movie recommendations on MovieLens 100k with item/user collaborative filtering and SVD, packaged as a FastAPI service with Docker.",
-    tags: ["Recommenders", "SVD", "FastAPI"],
-  },
-  {
-    name: "yelp-review-classification",
-    url: "https://github.com/panteamkhh/yelp-review-classification",
-    emoji: "🍽️",
-    color: "#a8e6cf",
-    description:
-      "Yelp review sentiment analysis with TF-IDF and linear models — 0.95 F1 across 25 figures, served with FastAPI and Docker.",
-    tags: ["NLP", "TF-IDF", "FastAPI"],
-  },
-  {
-    name: "spam-email-classifier",
-    url: "https://github.com/panteamkhh/spam-email-classifier",
-    emoji: "📧",
-    color: "#a9d9ff",
-    description:
-      "Spam email classification with TF-IDF and Naive Bayes / linear models — 99% F1, with a FastAPI + Docker deployment.",
-    tags: ["NLP", "Naive Bayes", "FastAPI"],
-  },
-  {
-    name: "traffic-sign-classification",
-    url: "https://github.com/panteamkhh/traffic-sign-classification",
-    emoji: "🚦",
-    color: "#cdc0ff",
-    description:
-      "German traffic sign recognition across 43 classes with a PyTorch LeNet CNN — 93% accuracy, FastAPI + Docker.",
-    tags: ["PyTorch", "CNN", "Computer vision"],
-  },
-  {
-    name: "avocado-price-forecasting",
-    url: "https://github.com/panteamkhh/avocado-price-forecasting",
-    emoji: "🥑",
-    color: "#c3f0ca",
-    description:
-      "Avocado price forecasting using seasonality, lag features and gradient boosting, deployed behind FastAPI + Docker.",
-    tags: ["Time series", "Boosting", "Forecasting"],
-  },
-  {
-    name: "chicago-crime-rate-forecasting",
-    url: "https://github.com/panteamkhh/chicago-crime-rate-forecasting",
-    emoji: "🏙️",
-    color: "#ffe6a7",
-    description:
-      "Chicago crime-rate time-series forecasting with statsmodels and XGBoost, wrapped in a FastAPI + Docker service.",
-    tags: ["Time series", "XGBoost", "Forecasting"],
-  },
-  {
-    name: "cifar10-image-classification",
-    url: "https://github.com/panteamkhh/cifar10-image-classification",
-    emoji: "🖼️",
-    color: "#ffb3c7",
-    description:
-      "CIFAR-10 image classification with a PyTorch CNN — EDA, training curves and evaluation, served with FastAPI + Docker.",
-    tags: ["PyTorch", "CNN", "Deep learning"],
-  },
-  {
-    name: "sales-data-analysis",
-    url: "https://github.com/panteamkhh/sales-data-analysis",
-    emoji: "📊",
-    color: "#a8e6cf",
-    description:
-      "Retail sales analysis with Power BI and Python — sales, profit, products, discounts, trends and geographic performance.",
-    tags: ["Power BI", "pandas", "EDA"],
-  },
-  {
-    name: "python-self-study-course",
-    url: "https://github.com/panteamkhh/python-self-study-course",
-    emoji: "📗",
-    color: "#a9d9ff",
-    description:
-      "A complete, self-paced Python course from zero to advanced: 15 lessons with runnable examples, exercises, solutions and quizzes.",
-    tags: ["Python", "Education", "Course"],
-  },
-  {
-    name: "Audio-Merger-Telegram-Bot",
-    url: "https://github.com/panteamkhh/Audio-Merger-Telegram-Bot",
-    emoji: "🎵",
-    color: "#cdc0ff",
-    description:
-      "Self-hosted Telegram bot (aiogram 3 + FFmpeg) that merges many audio tracks into one file, in the exact order they're sent.",
-    tags: ["aiogram", "FFmpeg", "Docker"],
-  },
-  {
-    name: "spotify-powerbi-analytics",
-    url: "https://github.com/panteamkhh/spotify-powerbi-analytics",
-    emoji: "🎧",
-    color: "#c3f0ca",
-    description:
-      "End-to-end Power BI analytics on Spotify music data — cleaning, transformation, data modelling and interactive dashboards.",
-    tags: ["Power BI", "Power Query", "Modelling"],
-  },
-  {
-    name: "task-reminder-telegram",
-    url: "https://github.com/panteamkhh/task-reminder-telegram",
-    emoji: "⏰",
-    color: "#ffe6a7",
-    description:
-      "Lightweight Telegram task manager and reminder bot with JSON persistence, built on pyTelegramBotAPI.",
-    tags: ["Telegram", "Python", "Bots"],
-  },
-  {
-    name: "Mini-Projects",
-    url: "https://github.com/panteamkhh/Mini-Projects",
-    emoji: "🎯",
-    color: "#ffb3c7",
-    description:
-      "A collection of 20 practical Python mini projects, from core language fundamentals to basic data analysis.",
-    tags: ["Python", "OOP", "Practice"],
-  },
-  {
-    name: "Math-for-AI-From-Zero-to-Intelligence",
-    url: "https://github.com/panteamkhh/Math-for-AI-From-Zero-to-Intelligence",
-    emoji: "➗",
-    color: "#a8e6cf",
-    description:
-      "The intuitive math behind AI — one 10-minute lesson a day for 80 days across linear algebra, calculus, probability and statistics.",
-    tags: ["Math", "AI", "Education"],
-  },
-  {
-    name: "insurance-data-analysis",
-    url: "https://github.com/panteamkhh/insurance-data-analysis",
-    emoji: "🛡️",
-    color: "#a8e6cf",
-    description:
-      "Insurance portfolio analysis in Python — premium, claims, loss ratios and trends — plus an ML sentiment model for customer feedback.",
-    tags: ["Python", "pandas", "NLP", "Sentiment"],
-  },
-  {
-    name: "cefr-lexical-intelligence",
-    url: "https://github.com/panteamkhh/cefr-lexical-intelligence",
-    emoji: "📚",
-    color: "#cdc0ff",
-    description:
-      "NLP system that maps vocabulary through semantic embeddings and CEFR levels: embeddings, clustering, semantic search and category discovery.",
-    tags: ["NLP", "Embeddings", "Clustering"],
-  },
-  {
-    name: "hotel-cancellation-prediction",
+    num: "01",
+    title: "Hotel cancellation risk at booking time",
+    repo: "hotel-cancellation-prediction",
     url: "https://github.com/panteamkhh/hotel-cancellation-prediction",
-    emoji: "🏨",
-    color: "#ffb3c7",
-    description:
-      "End-to-end analysis of ~119k hotel bookings and a LightGBM model (0.922 ROC-AUC) that predicts cancellations at booking time.",
-    tags: ["LightGBM", "Classification"],
+    chips: ["Classification", "LightGBM", "Python", "FastAPI"],
+    desc: "Revenue managers usually learn a room was lost after the fact. This predicts cancellation probability the moment a booking is made, from ~119k real bookings.",
+    impact: [
+      "0.922 ROC-AUC on a held-out split across 119,390 bookings",
+      "Features engineered from lead time, deposit type and booking channel",
+      "Model served behind a FastAPI endpoint, containerised with Docker",
+    ],
+    metrics: [
+      { v: "0.922", k: "ROC-AUC" },
+      { v: "119,390", k: "Bookings" },
+      { v: "18", k: "Figures" },
+    ],
+    code: {
+      file: "model.py",
+      lang: "Python",
+      html:
+`<span class="c"># balanced target, honest holdout</span>
+<span class="k">import</span> lightgbm <span class="k">as</span> lgb
+
+clf = lgb.<span class="f">LGBMClassifier</span>(
+    n_estimators=<span class="n">600</span>,
+    learning_rate=<span class="n">0.03</span>,
+    class_weight=<span class="s">"balanced"</span>,
+)
+clf.<span class="f">fit</span>(X_train, y_train)
+
+<span class="c"># 0.922 ROC-AUC — see 03_evaluation.ipynb</span>`,
+    },
+    img: "assets/projects/hotel-cancel/by-lead-time.png",
+    thumbs: [
+      { src: "assets/projects/hotel-cancel/heatmap.png", cap: "Feature correlation" },
+      { src: "assets/projects/hotel-cancel/by-country.png", cap: "Cancellations by market" },
+    ],
+    art: "bars",
   },
   {
-    name: "car-price-predictor-ml",
-    url: "https://github.com/panteamkhh/car-price-predictor-ml",
-    emoji: "🚗",
-    color: "#a9d9ff",
-    description:
-      "Regression project predicting how much a customer will pay for a car: 9 models, cross-validation, Optuna tuning and SHAP explainability.",
-    tags: ["XGBoost", "SHAP", "FastAPI"],
-  },
-  {
-    name: "ecommerce-orders-lens",
-    url: "https://github.com/panteamkhh/ecommerce-orders-lens",
-    emoji: "🛒",
-    color: "#c3f0ca",
-    description:
-      "A 21-step documented cleaning pipeline with an audit log, Python EDA, order-outcome ML, RFM KMeans segmentation and an HTML dashboard.",
-    tags: ["scikit-learn", "EDA", "KMeans"],
-  },
-  {
-    name: "maintenance-data-pipeline",
-    url: "https://github.com/panteamkhh/maintenance-data-pipeline",
-    emoji: "🛠️",
-    color: "#ffe6a7",
-    description:
-      "Maintenance analytics on a CMMS dataset: data-quality audit, KPIs (MTTR, availability, PM compliance), Pareto RCA and a Streamlit dashboard.",
-    tags: ["Streamlit", "KPIs", "Pareto"],
-  },
-  {
-    name: "pharma-sales360",
+    num: "02",
+    title: "Pharma sales &amp; CRM analytics",
+    repo: "pharma-sales360",
     url: "https://github.com/panteamkhh/pharma-sales360",
-    emoji: "💊",
-    color: "#a8e6cf",
-    description:
-      "Pharma sales & CRM analytics: reproducible Python generator, SQL Server star schema, statistical analysis, Power BI/DAX spec and Excel reports.",
-    tags: ["SQL Server", "Power BI", "Star schema"],
+    chips: ["Power BI", "SQL Server", "DAX", "Star schema"],
+    desc: "A pharma sales and CRM dataset turned into a governed star schema, a documented DAX measure set, and a Power BI report management actually reads.",
+    impact: [
+      "Star schema across fact sales, product, customer and date dimensions",
+      "DAX measures specified for margin, growth, ranking and RFM segments",
+      "Report paired with Excel output for teams that still live in spreadsheets",
+    ],
+    metrics: [
+      { v: "4", k: "Report pages" },
+      { v: "6", k: "DAX measures" },
+      { v: "1", k: "Star schema" },
+    ],
+    code: {
+      file: "revenue.sql",
+      lang: "T-SQL",
+      html:
+`<span class="c">-- margin by category, from the star schema</span>
+<span class="k">SELECT</span>  p.category,
+        <span class="f">SUM</span>(f.revenue) <span class="k">AS</span> revenue,
+        <span class="f">ROUND</span>(<span class="n">100.0</span> * <span class="f">SUM</span>(f.revenue - f.cost)
+              / <span class="f">NULLIF</span>(<span class="f">SUM</span>(f.revenue), <span class="n">0</span>), <span class="n">1</span>) <span class="k">AS</span> margin_pct
+<span class="k">FROM</span>    fact_sales  <span class="k">AS</span> f
+<span class="k">JOIN</span>    dim_product <span class="k">AS</span> p <span class="k">ON</span> p.product_key = f.product_key
+<span class="k">GROUP</span> <span class="k">BY</span> p.category
+<span class="k">ORDER</span> <span class="k">BY</span> margin_pct <span class="k">DESC</span>;`,
+    },
+    img: "assets/projects/pharma/revenue-category.png",
+    thumbs: [
+      { src: "assets/projects/pharma/monthly-trend.png", cap: "Monthly sales trend" },
+      { src: "assets/projects/pharma/funnel.png", cap: "CRM funnel" },
+    ],
+    art: "donut",
   },
   {
-    name: "upi-transactions-data-analysis",
-    url: "https://github.com/panteamkhh/upi-transactions-data-analysis",
-    emoji: "💳",
-    color: "#cdc0ff",
-    description:
-      "End-to-end UPI transactions analysis with a Python pipeline, an interactive Streamlit dashboard and a Power BI star-schema report.",
-    tags: ["Fintech", "Streamlit", "Power BI"],
-  },
-  {
-    name: "google-play-store-analytics",
-    url: "https://github.com/panteamkhh/google-play-store-analytics",
-    emoji: "📱",
-    color: "#c3f0ca",
-    description:
-      "Google Play Store apps taken through cleaning, EDA and feature engineering to a rating-prediction model, with reusable modules and tests.",
-    tags: ["EDA", "scikit-learn"],
-  },
-  {
-    name: "student-performance-ml",
-    url: "https://github.com/panteamkhh/student-performance-ml",
-    emoji: "🎓",
-    color: "#ffe6a7",
-    description:
-      "Student-performance analysis and ML study — classification, regression and K-Means — with an interactive Streamlit dashboard.",
-    tags: ["scikit-learn", "Streamlit"],
-  },
-  {
-    name: "build-mcp-agents",
-    url: "https://github.com/panteamkhh/build-mcp-agents",
-    emoji: "🔌",
-    color: "#ffb3c7",
-    description:
-      "Hands-on, code-first playbook for building MCP servers and agents: 10 phases from fundamentals to production, with a capstone agent.",
-    tags: ["MCP", "Agents", "Python"],
-  },
-  {
-    name: "build-ai-agents",
-    url: "https://github.com/panteamkhh/build-ai-agents",
-    emoji: "🤖",
-    color: "#a9d9ff",
-    description:
-      "Code-first playbook for building AI agents: 5 phases from fundamentals to production, runnable examples and an offline capstone project.",
-    tags: ["LLM", "Agents", "RAG"],
-  },
-  {
-    name: "llm-engineering-lab",
-    url: "https://github.com/panteamkhh/llm-engineering-lab",
-    emoji: "🧪",
-    color: "#a8e6cf",
-    description:
-      "A practical generative-AI engineering lab exploring LLM foundations, tokenization, deployment strategies and real-world system design.",
-    tags: ["GenAI", "LLM"],
-  },
-  {
-    name: "python-data-lab",
-    url: "https://github.com/panteamkhh/python-data-lab",
-    emoji: "🐍",
-    color: "#c3f0ca",
-    description:
-      "Hands-on lab for the Python data stack — NumPy, Pandas and Matplotlib — with 15 sessions, mini projects and cheat sheets.",
-    tags: ["pandas", "matplotlib"],
-  },
-  {
-    name: "ml-course-from-scratch",
-    url: "https://github.com/panteamkhh/ml-course-from-scratch",
-    emoji: "📐",
-    color: "#cdc0ff",
-    description:
-      "Learning machine learning by building algorithms from scratch, understanding the theory, and validating them against scikit-learn.",
-    tags: ["ML theory", "From scratch"],
-  },
-  {
-    name: "planner-pro",
-    url: "https://github.com/panteamkhh/planner-pro",
-    emoji: "🗓️",
-    color: "#ffe6a7",
-    description:
-      "Fully offline, bilingual (Persian/English) personal planner with Jalali & Gregorian calendars — zero dependencies, a single HTML file.",
-    tags: ["Vanilla JS", "Offline"],
+    num: "03",
+    title: "Car price prediction with explainability",
+    repo: "car-price-predictor-ml",
+    url: "https://github.com/panteamkhh/car-price-predictor-ml",
+    chips: ["XGBoost", "SHAP", "Optuna", "Docker"],
+    desc: "Predicting how much a customer will pay for a car — with the explainability a pricing team needs before they trust a single number.",
+    impact: [
+      "Nine models compared under cross-validation; the best tuned with Optuna",
+      "SHAP explanations show which features move each individual prediction",
+      "Served via FastAPI + Docker with input validation and versioned artifacts",
+    ],
+    metrics: [
+      { v: "0.91", k: "R² score" },
+      { v: "9", k: "Models tested" },
+      { v: "26", k: "Figures" },
+    ],
+    code: {
+      file: "explain.py",
+      lang: "Python",
+      html:
+`<span class="k">import</span> shap
+
+explainer = shap.<span class="f">TreeExplainer</span>(best_model)
+shap_values = explainer.<span class="f">shap_values</span>(X_sample)
+
+<span class="c"># top drivers per prediction, not just global</span>
+shap.<span class="f">summary_plot</span>(shap_values, X_sample)`,
+    },
+    img: "assets/projects/car/models.png",
+    thumbs: [
+      { src: "assets/projects/car/pred-actual.png", cap: "Predicted vs actual" },
+      { src: "assets/projects/car/corr.png", cap: "Feature correlation" },
+    ],
+    art: "line",
   },
 ];
 
-export const skills = [
+export const dashboards = [
+  {
+    name: "sales-data-analysis",
+    title: "Retail sales dashboard",
+    url: "https://github.com/panteamkhh/sales-data-analysis",
+    tool: "Power BI",
+    metric: { v: "5 pages", k: "sales · profit" },
+    desc: "Power BI report on sales, profit, discounts, product mix and geographic performance.",
+    tags: ["Power BI", "DAX", "pandas"],
+    img: "assets/projects/sales/overview.png",
+  },
+  {
+    name: "spotify-powerbi-analytics",
+    title: "Spotify analytics dashboard",
+    url: "https://github.com/panteamkhh/spotify-powerbi-analytics",
+    tool: "Power BI",
+    metric: { v: "3 pages", k: "audio features" },
+    desc: "Cleaning and modelling on Spotify data, finished as an interactive listening dashboard.",
+    tags: ["Power Query", "Modelling", "DAX"],
+    img: "assets/projects/spotify/overview.png",
+  },
+  {
+    name: "pizza-sales-dashboard",
+    title: "Pizza sales dashboard",
+    url: "https://github.com/panteamkhh/pizza-sales-dashboard",
+    tool: "Excel",
+    metric: { v: "4 KPIs", k: "SQL + Excel" },
+    desc: "Revenue, order trends and product performance analysed in SQL Server and reported in Excel.",
+    tags: ["SQL Server", "Excel", "KPI"],
+    img: "assets/projects/pizza/dashboard.png",
+  },
+  {
+    name: "insurance-data-analysis",
+    title: "Insurance portfolio dashboard",
+    url: "https://github.com/panteamkhh/insurance-data-analysis",
+    tool: "Power BI",
+    metric: { v: "Loss ratio", k: "claims" },
+    desc: "Premium, claims, loss ratios and trends for an insurance portfolio, built into a Power BI report.",
+    tags: ["Power BI", "Risk", "pandas"],
+    img: "assets/projects/insurance/dashboard.png",
+  },
+  {
+    name: "ecommerce-orders-lens",
+    title: "E-commerce orders lens",
+    url: "https://github.com/panteamkhh/ecommerce-orders-lens",
+    tool: "HTML",
+    metric: { v: "13 charts", k: "RFM segments" },
+    desc: "A 21-step documented cleaning pipeline with audit log, RFM KMeans segmentation and a self-contained HTML dashboard.",
+    tags: ["scikit-learn", "KMeans", "Dashboard"],
+    img: "assets/projects/ecommerce/hero.png",
+  },
+  {
+    name: "upi-transactions-data-analysis",
+    title: "UPI transactions report",
+    url: "https://github.com/panteamkhh/upi-transactions-data-analysis",
+    tool: "Streamlit",
+    metric: { v: "2 views", k: "Streamlit + BI" },
+    desc: "A fintech transaction pipeline with an interactive Streamlit dashboard and a Power BI star-schema report.",
+    tags: ["Fintech", "Streamlit", "Power BI"],
+    img: "assets/projects/upi/trend.png",
+  },
+  {
+    // Reserved slot: drop the finished report in assets/projects/sales/ and
+    // replace `placeholder: true` with `img: "assets/projects/sales/<file>.png"`.
+    name: "sales-performance-dashboard",
+    title: "Sales performance dashboard",
+    url: "https://github.com/panteamkhh/sales-data-analysis",
+    tool: "Power BI",
+    metric: { v: "In progress", k: "new build" },
+    desc: "A rebuilt sales report with margin, discount and territory views. This slot is reserved for the finished dashboard.",
+    tags: ["Power BI", "DAX", "Star schema"],
+    placeholder: true,
+  },
+];
+
+export const projects = [
+  {
+    name: "traffic-sign-classification",
+    title: "Traffic sign recognition",
+    url: "https://github.com/panteamkhh/traffic-sign-classification",
+    cat: "Vision",
+    desc: "German traffic signs across 43 classes with a PyTorch LeNet CNN.",
+    tags: ["PyTorch", "CNN"],
+    metric: { v: "93%", k: "accuracy" },
+    stars: 1,
+    img: "assets/projects/traffic/curves.png",
+    art: "heat",
+  },
+  {
+    name: "cifar10-image-classification",
+    title: "CIFAR-10 classifier",
+    url: "https://github.com/panteamkhh/cifar10-image-classification",
+    cat: "Vision",
+    desc: "CNN training with EDA, learning curves and full evaluation.",
+    tags: ["PyTorch", "Deep learning"],
+    metric: { v: "23", k: "figures" },
+    stars: 1,
+    img: "assets/projects/cifar10/loss.png",
+    art: "heat",
+  },
+  {
+    name: "yelp-review-classification",
+    title: "Yelp review sentiment",
+    url: "https://github.com/panteamkhh/yelp-review-classification",
+    cat: "NLP",
+    desc: "TF-IDF plus linear models on Yelp reviews, served with FastAPI.",
+    tags: ["NLP", "TF-IDF"],
+    metric: { v: "0.95", k: "F1" },
+    stars: 1,
+    img: "assets/projects/yelp/topwords.png",
+    art: "bars",
+  },
+  {
+    name: "spam-email-classifier",
+    title: "Spam email classifier",
+    url: "https://github.com/panteamkhh/spam-email-classifier",
+    cat: "NLP",
+    desc: "Naive Bayes and linear models on TF-IDF features, deployed in Docker.",
+    tags: ["Naive Bayes", "scikit-learn"],
+    metric: { v: "0.99", k: "F1" },
+    stars: 1,
+    img: "assets/projects/spam/topwords.png",
+    art: "bars",
+  },
+  {
+    name: "cefr-lexical-intelligence",
+    title: "CEFR lexical intelligence",
+    url: "https://github.com/panteamkhh/cefr-lexical-intelligence",
+    cat: "NLP",
+    desc: "Sentence embeddings, UMAP clustering and semantic search across CEFR levels.",
+    tags: ["Embeddings", "UMAP"],
+    metric: { v: "8", k: "stars" },
+    stars: 8,
+    img: "assets/projects/cefr/umap.png",
+    art: "scatter",
+  },
+  {
+    name: "movie-recommender-system",
+    title: "Movie recommender",
+    url: "https://github.com/panteamkhh/movie-recommender-system",
+    cat: "ML",
+    desc: "Item and user collaborative filtering plus SVD on MovieLens 100k.",
+    tags: ["Recommenders", "SVD"],
+    metric: { v: "100k", k: "ratings" },
+    stars: 1,
+    img: "assets/projects/movie/top-rated.png",
+    art: "scatter",
+  },
+  {
+    name: "avocado-price-forecasting",
+    title: "Avocado price forecasting",
+    url: "https://github.com/panteamkhh/avocado-price-forecasting",
+    cat: "Forecasting",
+    desc: "Seasonality, lag features and gradient boosting for weekly prices.",
+    tags: ["Time series", "Boosting"],
+    metric: { v: "30", k: "figures" },
+    stars: 1,
+    img: "assets/projects/avocado/seasonality.png",
+    art: "line",
+  },
+  {
+    name: "chicago-crime-rate-forecasting",
+    title: "Chicago crime forecasting",
+    url: "https://github.com/panteamkhh/chicago-crime-rate-forecasting",
+    cat: "Forecasting",
+    desc: "Statsmodels and XGBoost on city crime time series, wrapped in FastAPI.",
+    tags: ["statsmodels", "XGBoost"],
+    metric: { v: "26", k: "figures" },
+    stars: 1,
+    img: "assets/projects/chicago/overview.png",
+    art: "line",
+  },
+  {
+    name: "maintenance-data-pipeline",
+    title: "Maintenance KPI pipeline",
+    url: "https://github.com/panteamkhh/maintenance-data-pipeline",
+    cat: "Analytics",
+    desc: "CMMS data-quality audit, MTTR / availability / PM compliance KPIs and Pareto root cause.",
+    tags: ["Streamlit", "KPI", "Pareto"],
+    metric: { v: "5 KPIs", k: "MTTR" },
+    stars: 0,
+    img: "assets/projects/maintenance/pareto.png",
+    art: "bars",
+  },
+  {
+    name: "ab-testing",
+    title: "A/B test analysis",
+    url: "https://github.com/panteamkhh/ab-testing",
+    cat: "Analytics",
+    desc: "Hypothesis testing, bootstrap intervals, Bayesian posteriors and power curves.",
+    tags: ["Statistics", "Experiments"],
+    metric: { v: "A/B", k: "significance" },
+    stars: 1,
+    img: "assets/projects/ab-testing/retention.png",
+    art: "matrix",
+  },
+  {
+    name: "google-play-store-analytics",
+    title: "Play Store app analytics",
+    url: "https://github.com/panteamkhh/google-play-store-analytics",
+    cat: "ML",
+    desc: "Cleaning, EDA and feature engineering through to a rating-prediction model.",
+    tags: ["EDA", "scikit-learn"],
+    metric: { v: "pytest", k: "test suite" },
+    stars: 0,
+    img: "assets/projects/google-play/models.png",
+    art: "bars",
+  },
+  {
+    name: "student-performance-ml",
+    title: "Student performance study",
+    url: "https://github.com/panteamkhh/student-performance-ml",
+    cat: "ML",
+    desc: "Classification, regression and K-Means with an interactive Streamlit dashboard.",
+    tags: ["scikit-learn", "Streamlit"],
+    metric: { v: "3", k: "ML tasks" },
+    stars: 0,
+    img: "assets/projects/student/importance.png",
+    art: "kpi",
+  },
+  {
+    name: "llm-engineering-lab",
+    title: "LLM engineering lab",
+    url: "https://github.com/panteamkhh/llm-engineering-lab",
+    cat: "Lab",
+    desc: "LLM foundations, tokenization, deployment strategies and system design.",
+    tags: ["GenAI", "LLM"],
+    metric: { v: "14", k: "stars" },
+    stars: 14,
+    art: "heat",
+  },
+  {
+    name: "ml-course-from-scratch",
+    title: "ML from scratch",
+    url: "https://github.com/panteamkhh/ml-course-from-scratch",
+    cat: "Lab",
+    desc: "Algorithms implemented from first principles, validated against scikit-learn.",
+    tags: ["ML theory", "NumPy"],
+    metric: { v: "11", k: "stars" },
+    stars: 11,
+    art: "line",
+  },
+  {
+    name: "python-data-lab",
+    title: "Python data lab",
+    url: "https://github.com/panteamkhh/python-data-lab",
+    cat: "Lab",
+    desc: "Fifteen hands-on sessions across NumPy, pandas and Matplotlib.",
+    tags: ["pandas", "Matplotlib"],
+    metric: { v: "15", k: "sessions" },
+    stars: 0,
+    art: "bars",
+  },
+  {
+    name: "build-mcp-agents",
+    title: "Building MCP agents",
+    url: "https://github.com/panteamkhh/build-mcp-agents",
+    cat: "Lab",
+    desc: "Code-first playbook: MCP servers and agents, ten phases to production.",
+    tags: ["MCP", "Agents"],
+    metric: { v: "10", k: "phases" },
+    stars: 0,
+    art: "matrix",
+  },
+  {
+    name: "python-self-study-course",
+    title: "Python self-study course",
+    url: "https://github.com/panteamkhh/python-self-study-course",
+    cat: "Lab",
+    desc: "A complete self-paced course: lessons, runnable examples, exercises and quizzes.",
+    tags: ["Python", "Education"],
+    metric: { v: "15", k: "lessons" },
+    stars: 1,
+    art: "kpi",
+  },
+  {
+    name: "Math-for-AI-From-Zero-to-Intelligence",
+    title: "Math for AI",
+    url: "https://github.com/panteamkhh/Math-for-AI-From-Zero-to-Intelligence",
+    cat: "Lab",
+    desc: "The intuitive math behind AI: one ten-minute lesson a day for 80 days.",
+    tags: ["Math", "AI"],
+    metric: { v: "80", k: "lessons" },
+    stars: 1,
+    art: "scatter",
+  },
+];
+
+export const toolbox = [
   { title: "Languages", items: ["Python", "SQL"] },
-  { title: "Libraries", items: ["Pandas", "NumPy", "Scikit-learn", "Matplotlib", "Seaborn"] },
-  { title: "BI & Analytics", items: ["Power BI", "Power Query", "DAX", "Data Modeling", "Star Schema", "Dashboard Development", "Data Visualization", "Excel", "Word", "PowerPoint"] },
-  { title: "Databases", items: ["SQL Server (T-SQL)", "Snowflake", "OLAP Databases", "Querying", "Joins", "Aggregations", "Subqueries", "CTEs", "Window Functions"] },
-  { title: "Data Engineering", items: ["ETL", "Apache Spark", "Databricks", "Data Warehouse", "Data Pipelines"] },
-  { title: "Data Governance", items: ["Data Quality", "Metadata Management", "Data Lineage", "Access Control"] },
-  { title: "Version Control", items: ["Git", "GitHub", "Gitlab"] },
-  { title: "REST API Fundamentals", items: ["HTTP methods", "Endpoints", "JSON", "Request/response concepts", "Python Requests", "JSON data handling"] },
-  { title: "Data & ML", items: ["EDA", "Data Cleaning", "Data Transformation", "Feature Engineering", "Statistical Analysis", "Machine Learning", "Classification", "Regression", "Model Evaluation", "Clustering", "Unsupervised Learning", "NLP & Embeddings", "Recommender Systems"] },
-  { title: "Business Analytics", items: ["KPI Analysis", "Sales Analysis", "Trend Analysis", "Customer Segmentation", "Sales & Customer Behavior Analysis", "Management Reporting"] },
-  { title: "Other", items: ["Reinforcement Learning", "Prompt Engineering", "Business Model Design"] },
+  { title: "Analytics & ML", items: ["pandas", "NumPy", "scikit-learn", "LightGBM / XGBoost", "PyTorch", "NLP & embeddings", "Recommenders", "Feature engineering"] },
+  { title: "BI & reporting", items: ["Power BI", "DAX", "Power Query", "Data modelling", "Star schema", "Dashboards", "Excel"] },
+  { title: "Data platforms", items: ["SQL Server (T-SQL)", "Snowflake", "Spark", "Databricks", "ETL", "OLAP"] },
+  { title: "Engineering", items: ["FastAPI", "Docker", "Streamlit", "REST APIs", "Git & GitHub"] },
+  { title: "Business", items: ["KPI analysis", "Sales & pricing", "Segmentation", "Management reporting", "Data governance"] },
+];
+
+export const stack = [
+  "Python", "SQL Server", "Power BI", "DAX", "pandas", "scikit-learn", "LightGBM", "PyTorch",
+  "Streamlit", "FastAPI", "Docker", "Power Query", "Excel", "Git",
 ];

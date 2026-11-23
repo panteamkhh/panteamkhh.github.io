@@ -1,368 +1,506 @@
-import { projects, skills } from "./projects.js?v=20";
+import { featured, dashboards, projects, toolbox, stack } from "./projects.js";
 
-/* ============================================================
-   The whole page is a jigsaw puzzle. Each piece is a section.
-   ============================================================ */
+/* ---------------- helpers ---------------- */
 
-const CHARACTERS = {
-  about: `<circle cx="60" cy="54" r="34" fill="#ffd9c0"/><path d="M25 48 q4 -32 35 -32 q31 0 35 32 q-17 -13 -35 -13 q-18 0 -35 13 z" fill="#5a4a6a"/><circle cx="47" cy="56" r="6.5" fill="#2f2b45"/><circle cx="73" cy="56" r="6.5" fill="#2f2b45"/><circle cx="49" cy="53.5" r="2.2" fill="#fff"/><circle cx="75" cy="53.5" r="2.2" fill="#fff"/><circle cx="35" cy="65" r="6" fill="#ff9ec2" opacity="0.65"/><circle cx="85" cy="65" r="6" fill="#ff9ec2" opacity="0.65"/><path d="M52 70 q8 7 16 0" fill="none" stroke="#2f2b45" stroke-width="3.6" stroke-linecap="round"/>`,
-  education: `<ellipse cx="60" cy="68" rx="35" ry="37" fill="#c9b8ff"/><ellipse cx="60" cy="76" rx="20" ry="24" fill="#e6ddff"/><circle cx="47" cy="62" r="12.5" fill="#fff"/><circle cx="73" cy="62" r="12.5" fill="#fff"/><circle cx="47" cy="63" r="5.8" fill="#2f2b45"/><circle cx="73" cy="63" r="5.8" fill="#2f2b45"/><circle cx="49" cy="60.5" r="1.9" fill="#fff"/><circle cx="75" cy="60.5" r="1.9" fill="#fff"/><path d="M60 70 l-5.5 9 h11 z" fill="#ffd23f" stroke="#2f2b45" stroke-width="3" stroke-linejoin="round"/><path d="M26 34 L60 17 L94 34 Z" fill="#7c5cff" stroke="#2f2b45" stroke-width="4" stroke-linejoin="round"/><rect x="33" y="32" width="54" height="8" rx="4" fill="#2f2b45"/><line x1="89" y1="36" x2="89" y2="53" stroke="#2f2b45" stroke-width="3.5"/><circle cx="89" cy="56" r="4" fill="#ffd23f" stroke="#2f2b45" stroke-width="2.5"/>`,
-  experience: `<rect x="20" y="48" width="80" height="54" rx="14" fill="#ffcf9e" stroke="#2f2b45" stroke-width="4"/><path d="M46 48 v-8 a8 8 0 0 1 8 -8 h12 a8 8 0 0 1 8 8 v8" fill="none" stroke="#2f2b45" stroke-width="4"/><rect x="20" y="66" width="80" height="5" fill="#2f2b45" opacity="0.14"/><circle cx="50" cy="80" r="7.5" fill="#fff" stroke="#2f2b45" stroke-width="3.5"/><circle cx="70" cy="80" r="7.5" fill="#fff" stroke="#2f2b45" stroke-width="3.5"/><circle cx="50" cy="81" r="3.2" fill="#2f2b45"/><circle cx="70" cy="81" r="3.2" fill="#2f2b45"/><path d="M53 91 q7 5 14 0" fill="none" stroke="#2f2b45" stroke-width="3.5" stroke-linecap="round"/><circle cx="33" cy="84" r="4.5" fill="#ff9ec2" opacity="0.65"/><circle cx="87" cy="84" r="4.5" fill="#ff9ec2" opacity="0.65"/>`,
-  projects: `<rect x="30" y="42" width="60" height="52" rx="16" fill="#a9d9ff" stroke="#2f2b45" stroke-width="4"/><line x1="60" y1="42" x2="60" y2="26" stroke="#2f2b45" stroke-width="4"/><circle cx="60" cy="22" r="6" fill="#ff8fb1" stroke="#2f2b45" stroke-width="3.5"/><rect x="14" y="56" width="12" height="24" rx="6" fill="#a9d9ff" stroke="#2f2b45" stroke-width="3.5"/><rect x="94" y="56" width="12" height="24" rx="6" fill="#a9d9ff" stroke="#2f2b45" stroke-width="3.5"/><circle cx="48" cy="64" r="9" fill="#fff" stroke="#2f2b45" stroke-width="3.5"/><circle cx="72" cy="64" r="9" fill="#fff" stroke="#2f2b45" stroke-width="3.5"/><circle cx="48" cy="64" r="4" fill="#2f2b45"/><circle cx="72" cy="64" r="4" fill="#2f2b45"/><path d="M48 82 q12 8 24 0" fill="none" stroke="#2f2b45" stroke-width="3.5" stroke-linecap="round"/>`,
-  skills: `<path d="M46 56 v-10 h28 v10" fill="none" stroke="#2f2b45" stroke-width="4"/><rect x="22" y="56" width="76" height="46" rx="12" fill="#8fe3c0" stroke="#2f2b45" stroke-width="4"/><rect x="22" y="56" width="76" height="13" rx="7" fill="#2ec4b6" stroke="#2f2b45" stroke-width="4"/><circle cx="50" cy="82" r="7" fill="#fff" stroke="#2f2b45" stroke-width="3.5"/><circle cx="70" cy="82" r="7" fill="#fff" stroke="#2f2b45" stroke-width="3.5"/><circle cx="50" cy="83" r="3" fill="#2f2b45"/><circle cx="70" cy="83" r="3" fill="#2f2b45"/>`,
-  extras: `<path d="M60 16 l12 26 28 3 -20 19 5 28 -25 -13 -25 13 5 -28 -20 -19 28 -3 z" fill="#ffe08a" stroke="#2f2b45" stroke-width="4" stroke-linejoin="round"/><circle cx="50" cy="56" r="4.5" fill="#2f2b45"/><circle cx="70" cy="56" r="4.5" fill="#2f2b45"/><path d="M52 66 q8 6 16 0" fill="none" stroke="#2f2b45" stroke-width="3.5" stroke-linecap="round"/>`,
+const PALETTE = ["#34d399", "#a78bfa", "#f472b6", "#fdba74", "#38bdf8", "#fbbf24"];
+
+function rng(seedStr) {
+  let h = 2166136261;
+  const s = String(seedStr);
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return function () {
+    h += 0x6d2b79f5;
+    let t = h;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const svgOpen = `<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">`;
+const svgGrid = `<g stroke="rgba(255,255,255,.055)" stroke-width="1">
+  <line x1="14" y1="44" x2="306" y2="44"/><line x1="14" y1="84" x2="306" y2="84"/>
+  <line x1="14" y1="124" x2="306" y2="124"/><line x1="14" y1="164" x2="306" y2="164"/>
+</g>`;
+
+function artBars(r, accent) {
+  const n = 11, pad = 14, gap = 7;
+  const w = (320 - pad * 2 - gap * (n - 1)) / n;
+  let out = "";
+  for (let i = 0; i < n; i++) {
+    const h = 22 + r() * 118;
+    const y = 164 - h;
+    const hi = i === 4 || i === 8;
+    out += `<rect x="${(pad + i * (w + gap)).toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="2.5" fill="${hi ? accent : "rgba(255,255,255,.14)"}"/>`;
+  }
+  return out;
+}
+
+function artLine(r, accent, id) {
+  let p1 = [], p2 = [];
+  for (let i = 0; i <= 12; i++) {
+    const x = 14 + (i * 292) / 12;
+    p1.push(`${x.toFixed(1)},${(150 - r() * 96 - i * 2).toFixed(1)}`);
+    p2.push(`${x.toFixed(1)},${(158 - r() * 60 - i * 1.4).toFixed(1)}`);
+  }
+  const area = `M${p1.join(" L")} L306,164 L14,164 Z`;
+  return `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="${accent}" stop-opacity=".28"/>
+    <stop offset="100%" stop-color="${accent}" stop-opacity="0"/></linearGradient></defs>
+    <path d="${area}" fill="url(#${id})"/>
+    <polyline points="${p1.join(" ")}" fill="none" stroke="${accent}" stroke-width="2.2" stroke-linecap="round"/>
+    <polyline points="${p2.join(" ")}" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="1.6" stroke-dasharray="4 5"/>`;
+}
+
+function artDonut(r, accent) {
+  const cx = 96, cy = 88, R = 46, SW = 14;
+  const c = 2 * Math.PI * R;
+  const seg = [0.46, 0.28, 0.16, 0.10];
+  const cols = [accent, "rgba(255,255,255,.30)", "rgba(255,255,255,.16)", "rgba(255,255,255,.08)"];
+  let off = 0, arcs = "";
+  seg.forEach((s, i) => {
+    arcs += `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${cols[i]}" stroke-width="${SW}"
+      stroke-dasharray="${(c * s - 7).toFixed(1)} ${(c * (1 - s) + 7).toFixed(1)}"
+      stroke-dashoffset="${(-c * off).toFixed(1)}" stroke-linecap="round"
+      transform="rotate(-90 ${cx} ${cy})"/>`;
+    off += s;
+  });
+  let legend = "";
+  for (let k = 0; k < 4; k++) {
+    const y = 52 + k * 24;
+    legend += `<rect x="176" y="${y}" width="8" height="8" rx="2" fill="${cols[k]}"/>
+      <rect x="192" y="${y + 1}" width="${54 - k * 8}" height="6" rx="3" fill="rgba(255,255,255,.16)"/>
+      <rect x="252" y="${y + 1}" width="${20 + k * 6}" height="6" rx="3" fill="rgba(255,255,255,.09)"/>`;
+  }
+  return `<circle cx="${cx}" cy="${cy}" r="${R - SW / 2 - 3}" fill="none" stroke="rgba(255,255,255,.06)"/>${arcs}${legend}`;
+}
+
+function artHeat(r, accent) {
+  const cols = 9, rows = 4, cw = 28, ch = 22, gx = 8, gy = 9;
+  const x0 = (320 - (cols * cw + (cols - 1) * gx)) / 2;
+  const y0 = (180 - (rows * ch + (rows - 1) * gy)) / 2;
+  let out = "";
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const v = r();
+      const hi = v > 0.72;
+      out += `<rect x="${(x0 + x * (cw + gx)).toFixed(1)}" y="${(y0 + y * (ch + gy)).toFixed(1)}"
+        width="${cw}" height="${ch}" rx="3"
+        fill="${hi ? accent : "#ffffff"}" opacity="${hi ? 0.85 : (0.05 + v * 0.16).toFixed(2)}"/>`;
+    }
+  }
+  return out;
+}
+
+function artScatter(r, accent) {
+  const centers = [
+    [88, 70, accent],
+    [196, 108, "rgba(167,139,250,.9)"],
+    [248, 58, "rgba(244,114,182,.9)"],
+  ];
+  let out = "";
+  centers.forEach(([cx, cy, col], ci) => {
+    for (let i = 0; i < 16; i++) {
+      const a = r() * Math.PI * 2, d = r() * (ci === 0 ? 46 : 30);
+      out += `<circle cx="${(cx + Math.cos(a) * d).toFixed(1)}" cy="${(cy + Math.sin(a) * d * 0.7).toFixed(1)}"
+        r="${(1.6 + r() * 1.8).toFixed(1)}" fill="${col}" opacity="${(0.35 + r() * 0.55).toFixed(2)}"/>`;
+    }
+  });
+  return out;
+}
+
+function artKpi(r, accent) {
+  let tiles = "";
+  for (let i = 0; i < 3; i++) {
+    const x = 16 + i * 98;
+    tiles += `<rect x="${x}" y="18" width="90" height="52" rx="6" fill="rgba(255,255,255,.035)" stroke="rgba(255,255,255,.07)"/>
+      <rect x="${x + 10}" y="28" width="30" height="5" rx="2.5" fill="rgba(255,255,255,.18)"/>
+      <rect x="${x + 10}" y="42" width="${34 + r() * 24}" height="9" rx="3" fill="${i === 1 ? accent : "rgba(255,255,255,.42)"}"/>
+      <rect x="${x + 10}" y="57" width="${18 + r() * 16}" height="4" rx="2" fill="rgba(255,255,255,.10)"/>`;
+  }
+  let spark = [];
+  for (let i = 0; i <= 14; i++) spark.push(`${14 + i * 20.8},${(158 - r() * 46).toFixed(1)}`);
+  return `${tiles}<polyline points="${spark.join(" ")}" fill="none" stroke="${accent}" stroke-width="2" stroke-linecap="round"/>`;
+}
+
+function artMatrix(r, accent) {
+  const n = 5, cell = 26, gap = 6;
+  const x0 = (320 - (n * cell + (n - 1) * gap)) / 2;
+  const y0 = (180 - (n * cell + (n - 1) * gap)) / 2;
+  let out = "";
+  for (let y = 0; y < n; y++) {
+    for (let x = 0; x < n; x++) {
+      const strong = x === y;
+      const v = strong ? 0.55 + r() * 0.4 : r() * 0.4;
+      out += `<rect x="${(x0 + x * (cell + gap)).toFixed(1)}" y="${(y0 + y * (cell + gap)).toFixed(1)}"
+        width="${cell}" height="${cell}" rx="3"
+        fill="${strong ? accent : "#ffffff"}" opacity="${(strong ? v * 0.9 : v * 0.55).toFixed(2)}"/>`;
+    }
+  }
+  return out;
+}
+
+function artSVG(type, seed) {
+  const r = rng(seed);
+  const accent = PALETTE[Math.floor(r() * PALETTE.length)];
+  const id = `g${type}${seed.replace(/[^a-z0-9]/gi, "").slice(0, 14)}`;
+  let inner = "";
+  switch (type) {
+    case "line": inner = artLine(r, accent, id); break;
+    case "donut": inner = artDonut(r, accent); break;
+    case "heat": inner = artHeat(r, accent); break;
+    case "scatter": inner = artScatter(r, accent); break;
+    case "kpi": inner = artKpi(r, accent); break;
+    case "matrix": inner = artMatrix(r, accent); break;
+    default: inner = artBars(r, accent);
+  }
+  return svgOpen + svgGrid + inner + `</svg>`;
+}
+
+const shotBtn = (src, cap, cls) =>
+  `<button type="button" class="${cls}" data-full="${src}" data-cap="${cap}" aria-label="Enlarge: ${cap}">
+    <img src="${src}" alt="${cap}" loading="lazy" decoding="async" />
+  </button>`;
+
+/* ---------------- render: featured case studies ---------------- */
+
+const casesEl = document.getElementById("cases");
+if (casesEl) {
+  casesEl.innerHTML = featured
+    .map(
+      (p) => `
+    <article class="case reveal">
+      <div class="case-body">
+        <div class="case-top">
+          <span class="case-num">${p.num}</span>
+          <div class="chips">${p.chips.map((c) => `<span class="chip">${c}</span>`).join("")}</div>
+        </div>
+        <h3>${p.title}</h3>
+        <p class="case-desc">${p.desc}</p>
+        <ul class="impact">${p.impact.map((i) => `<li>${i}</li>`).join("")}</ul>
+        <div class="case-metrics">
+          ${p.metrics.map((m) => `<div><b>${m.v}</b><span>${m.k}</span></div>`).join("")}
+        </div>
+        <div class="case-actions">
+          <a class="link-arrow" href="${p.url}" target="_blank" rel="noopener">Repository ↗</a>
+          <span class="case-repo mono">${p.repo}</span>
+        </div>
+      </div>
+      <div class="case-visual">
+        <div class="viz">
+          <div class="viz-head">
+            <span class="viz-dot"></span>
+            <span class="viz-title mono">${p.repo}</span>
+            <span class="viz-badge">figure</span>
+          </div>
+          <div class="viz-art">${shotBtn(p.img, p.title, "viz-shot")}</div>
+          ${
+            p.thumbs && p.thumbs.length
+              ? `<div class="viz-thumbs">${p.thumbs
+                  .map((t) => shotBtn(t.src, t.cap, "viz-thumb"))
+                  .join("")}</div>`
+              : ""
+          }
+        </div>
+        <details class="code-peek">
+          <summary><span class="cp-file mono">${p.code.file}</span> <span class="cp-lang">${p.code.lang}</span><span class="cp-hint">view code</span></summary>
+          <pre class="cp-body"><code>${p.code.html}</code></pre>
+        </details>
+      </div>
+    </article>`
+    )
+    .join("");
+}
+
+/* ---------------- render: dashboards ---------------- */
+
+const dashEl = document.getElementById("dashboards-grid");
+if (dashEl) {
+  const dashCard = (d) => {
+    if (d.placeholder) {
+      return `
+    <article class="dash-card is-placeholder reveal">
+      <div class="dash-slot" aria-label="${d.title} — dashboard slot in progress">
+        <span class="tool-badge">${d.tool}</span>
+        <div class="dash-slot-inner">
+          <span class="slot-ring">+</span>
+          <span class="slot-title">Dashboard in progress</span>
+          <span class="slot-note">slot reserved</span>
+        </div>
+      </div>
+      <div class="dash-body">
+        <span class="dash-title is-static">${d.title}</span>
+        <p>${d.desc}</p>
+        <div class="tags">${d.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+        <div class="dash-foot"><b>${d.metric.v}</b><em>${d.metric.k}</em></div>
+      </div>
+    </article>`;
+    }
+    return `
+    <article class="dash-card reveal">
+      ${shotBtn(d.img, d.title, "dash-media")}
+      <span class="tool-badge">${d.tool}</span>
+      <div class="dash-body">
+        <a class="dash-title" href="${d.url}" target="_blank" rel="noopener">${d.title} <span>↗</span></a>
+        <p>${d.desc}</p>
+        <div class="tags">${d.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+        <div class="dash-foot"><b>${d.metric.v}</b><em>${d.metric.k}</em></div>
+      </div>
+    </article>`;
+  };
+  dashEl.innerHTML = dashboards.map(dashCard).join("");
+}
+
+/* ---------------- render: project cards ---------------- */
+
+const cardsEl = document.getElementById("cards");
+const filtersEl = document.getElementById("filters");
+
+function cardHTML(p) {
+  const visual = p.img
+    ? `<div class="card-art plate"><img src="${p.img}" alt="${p.title}" loading="lazy" decoding="async" /></div>`
+    : `<div class="card-art">${artSVG(p.art, p.name)}</div>`;
+  return `
+    <article class="card reveal" data-cat="${p.cat}">
+      <a class="card-link" href="${p.url}" target="_blank" rel="noopener" aria-label="${p.title}"></a>
+      ${visual}
+      <div class="card-body">
+        <div class="card-head">
+          <span class="cat">${p.cat}</span>
+          ${p.stars ? `<span class="stars mono">★ ${p.stars}</span>` : ""}
+        </div>
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+        <div class="tags">${p.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+        <div class="card-foot">
+          <span class="metric"><b>${p.metric.v}</b> <em>${p.metric.k}</em></span>
+          <span class="repo-name mono">${p.name}</span>
+        </div>
+      </div>
+    </article>`;
+}
+
+if (cardsEl) cardsEl.innerHTML = projects.map(cardHTML).join("");
+
+if (filtersEl) {
+  const cats = ["All", ...Array.from(new Set(projects.map((p) => p.cat)))];
+  filtersEl.innerHTML = cats
+    .map(
+      (c, i) =>
+        `<button class="filter${i === 0 ? " is-active" : ""}" data-filter="${c}" type="button">${c}<span>${
+          c === "All" ? projects.length : projects.filter((p) => p.cat === c).length
+        }</span></button>`
+    )
+    .join("");
+
+  filtersEl.addEventListener("click", (e) => {
+    const btn = e.target.closest(".filter");
+    if (!btn) return;
+    filtersEl.querySelectorAll(".filter").forEach((b) => b.classList.remove("is-active"));
+    btn.classList.add("is-active");
+    const f = btn.dataset.filter;
+    cardsEl.querySelectorAll(".card").forEach((card) => {
+      card.classList.toggle("is-hidden", !(f === "All" || card.dataset.cat === f));
+    });
+  });
+}
+
+/* ---------------- render: toolbox + stack ---------------- */
+
+const toolboxEl = document.getElementById("toolbox");
+if (toolboxEl) {
+  toolboxEl.innerHTML = toolbox
+    .map(
+      (g) => `<div class="tb-group"><h4>${g.title}</h4><div class="tags">${g.items
+        .map((i) => `<span class="tag">${i}</span>`)
+        .join("")}</div></div>`
+    )
+    .join("");
+}
+
+const stackEl = document.getElementById("stack-list");
+if (stackEl) stackEl.innerHTML = stack.map((s) => `<li>${s}</li>`).join("");
+
+/* ---------------- lightbox ---------------- */
+
+const lightbox = document.getElementById("lightbox");
+const lbImg = document.getElementById("lightbox-img");
+const lbCap = document.getElementById("lightbox-cap");
+const lbClose = document.getElementById("lb-close");
+
+function openLightbox(src, cap) {
+  if (!lightbox || !lbImg) return;
+  lbImg.src = src;
+  lbImg.alt = cap || "";
+  if (lbCap) lbCap.textContent = cap || "";
+  lightbox.hidden = false;
+  document.body.classList.add("lb-open");
+}
+function closeLightbox() {
+  if (!lightbox) return;
+  lightbox.hidden = true;
+  document.body.classList.remove("lb-open");
+  if (lbImg) lbImg.src = "";
+}
+
+document.addEventListener("click", (e) => {
+  const shot = e.target.closest("[data-full]");
+  if (shot) {
+    e.preventDefault();
+    openLightbox(shot.dataset.full, shot.dataset.cap);
+    return;
+  }
+  if (lightbox && !lightbox.hidden && (e.target === lightbox || e.target === lbClose)) closeLightbox();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && lightbox && !lightbox.hidden) closeLightbox();
+});
+
+/* ---------------- per-section background theme ---------------- */
+
+const GLOWS = {
+  "mint-lav": { a: "52,211,153", b: "167,139,250" },
+  "lav-mint": { a: "167,139,250", b: "52,211,153" },
+  "sky-mint": { a: "56,189,248", b: "52,211,153" },
+  "pink-lav": { a: "244,114,182", b: "167,139,250" },
+  "mint-sky": { a: "52,211,153", b: "56,189,248" },
+  "butter-peach": { a: "251,191,36", b: "253,186,116" },
+  "pink-mint": { a: "244,114,182", b: "52,211,153" },
 };
 
-const SECTIONS = [
-  { key: "about", label: "About me", color: "#ffa8c9" },
-  { key: "education", label: "Education", color: "#b9a2ff" },
-  { key: "experience", label: "Experience", color: "#ffbf8f" },
-  { key: "projects", label: "Projects", color: "#8fc7ff" },
-  { key: "skills", label: "Skills", color: "#7fe3bd" },
-  { key: "extras", label: "Extras", color: "#ffe07a" },
-];
+const glowLayers = Array.from(document.querySelectorAll(".glow"));
+let glowIdx = 0;
+let currentGlow = "";
 
-const COLS = 3;
-const ROWS = 2;
-const CW = 240;
-const CH = 220;
-const W = COLS * CW;
-const H = ROWS * CH;
-const SVG_NS = "http://www.w3.org/2000/svg";
-
-/* --- deterministic interlocking edges --- */
-function buildEdges() {
-  let seed = 42;
-  const rand = () => {
-    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
-    return seed / 0x7fffffff;
-  };
-  const vertical = []; // [r][c] edge between column c-1 and c
-  const horizontal = []; // [r][c] edge between row r-1 and r
-  for (let r = 0; r < ROWS; r += 1) {
-    vertical[r] = [];
-    for (let c = 0; c < COLS; c += 1) vertical[r][c] = rand() > 0.5 ? 1 : -1;
-  }
-  for (let r = 0; r < ROWS; r += 1) {
-    horizontal[r] = [];
-    for (let c = 0; c < COLS; c += 1) horizontal[r][c] = rand() > 0.5 ? 1 : -1;
-  }
-  return { vertical, horizontal };
+function glowCSS(kind) {
+  const g = GLOWS[kind] || GLOWS["mint-lav"];
+  return (
+    `radial-gradient(720px 640px at 12% 2%, rgba(${g.a},.22), transparent 62%),` +
+    `radial-gradient(800px 660px at 88% 8%, rgba(${g.b},.20), transparent 64%)`
+  );
 }
 
-const EDGES = buildEdges();
-
-function edgeSegment(ax, ay, bx, by, nx, ny, tab) {
-  if (!tab) return ` L ${bx} ${by}`;
-  const bump = Math.min(CW, CH) * 0.24;
-  const point = (t) => [ax + (bx - ax) * t, ay + (by - ay) * t];
-  const [ax2, ay2] = point(0.38);
-  const [bx2, by2] = point(0.62);
-  const [c1x, c1y] = point(0.45);
-  const [c2x, c2y] = point(0.55);
-  const o = tab * bump;
-  return ` L ${ax2} ${ay2} C ${c1x + nx * o} ${c1y + ny * o} ${c2x + nx * o} ${c2y + ny * o} ${bx2} ${by2} L ${bx} ${by}`;
+function setGlow(kind) {
+  if (!glowLayers.length || kind === currentGlow) return;
+  currentGlow = kind;
+  const next = glowLayers[glowIdx ^ 1];
+  const prev = glowLayers[glowIdx];
+  next.style.backgroundImage = glowCSS(kind);
+  next.classList.add("is-on");
+  prev.classList.remove("is-on");
+  glowIdx ^= 1;
+  const g = GLOWS[kind] || GLOWS["mint-lav"];
+  window.dispatchEvent(
+    new CustomEvent("bg-theme", { detail: { a: g.a.split(","), b: g.b.split(",") } })
+  );
 }
 
-function piecePath(c, r) {
-  const x0 = c * CW;
-  const y0 = r * CH;
-  const x1 = x0 + CW;
-  const y1 = y0 + CH;
-  const top = r > 0 ? -EDGES.horizontal[r][c] : 0;
-  const bottom = r < ROWS - 1 ? EDGES.horizontal[r + 1][c] : 0;
-  const left = c > 0 ? -EDGES.vertical[r][c] : 0;
-  const right = c < COLS - 1 ? EDGES.vertical[r][c + 1] : 0;
-
-  let d = `M ${x0} ${y0}`;
-  d += edgeSegment(x0, y0, x1, y0, 0, -1, top);
-  d += edgeSegment(x1, y0, x1, y1, 1, 0, right);
-  d += edgeSegment(x1, y1, x0, y1, 0, 1, bottom);
-  d += edgeSegment(x0, y1, x0, y0, -1, 0, left);
-  return `${d} Z`;
+if (glowLayers.length) {
+  glowLayers[0].style.backgroundImage = glowCSS("mint-lav");
+  currentGlow = "mint-lav";
 }
 
-/* --- build the board --- */
-const puzzle = document.getElementById("puzzle");
-
-function buildPuzzle() {
-  if (!puzzle) return;
-
-  const svg = document.createElementNS(SVG_NS, "svg");
-  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
-  svg.setAttribute("class", "puzzle-svg");
-  svg.setAttribute("aria-hidden", "true");
-
-  const icons = document.createElement("div");
-  icons.className = "puzzle-icons";
-
-  SECTIONS.forEach((section, index) => {
-    const c = index % COLS;
-    const r = Math.floor(index / COLS);
-
-    const path = document.createElementNS(SVG_NS, "path");
-    path.setAttribute("d", piecePath(c, r));
-    path.setAttribute("class", "puzzle-piece");
-    path.setAttribute("fill", section.color);
-    path.setAttribute("data-target", section.key);
-    path.setAttribute("tabindex", "-1");
-    path.addEventListener("click", () => openSection(section.key));
-    svg.appendChild(path);
-
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "piece-btn";
-    button.dataset.target = section.key;
-    button.style.setProperty("--x", `${((c + 0.5) / COLS) * 100}%`);
-    button.style.setProperty("--y", `${((r + 0.5) / ROWS) * 100}%`);
-    button.innerHTML = `
-      <span class="piece-art">
-        <svg viewBox="0 0 120 120" aria-hidden="true">${CHARACTERS[section.key]}</svg>
-        <span class="piece-check" aria-hidden="true">✓</span>
-      </span>
-      <span class="piece-label">${section.label}</span>
-    `;
-    button.addEventListener("click", () => openSection(section.key));
-    icons.appendChild(button);
-  });
-
-  puzzle.appendChild(svg);
-  puzzle.appendChild(icons);
-}
-
-/* ---------- shared renderers (inside the modal) ---------- */
-function renderProjects(container) {
-  if (!container) return;
-  container.innerHTML = projects
-    .map(
-      (project) => `
-      <article class="project-card">
-        <div class="project-top">
-          <div class="project-emoji" style="background:${project.color}">${project.emoji}</div>
-          <h3>${project.name}</h3>
-        </div>
-        <p>${project.description}</p>
-        <div class="project-tags">${project.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
-        <a class="project-link" href="${project.url}" target="_blank" rel="noopener">View on GitHub ↗</a>
-      </article>`
-    )
-    .join("");
-}
-
-function renderSkills(container) {
-  if (!container) return;
-  container.innerHTML = skills
-    .map(
-      (group) => `
-      <div class="skill-card">
-        <h3>${group.title}</h3>
-        <div class="skill-chips">${group.items.map((i) => `<span class="chip">${i}</span>`).join("")}</div>
-      </div>`
-    )
-    .join("");
-}
-
-/* ---------- discovery + modal ---------- */
-const FOUND_KEY = "pantea-found-sections";
-
-function loadFound() {
-  try {
-    return new Set(JSON.parse(localStorage.getItem(FOUND_KEY) || "[]"));
-  } catch (error) {
-    return new Set();
-  }
-}
-
-function saveFound(set) {
-  try {
-    localStorage.setItem(FOUND_KEY, JSON.stringify([...set]));
-  } catch (error) {
-    /* storage unavailable — discovery just won't persist */
-  }
-}
-
-const found = loadFound();
-const validKeys = new Set(SECTIONS.map((section) => section.key));
-[...found].forEach((key) => {
-  if (!validKeys.has(key)) found.delete(key);
-});
-saveFound(found);
-
-const progressEl = document.getElementById("progress");
-const completeBanner = document.getElementById("puzzle-complete");
-let celebrated = false;
-
-function celebrate() {
-  const emojis = ["🎉", "🎊", "⭐", "🧩", "✨"];
-  for (let i = 0; i < 26; i += 1) {
-    const bit = document.createElement("span");
-    bit.className = "confetti";
-    bit.textContent = emojis[i % emojis.length];
-    bit.style.left = `${Math.random() * 100}%`;
-    bit.style.animationDelay = `${Math.random() * 0.6}s`;
-    bit.style.fontSize = `${0.9 + Math.random() * 1.2}rem`;
-    document.body.appendChild(bit);
-    setTimeout(() => bit.remove(), 3400);
-  }
-  showToast("🎉 Puzzle complete!");
-}
-
-function updateProgress() {
-  const solved = SECTIONS.filter((section) => found.has(section.key)).length;
-  const complete = solved === SECTIONS.length;
-
-  if (progressEl) {
-    progressEl.textContent = complete
-      ? `🎉 ${solved} / ${SECTIONS.length} — puzzle complete!`
-      : `${solved} / ${SECTIONS.length} discovered`;
-    progressEl.classList.toggle("is-complete", complete);
-  }
-
-  if (completeBanner) completeBanner.hidden = !complete;
-
-  if (complete && !celebrated) {
-    celebrated = true;
-    celebrate();
-  }
-}
-
-let toastTimer = null;
-function showToast(message) {
-  let toast = document.getElementById("puzzle-toast");
-  if (!toast) {
-    toast = document.createElement("div");
-    toast.id = "puzzle-toast";
-    toast.className = "puzzle-toast";
-    document.body.appendChild(toast);
-  }
-  toast.textContent = message;
-  toast.classList.add("is-visible");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 1800);
-}
-
-function markFound(name) {
-  const isNew = !found.has(name);
-  found.add(name);
-  saveFound(found);
-  updateProgress();
-  document.querySelectorAll(`.piece-btn[data-target="${name}"]`).forEach((el) => el.classList.add("is-found"));
-  document.querySelectorAll(`.puzzle-piece[data-target="${name}"]`).forEach((el) => el.classList.add("is-found"));
-  const section = SECTIONS.find((item) => item.key === name);
-  if (isNew && section) showToast(`✓ ${section.label} discovered!`);
-}
-
-const modal = document.getElementById("modal");
-const modalBody = document.getElementById("modal-body");
-let lastFocused = null;
-
-function openSection(name) {
-  const template = document.getElementById(`tpl-${name}`);
-  if (!template || !modal || !modalBody) return;
-
-  lastFocused = document.activeElement;
-  modalBody.innerHTML = "";
-  modalBody.appendChild(template.content.cloneNode(true));
-
-  if (name === "projects") renderProjects(modalBody.querySelector("#projects-grid"));
-  if (name === "skills") renderSkills(modalBody.querySelector("#skills-grid"));
-
-  modal.hidden = false;
-  document.body.classList.add("modal-open");
-  markFound(name);
-  const closeButton = modal.querySelector(".modal-close");
-  if (closeButton) closeButton.focus();
-}
-
-function closeModal() {
-  if (!modal) return;
-  modal.hidden = true;
-  document.body.classList.remove("modal-open");
-  if (modalBody) modalBody.innerHTML = "";
-  if (lastFocused && lastFocused.focus) lastFocused.focus();
-}
-
-if (modal) {
-  modal.addEventListener("click", (event) => {
-    if (event.target.dataset.close !== undefined) closeModal();
-  });
-}
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && modal && !modal.hidden) closeModal();
-});
-
-buildPuzzle();
-
-/* restore discovery state from a previous visit */
-found.forEach((name) => {
-  document.querySelectorAll(`.piece-btn[data-target="${name}"]`).forEach((el) => el.classList.add("is-found"));
-  document.querySelectorAll(`.puzzle-piece[data-target="${name}"]`).forEach((el) => el.classList.add("is-found"));
-});
-celebrated = SECTIONS.every((section) => found.has(section.key));
-updateProgress();
-
-/* ---------- reset / play again ---------- */
-const resetButton = document.getElementById("reset-puzzle");
-if (resetButton) {
-  resetButton.addEventListener("click", () => {
-    found.clear();
-    saveFound(found);
-    celebrated = false;
-    document
-      .querySelectorAll(".piece-btn.is-found, .puzzle-piece.is-found")
-      .forEach((el) => el.classList.remove("is-found"));
-    updateProgress();
-    showToast("↺ Puzzle reset — have fun!");
-  });
-}
-
-/* ---------- portrait fallback ---------- */
-const portrait = document.getElementById("portrait");
-const portraitImg = document.getElementById("portrait-img");
-
-if (portrait && portraitImg) {
-  portraitImg.addEventListener("error", () => portrait.classList.add("is-missing"));
-}
-
-/* ---------- scroll reveal ---------- */
-const revealTargets = document.querySelectorAll(".reveal");
-
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(
+const glowSections = document.querySelectorAll("[data-glow]");
+if ("IntersectionObserver" in window && glowSections.length) {
+  const glowIO = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) setGlow(entry.target.dataset.glow);
       });
     },
-    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
   );
-  revealTargets.forEach((el) => observer.observe(el));
-} else {
-  revealTargets.forEach((el) => el.classList.add("is-visible"));
+  glowSections.forEach((s) => glowIO.observe(s));
 }
 
-/* ---------- toolbar ---------- */
-const toggle = document.getElementById("toolbar-toggle");
-const links = document.getElementById("toolbar-links");
+/* ---------------- cursor spotlight ---------------- */
 
-if (toggle && links) {
-  toggle.addEventListener("click", () => {
-    const open = links.classList.toggle("open");
-    toggle.setAttribute("aria-expanded", String(open));
+const cursorGlow = document.getElementById("cursor-glow");
+const finePointer = window.matchMedia("(pointer: fine)").matches;
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (cursorGlow && finePointer && !reduceMotion) {
+  const state = { x: window.innerWidth / 2, y: window.innerHeight / 2, tx: 0, ty: 0, on: false };
+  state.tx = state.x;
+  state.ty = state.y;
+
+  window.addEventListener(
+    "pointermove",
+    (e) => {
+      state.tx = e.clientX;
+      state.ty = e.clientY;
+      if (!state.on) {
+        state.on = true;
+        cursorGlow.classList.add("is-on");
+      }
+    },
+    { passive: true }
+  );
+
+  document.addEventListener("pointerleave", () => cursorGlow.classList.remove("is-on"));
+
+  (function loop() {
+    state.x += (state.tx - state.x) * 0.12;
+    state.y += (state.ty - state.y) * 0.12;
+    cursorGlow.style.transform = `translate3d(${state.x.toFixed(1)}px, ${state.y.toFixed(1)}px, 0)`;
+    requestAnimationFrame(loop);
+  })();
+}
+
+/* ---------------- header, nav, year ---------------- */
+
+const header = document.getElementById("site-header");
+const onScroll = () => header && header.classList.toggle("is-scrolled", window.scrollY > 10);
+onScroll();
+window.addEventListener("scroll", onScroll, { passive: true });
+
+const menuToggle = document.getElementById("menu-toggle");
+const nav = document.getElementById("nav");
+if (menuToggle && nav) {
+  menuToggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(open));
   });
-  links.querySelectorAll("a").forEach((a) =>
-    a.addEventListener("click", () => {
-      links.classList.remove("open");
-      toggle.setAttribute("aria-expanded", "false");
-    })
-  );
+  nav.addEventListener("click", (e) => {
+    if (e.target.tagName === "A") {
+      nav.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    }
+  });
 }
 
-/* ---------- footer year ---------- */
-const year = document.getElementById("year");
-if (year) year.textContent = new Date().getFullYear();
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+/* ---------------- reveal ---------------- */
+
+const revealEls = document.querySelectorAll(".reveal");
+const forceVisible = new URLSearchParams(location.search).has("noreveal");
+if (forceVisible) revealEls.forEach((el) => el.classList.add("is-visible"));
+if (reduceMotion || forceVisible || !("IntersectionObserver" in window)) {
+  revealEls.forEach((el) => el.classList.add("is-visible"));
+} else {
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry, i) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        setTimeout(() => el.classList.add("is-visible"), i * 60);
+        io.unobserve(el);
+      });
+    },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+  );
+  revealEls.forEach((el) => io.observe(el));
+
+  setTimeout(() => {
+    document.querySelectorAll(".reveal:not(.is-visible)").forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight + 120 && r.bottom > -120) el.classList.add("is-visible");
+    });
+  }, 1200);
+}

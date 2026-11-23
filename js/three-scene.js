@@ -1,206 +1,195 @@
-// Three.js background — real jigsaw pieces (extruded from tab/blank shapes)
-// floating on a light canvas. Pastel palette, no orange.
+// Subtle pastel particle field behind the page.
+// Two flat point clouds at different depths, gentle drift, mouse + scroll parallax.
+// Degrades to an empty canvas if WebGL or the CDN module is unavailable.
 
 import * as THREE from "three";
 
-const container = document.getElementById("scene-container");
-const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const smallScreen = window.innerWidth < 760;
+const canvas = document.getElementById("bg-canvas");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function supportsWebGL() {
-  try {
-    const canvas = document.createElement("canvas");
-    return Boolean(
-      window.WebGLRenderingContext &&
-        (canvas.getContext("webgl") || canvas.getContext("experimental-webgl"))
-    );
-  } catch (error) {
-    return false;
-  }
+const PASTELS = [0xa7f3d0, 0xc4b5fd, 0xfbcfe8, 0xa8d5f2, 0xfbd5b5, 0xfae8a0];
+
+let renderer, scene, camera, group;
+let frames = 0;
+let paused = false;
+const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
+let scrollY = 0;
+const tintTargets = [];
+
+function glowTexture() {
+  const size = 64;
+  const c = document.createElement("canvas");
+  c.width = c.height = size;
+  const ctx = c.getContext("2d");
+  const g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+  g.addColorStop(0, "rgba(255,255,255,1)");
+  g.addColorStop(0.35, "rgba(255,255,255,0.55)");
+  g.addColorStop(1, "rgba(255,255,255,0)");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, size, size);
+  const tex = new THREE.CanvasTexture(c);
+  tex.needsUpdate = true;
+  return tex;
 }
 
-if (container && supportsWebGL()) {
-  const COLORS = [0xff8fb1, 0xffd23f, 0x2ec4b6, 0x7c5cff, 0xa9d9ff, 0xcdc0ff, 0x4cc38a, 0xa8e6cf];
+function cloud({ count, spreadX, spreadY, zNear, zFar, size, opacity, colorBias }) {
+  const positions = new Float32Array(count * 3);
+  const colors = new Float32Array(count * 3);
+  const color = new THREE.Color();
 
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(
-    45,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    100
-  );
-  camera.position.set(0, 0, 12);
+  for (let i = 0; i < count; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * spreadX;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * spreadY;
+    positions[i * 3 + 2] = zNear + Math.random() * (zFar - zNear);
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, smallScreen ? 1.5 : 2));
-  renderer.setSize(container.clientWidth, container.clientHeight);
-  container.appendChild(renderer.domElement);
+    // mix two pastels so the field reads as a soft gradient, not confetti
+    const a = PASTELS[colorBias % PASTELS.length];
+    const b = PASTELS[(colorBias + 2 + Math.floor(Math.random() * 2)) % PASTELS.length];
+    color.setHex(a).lerp(new THREE.Color(b), Math.random() * 0.6);
+    color.multiplyScalar(0.6 + Math.random() * 0.4);
 
-  const ramp = new Uint8Array([150, 205, 255]);
-  const gradientMap = new THREE.DataTexture(ramp, ramp.length, 1, THREE.RedFormat);
-  gradientMap.needsUpdate = true;
-
-  function toon(color) {
-    return new THREE.MeshToonMaterial({ color, gradientMap });
-  }
-
-  // --- build a jigsaw piece outline (unit cell with tabs/blanks) --------
-  function addEdge(shape, ax, ay, bx, by, nx, ny, tab) {
-    if (!tab) {
-      shape.lineTo(bx, by);
-      return;
-    }
-    const bump = 0.22;
-    const point = (t) => [ax + (bx - ax) * t, ay + (by - ay) * t];
-    const [ax2, ay2] = point(0.38);
-    const [bx2, by2] = point(0.62);
-    const [c1x, c1y] = point(0.45);
-    const [c2x, c2y] = point(0.55);
-    const o = tab * bump;
-    shape.lineTo(ax2, ay2);
-    shape.bezierCurveTo(c1x + nx * o, c1y + ny * o, c2x + nx * o, c2y + ny * o, bx2, by2);
-    shape.lineTo(bx, by);
-  }
-
-  function makePieceGeometry() {
-    const shape = new THREE.Shape();
-    const tabs = [
-      Math.random() > 0.5 ? 1 : -1, // top
-      Math.random() > 0.5 ? 1 : -1, // right
-      Math.random() > 0.5 ? 1 : -1, // bottom
-      Math.random() > 0.5 ? 1 : -1, // left
-    ];
-
-    shape.moveTo(0, 0);
-    addEdge(shape, 0, 0, 1, 0, 0, -1, tabs[0]);
-    addEdge(shape, 1, 0, 1, 1, 1, 0, tabs[1]);
-    addEdge(shape, 1, 1, 0, 1, 0, 1, tabs[2]);
-    addEdge(shape, 0, 1, 0, 0, -1, 0, tabs[3]);
-
-    const geometry = new THREE.ExtrudeGeometry(shape, {
-      depth: 0.24,
-      bevelEnabled: true,
-      bevelThickness: 0.03,
-      bevelSize: 0.035,
-      bevelSegments: 2,
-      curveSegments: 10,
-    });
-    geometry.center();
-    return geometry;
-  }
-
-  // --- lights -----------------------------------------------------------
-  scene.add(new THREE.HemisphereLight(0xffffff, 0xd8caff, 1.2));
-  const key = new THREE.DirectionalLight(0xffffff, 1.4);
-  key.position.set(5, 7, 8);
-  scene.add(key);
-  const fill = new THREE.DirectionalLight(0xffd9e8, 0.6);
-  fill.position.set(-6, -4, 4);
-  scene.add(fill);
-
-  // --- floating jigsaw pieces ------------------------------------------
-  const world = new THREE.Group();
-  scene.add(world);
-
-  const pieces = [];
-  const COUNT = smallScreen ? 6 : 12;
-  for (let i = 0; i < COUNT; i += 1) {
-    const mesh = new THREE.Mesh(makePieceGeometry(), toon(COLORS[i % COLORS.length]));
-    const scale = 0.9 + Math.random() * 1.0;
-    mesh.scale.setScalar(scale);
-    mesh.position.set(
-      (Math.random() - 0.5) * 20,
-      (Math.random() - 0.5) * 13,
-      (Math.random() - 0.5) * 8 - 3
-    );
-    mesh.rotation.set(
-      (Math.random() - 0.5) * 0.9,
-      (Math.random() - 0.5) * 0.9,
-      (Math.random() - 0.5) * 0.7
-    );
-    mesh.userData = {
-      base: mesh.position.clone(),
-      phase: Math.random() * Math.PI * 2,
-      speed: 0.3 + Math.random() * 0.4,
-      spin: new THREE.Vector3(
-        (Math.random() - 0.5) * 0.3,
-        (Math.random() - 0.5) * 0.4,
-        (Math.random() - 0.5) * 0.2
-      ),
-    };
-    world.add(mesh);
-    pieces.push(mesh);
-  }
-
-  // --- soft pastel dots -------------------------------------------------
-  const DOT_COUNT = smallScreen ? 60 : 150;
-  const positions = new Float32Array(DOT_COUNT * 3);
-  const colors = new Float32Array(DOT_COUNT * 3);
-  const dotPalette = COLORS.map((hex) => new THREE.Color(hex));
-  for (let i = 0; i < DOT_COUNT; i += 1) {
-    positions[i * 3] = (Math.random() - 0.5) * 26;
-    positions[i * 3 + 1] = (Math.random() - 0.5) * 16;
-    positions[i * 3 + 2] = (Math.random() - 0.5) * 10 - 4;
-    const color = dotPalette[Math.floor(Math.random() * dotPalette.length)];
     colors[i * 3] = color.r;
     colors[i * 3 + 1] = color.g;
     colors[i * 3 + 2] = color.b;
   }
-  const dotGeometry = new THREE.BufferGeometry();
-  dotGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-  dotGeometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-  const dots = new THREE.Points(
-    dotGeometry,
-    new THREE.PointsMaterial({ size: 0.12, vertexColors: true, transparent: true, opacity: 0.8, depthWrite: false })
-  );
-  scene.add(dots);
 
-  // --- interaction ------------------------------------------------------
-  const pointer = { x: 0, y: 0 };
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+
+  const material = new THREE.PointsMaterial({
+    size,
+    map: glowTexture(),
+    vertexColors: true,
+    transparent: true,
+    opacity,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    sizeAttenuation: true,
+  });
+
+  return new THREE.Points(geometry, material);
+}
+
+function init() {
+  if (!canvas) return;
+
+  renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: true,
+    alpha: true,
+    powerPreference: "low-power",
+  });
+  renderer.setClearColor(0x000000, 0);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight, false);
+
+  scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x070910, 0.018);
+
+  camera = new THREE.PerspectiveCamera(58, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.set(0, 0, 16);
+
+  group = new THREE.Group();
+  scene.add(group);
+
+  group.add(
+    cloud({ count: 620, spreadX: 60, spreadY: 40, zNear: -32, zFar: -6, size: 0.11, opacity: 0.55, colorBias: 0 })
+  );
+  group.add(
+    cloud({ count: 220, spreadX: 44, spreadY: 30, zNear: -8, zFar: 6, size: 0.2, opacity: 0.3, colorBias: 2 })
+  );
+  group.add(
+    cloud({ count: 90, spreadX: 26, spreadY: 18, zNear: 2, zFar: 8, size: 0.34, opacity: 0.16, colorBias: 4 })
+  );
+
+  group.children.forEach(() => tintTargets.push(new THREE.Color(0xffffff)));
+  window.addEventListener("bg-theme", (e) => {
+    const { a, b } = e.detail || {};
+    if (!a || !b) return;
+    const ca = new THREE.Color(); ca.setRGB(+a[0] / 255, +a[1] / 255, +a[2] / 255);
+    const cb = new THREE.Color(); cb.setRGB(+b[0] / 255, +b[1] / 255, +b[2] / 255);
+    const n = group.children.length;
+    group.children.forEach((child, i) => {
+      const t = n > 1 ? i / (n - 1) : 0;
+      tintTargets[i].copy(ca).lerp(cb, t).multiplyScalar(0.85);
+    });
+  });
+
+  resize();
+  bindEvents();
+
+  if (reduceMotion) {
+    renderer.render(scene, camera);
+  } else {
+    requestAnimationFrame(tick);
+  }
+}
+
+function resize() {
+  if (!renderer) return;
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setSize(w, h, false);
+  if (reduceMotion) renderer.render(scene, camera);
+}
+
+function bindEvents() {
+  window.addEventListener("resize", resize, { passive: true });
   window.addEventListener(
-    "pointermove",
-    (event) => {
-      pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
-      pointer.y = (event.clientY / window.innerHeight) * 2 - 1;
+    "scroll",
+    () => {
+      scrollY = window.scrollY || 0;
     },
     { passive: true }
   );
 
-  function resize() {
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-    if (!width || !height) return;
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-    renderer.setSize(width, height);
-  }
-  window.addEventListener("resize", resize);
+  if (reduceMotion) return;
 
-  // --- animation --------------------------------------------------------
-  const clock = new THREE.Clock();
+  window.addEventListener(
+    "pointermove",
+    (e) => {
+      pointer.tx = (e.clientX / window.innerWidth - 0.5) * 2;
+      pointer.ty = (e.clientY / window.innerHeight - 0.5) * 2;
+    },
+    { passive: true }
+  );
 
-  function frame() {
-    const t = clock.getElapsedTime();
+  document.addEventListener("visibilitychange", () => {
+    paused = document.hidden;
+    if (!paused) requestAnimationFrame(tick);
+  });
+}
 
-    pieces.forEach((piece) => {
-      const data = piece.userData;
-      piece.position.y = data.base.y + Math.sin(t * data.speed + data.phase) * 0.5;
-      piece.position.x = data.base.x + Math.cos(t * data.speed * 0.7 + data.phase) * 0.3;
-      piece.rotation.x += data.spin.x * 0.006;
-      piece.rotation.y += data.spin.y * 0.008;
-      piece.rotation.z += data.spin.z * 0.005;
-    });
+function tick() {
+  if (paused) return;
+  frames += 1;
+  const t = frames / 60;
 
-    dots.rotation.y = t * 0.015;
+  pointer.x += (pointer.tx - pointer.x) * 0.045;
+  pointer.y += (pointer.ty - pointer.y) * 0.045;
 
-    camera.position.x += (pointer.x * 1.1 - camera.position.x) * 0.05;
-    camera.position.y += (-pointer.y * 0.7 - camera.position.y) * 0.05;
-    camera.lookAt(0, 0, 0);
+  camera.position.x = pointer.x * 1.1;
+  camera.position.y = -pointer.y * 0.8 - scrollY * 0.0009;
+  camera.lookAt(0, -scrollY * 0.0006, 0);
 
-    renderer.render(scene, camera);
-    if (!prefersReduced) requestAnimationFrame(frame);
-  }
+  group.rotation.y = t * 0.012 + pointer.x * 0.05;
+  group.rotation.x = Math.sin(t * 0.16) * 0.02 - pointer.y * 0.03;
 
-  resize();
-  frame();
+  group.children.forEach((child, i) => {
+    if (tintTargets[i] && child.material) child.material.color.lerp(tintTargets[i], 0.03);
+  });
+
+  renderer.render(scene, camera);
+  requestAnimationFrame(tick);
+}
+
+try {
+  init();
+} catch (err) {
+  if (canvas) canvas.style.display = "none";
+  console.warn("Background scene disabled:", err && err.message);
 }

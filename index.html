@@ -3,253 +3,333 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pantea Mohamadkhani — Data Science &amp; AI</title>
-  <meta name="description" content="Pantea Mohamadkhani — Data Scientist / ML Analyst. A puzzle of my education, experience, projects and skills." />
-  <meta name="theme-color" content="#fff7e6" />
-  <meta property="og:title" content="Pantea Mohamadkhani — Data Science & AI" />
-  <meta property="og:description" content="Solve the puzzle to explore my data & AI work." />
+  <title>Pantea Mohamadkhani — Data Analytics, BI &amp; Machine Learning</title>
+  <meta name="description" content="Data analyst and ML practitioner. Python, SQL Server, Power BI and LightGBM — dashboards, forecasting, NLP, and deployed models. Selected case studies with code." />
+  <meta name="theme-color" content="#080a10" />
+  <meta property="og:title" content="Pantea Mohamadkhani — Data Analytics, BI & Machine Learning" />
+  <meta property="og:description" content="Dashboards, models and data pipelines — documented end to end." />
   <meta property="og:type" content="website" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=23" />
 </head>
 <body>
-  <div id="scene-container" aria-hidden="true"></div>
-  <div class="bg-doodles" aria-hidden="true"></div>
+  <div class="bg" aria-hidden="true">
+    <canvas id="bg-canvas"></canvas>
+    <div class="glow glow-a is-on"></div>
+    <div class="glow glow-b"></div>
+    <div class="cursor-glow" id="cursor-glow"></div>
+    <div class="bg-grain"></div>
+  </div>
 
-  <!-- ============ TOOLBAR ============ -->
-  <header class="toolbar" id="toolbar">
-    <a class="brand" href="#home">
-      <span class="brand-dot"></span>
-      <span>Pantea<span class="brand-light">.ai</span></span>
-    </a>
-    <nav class="toolbar-links" id="toolbar-links" aria-label="Sections">
-      <a href="#home">Home</a>
-      <a href="#explore">Puzzle</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="toolbar-actions">
-      <a class="btn btn-small btn-ghost" id="cv-btn" href="assets/cv.pdf" download="Pantea_Mohamadkhani_Data_Science_ML.pdf" title="Download CV">CV ↓</a>
-      <button class="toolbar-toggle" id="toolbar-toggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+  <a class="skip" href="#work">Skip to content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Home">
+        <span class="brand-mark">PM</span>
+        <span class="brand-text">Pantea<span class="brand-dim"> Mohamadkhani</span></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Sections">
+        <a href="#work">Work</a>
+        <a href="#dashboards">Dashboards</a>
+        <a href="#code">Code</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn btn-ghost btn-sm" href="https://github.com/panteamkhh" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn btn-primary btn-sm" href="assets/cv.pdf" download="Pantea_Mohamadkhani_Data_Analytics_CV.pdf">CV ↓</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav">
+          <span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main>
-    <!-- ============ HERO ============ -->
-    <section class="hero" id="home">
-      <div class="hero-copy">
-        <span class="pill reveal">Data Science · Machine Learning · BI</span>
-        <h1 class="reveal">
-          Hi, I'm <span class="hl hl-pink">Pantea</span> —<br />
-          I turn messy data into
-          <span class="hl hl-teal">stories</span> and
-          <span class="hl hl-yellow">models</span>.
-        </h1>
-        <p class="hero-sub reveal">
-          Data Analyst &amp; ML practitioner with an M.Sc. in AI &amp; Robotics, a
-          B.Sc. in Industrial Engineering and a completed MBA. Core strengths:
-          Python, SQL, NumPy, pandas and Git. I turn raw, messy data into
-          structured pipelines, statistical analysis and dashboards that
-          decision makers actually use.
-        </p>
-        <div class="hero-actions reveal">
-          <a class="btn btn-primary" href="#explore">Solve the puzzle ↓</a>
-          <a class="btn btn-ghost" href="https://github.com/panteamkhh" target="_blank" rel="noopener">GitHub ↗</a>
+  <main id="top">
+    <!-- ================= HERO ================= -->
+    <section class="hero" data-glow="mint-lav">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="pulse"></span> Data Analyst · BI &amp; Machine Learning</p>
+          <h1>I turn raw data into <span class="grad">dashboards and models</span> people act on.</h1>
+          <p class="hero-sub">
+            M.Sc. in AI &amp; Robotics and an MBA, with 30+ public repositories. I work from the
+            messy end of the pipeline — cleaning and validation — through modelling, to the
+            Power BI report and the API that ship it.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#work">View case studies</a>
+            <a class="btn btn-ghost" href="#dashboards">Browse dashboards</a>
+          </div>
+          <dl class="kpi-strip">
+            <div><dt>0.922</dt><dd>ROC-AUC, best model</dd></div>
+            <div><dt>119k</dt><dd>bookings analysed</dd></div>
+            <div><dt>30+</dt><dd>public repositories</dd></div>
+            <div><dt>6</dt><dd>BI dashboards shipped</dd></div>
+          </dl>
         </div>
-        <ul class="hero-stats reveal">
-          <li><strong>30+</strong><span>projects</span></li>
-          <li><strong>2+</strong><span>yrs analytics</span></li>
-          <li><strong>1</strong><span>publication</span></li>
-        </ul>
-      </div>
 
-      <div class="hero-visual reveal">
-        <div class="portrait" id="portrait">
-          <div class="portrait-inner">
-            <img class="portrait-img" id="portrait-img" src="assets/portrait.jpg" alt="Portrait of Pantea Mohamadkhani" />
-            <div class="portrait-fallback" aria-hidden="true"><span>PM</span></div>
+        <aside class="hero-card">
+          <div class="hero-photo">
+            <img src="assets/portrait.jpg" alt="Portrait of Pantea Mohamadkhani" />
+            <span class="hero-photo-badge"><i></i> Open to roles</span>
+            <div class="hero-photo-meta">
+              <strong>Pantea Mohamadkhani</strong>
+              <span>Tehran, Iran · Remote-friendly</span>
+            </div>
+          </div>
+          <div class="hero-card-body">
+            <div class="pc-row"><span>Focus</span><b>Data Science · BI · ML</b></div>
+            <div class="pc-row"><span>Core stack</span><b>Python · SQL · Power BI</b></div>
+            <div class="pc-row"><span>Lately</span><b>NLP · LLM agents · MLOps</b></div>
+            <div class="pc-chips">
+              <span class="chip">Python</span><span class="chip">SQL Server</span><span class="chip">Power BI</span>
+              <span class="chip">scikit-learn</span><span class="chip">LightGBM</span><span class="chip">Docker</span>
+            </div>
+            <div class="pc-actions">
+              <a class="btn btn-primary btn-sm" href="mailto:pantea.mohamadkhani1999@gmail.com">Get in touch</a>
+              <a class="btn btn-ghost btn-sm" href="https://www.linkedin.com/in/panteamkh" target="_blank" rel="noopener">LinkedIn ↗</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <div class="stack-strip">
+      <div class="wrap stack-inner">
+        <span class="stack-label">Daily stack</span>
+        <ul class="stack-list" id="stack-list"></ul>
+        <a class="stack-link" href="#work">See the work ↓</a>
+      </div>
+    </div>
+
+    <!-- ================= SELECTED WORK ================= -->
+    <section class="section" id="work" data-glow="lav-mint">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker"><span class="k-num">01</span> Selected work</p>
+            <h2>Case studies, not screenshots of a homepage.</h2>
+            <p class="lead">Three projects with the full arc: the problem, the method, the numbers, and the dashboard or endpoint that delivered it.</p>
+          </div>
+          <a class="link-arrow" href="https://github.com/panteamkhh?tab=repositories" target="_blank" rel="noopener">All 30 repositories →</a>
+        </div>
+
+        <div class="cases" id="cases"></div>
+      </div>
+    </section>
+
+    <!-- ================= DASHBOARDS ================= -->
+    <section class="section" id="dashboards" data-glow="sky-mint">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker"><span class="k-num">02</span> Dashboards</p>
+            <h2>Reports managers actually open.</h2>
+            <p class="lead">Power BI, Streamlit and Excel reporting built on clean star schemas — sales, operations, fintech and music analytics.</p>
           </div>
         </div>
-        <p class="portrait-caption">Tehran, Iran · Data Science &amp; AI</p>
+        <div class="dash-grid" id="dashboards-grid"></div>
       </div>
     </section>
 
-    <!-- ============ PUZZLE ============ -->
-    <section class="puzzle-section" id="explore">
-      <div class="adventure-head reveal">
-        <h2>Solve the <span class="hl hl-teal">puzzle</span></h2>
-        <p>
-          This whole page is a puzzle. Click a piece and that part of my story
-          snaps into place.
-          <span class="progress-pill" id="progress">0 / 6 discovered</span>
-          <button class="reset-btn" id="reset-puzzle" type="button" title="Start over">↺ Play again</button>
-        </p>
+    <!-- ================= MODELS & PIPELINES ================= -->
+    <section class="section" id="models" data-glow="pink-lav">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker"><span class="k-num">03</span> Models &amp; pipelines</p>
+            <h2>From raw rows to a scored, served result.</h2>
+            <p class="lead">Classification, regression, forecasting, NLP and computer vision — every project evaluated, documented and reproducible.</p>
+          </div>
+        </div>
+        <div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
+        <div class="cards" id="cards"></div>
       </div>
-
-      <p class="puzzle-complete" id="puzzle-complete" hidden>
-        🎉 Puzzle complete! You discovered every piece — thanks for exploring.
-      </p>
-
-      <div class="puzzle reveal" id="puzzle" role="group" aria-label="Resume puzzle"></div>
-
-      <p class="puzzle-note reveal" id="puzzle-note">Tip: hover a piece to see who lives there.</p>
     </section>
 
-    <!-- ============ CONTACT ============ -->
-    <section class="contact-strip" id="contact">
-      <div class="cta-card reveal">
-        <h2>Let's build something <span class="hl hl-pink">together</span></h2>
-        <p>Have a dataset that needs a story, or a model that needs shipping? I'd love to hear about it.</p>
-        <div class="cta-actions">
-          <a class="btn btn-primary" href="mailto:pantea.mohamadkhani1999@gmail.com">Email me</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/panteamkh" target="_blank" rel="noopener">LinkedIn ↗</a>
-          <a class="btn btn-ghost" href="https://github.com/panteamkhh" target="_blank" rel="noopener">GitHub ↗</a>
+    <!-- ================= CODE ================= -->
+    <section class="section" id="code" data-glow="mint-sky">
+      <div class="wrap code-grid">
+        <div class="code-copy">
+          <p class="kicker"><span class="k-num">04</span> The code</p>
+          <h2>Readable, reproducible, tested.</h2>
+          <p class="lead">Every repository ships with the notebooks, the figures and the tests that produced the numbers on this page. No screenshot-only claims.</p>
+          <ol class="principles">
+            <li><b>Clean first.</b> Documented cleaning pipelines with audit logs, not silent drops.</li>
+            <li><b>Validate honestly.</b> Held-out splits, cross-validation, per-class metrics.</li>
+            <li><b>Ship it.</b> FastAPI + Docker for models, Power BI / Streamlit for people.</li>
+          </ol>
+          <a class="btn btn-ghost btn-sm" href="https://github.com/panteamkhh" target="_blank" rel="noopener">See all code on GitHub ↗</a>
+        </div>
+
+        <div class="code-windows">
+          <div class="code-window">
+            <div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span class="code-file">pipeline.py</span><span class="code-lang">Python</span></div>
+            <pre class="code-body"><code><span class="c"># 21-step cleaning pipeline, audit-logged</span>
+<span class="k">from</span> src.pipeline <span class="k">import</span> Cleaner
+
+cleaner = Cleaner(audit=<span class="s">"audit_log.jsonl"</span>)
+df = (cleaner
+      .<span class="f">drop_duplicates</span>(keys=<span class="s">"order_id"</span>)
+      .<span class="f">coerce_types</span>(schema=<span class="s">"orders"</span>)
+      .<span class="f">fix_dates</span>(tz=<span class="s">"Asia/Tehran"</span>)
+      .<span class="f">flag_outliers</span>(cols=PRICE_COLS)
+      .<span class="f">run</span>())
+
+<span class="c"># every change is reversible and logged</span>
+<span class="f">print</span>(df.shape, cleaner.summary())</code></pre>
+          </div>
+
+          <div class="code-window">
+            <div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span class="code-file">revenue.sql</span><span class="code-lang">T-SQL</span></div>
+            <pre class="code-body"><code><span class="c">-- star schema: margin by category, YoY</span>
+<span class="k">SELECT</span>  p.category,
+        <span class="f">SUM</span>(f.revenue) <span class="k">AS</span> revenue,
+        <span class="f">SUM</span>(f.revenue - f.cost) <span class="k">AS</span> margin,
+        <span class="f">ROUND</span>(<span class="n">100.0</span> * <span class="f">SUM</span>(f.revenue - f.cost)
+              / <span class="f">NULLIF</span>(<span class="f">SUM</span>(f.revenue), <span class="n">0</span>), <span class="n">1</span>) <span class="k">AS</span> margin_pct
+<span class="k">FROM</span>    fact_sales      <span class="k">AS</span> f
+<span class="k">JOIN</span>    dim_product     <span class="k">AS</span> p <span class="k">ON</span> p.product_key = f.product_key
+<span class="k">JOIN</span>    dim_date        <span class="k">AS</span> d <span class="k">ON</span> d.date_key    = f.date_key
+<span class="k">WHERE</span>   d.[year] <span class="k">IN</span> (<span class="n">2025</span>, <span class="n">2026</span>)
+<span class="k">GROUP</span> <span class="k">BY</span> p.category
+<span class="k">ORDER</span> <span class="k">BY</span> margin <span class="k">DESC</span>;</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RESUME ================= -->
+    <section class="section" id="resume" data-glow="butter-peach">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker"><span class="k-num">05</span> Resume</p>
+            <h2>Experience, education &amp; the rest.</h2>
+            <p class="lead">Two years in analytics roles, an M.Sc. in AI &amp; Robotics, an MBA, and one accepted publication.</p>
+          </div>
+          <a class="btn btn-ghost btn-sm" href="assets/cv.pdf" download="Pantea_Mohamadkhani_Data_Analytics_CV.pdf">Download PDF ↓</a>
+        </div>
+
+        <div class="resume-flags">
+          <div class="flag"><span class="flag-k">Best model</span><b>0.922 ROC-AUC</b><span>LightGBM � 119k bookings</span></div>
+          <div class="flag"><span class="flag-k">Dashboards</span><b>6 shipped</b><span>Power BI � Streamlit � Excel</span></div>
+          <div class="flag"><span class="flag-k">Data quality</span><b>21-step pipeline</b><span>audit-logged &amp; reproducible</span></div>
+        </div>
+
+        <div class="resume-grid">          <div class="resume-col">
+            <h3 class="col-title">Experience</h3>
+            <div class="timeline">
+              <article class="tl">
+                <div class="tl-head"><h4>Data Analyst</h4><span class="when">2023 – 2025</span></div>
+                <p class="tl-co">Adrin Darou Iranian · Karaj, Iran</p>
+                <ul>
+                  <li>Built and maintained Excel and Power BI reports giving management <b class="hl-key">recurring visibility into sales, product profitability</b> and top/low performers.</li>
+                  <li>Analysed sales and pricing across pharmaceutical, supplement and medical-equipment lines to find demand patterns and margin trends.</li>
+                  <li>Consolidated and validated transaction, product and customer data into structured datasets, <b class="hl-key">cutting manual spreadsheet effort</b>.</li>
+                  <li>Presented findings to non-technical management, translating sales data into <b class="hl-key">pricing and purchasing actions</b>.</li>
+                </ul>
+              </article>
+              <article class="tl">
+                <div class="tl-head"><h4>Data Analyst Intern</h4><span class="when">Mar – Jun 2022</span></div>
+                <p class="tl-co">MAPNA Turbine Engineering (TUGA) · Alborz, Iran</p>
+                <ul>
+                  <li>Processed production and operational datasets in an <b class="hl-key">industrial turbine manufacturing facility</b>.</li>
+                  <li>Implemented standardised data-cleaning procedures and reporting practices for operational visibility.</li>
+                  <li>Streamlined data-preparation pipelines with cross-functional teams for manufacturing analytics.</li>
+                </ul>
+              </article>
+            </div>
+
+            <h3 class="col-title">Publication &amp; teaching</h3>
+            <article class="mini-card">
+              <span class="mini-tag">2026 · accepted</span>
+              <h4>Resolving Data Sparsity in Recommender Systems Using Reinforcement Learning</h4>
+              <p>Babol Noshirvani University of Technology</p>
+            </article>
+            <article class="mini-card">
+              <span class="mini-tag">Instructor</span>
+              <h4>Data Storytelling: From Data to Effective Narrative</h4>
+              <p><a href="https://maktabkhooneh.org/course/mk16581" target="_blank" rel="noopener">maktabkhooneh.org/course/mk16581 ↗</a></p>
+            </article>
+          </div>
+
+          <div class="resume-col">
+            <h3 class="col-title">Education</h3>
+            <div class="edu-list">
+              <div class="edu-item">
+                <div class="edu-mark">M.Sc.</div>
+                <div><h4>Artificial Intelligence &amp; Robotics</h4><p>Kharazmi University · <em>Thesis: data sparsity in recommender systems via RL</em></p></div>
+                <span class="when">2022 – 2025</span>
+              </div>
+              <div class="edu-item">
+                <div class="edu-mark">MBA</div>
+                <div><h4>Master of Business Administration</h4><p>University of Tehran</p></div>
+                <span class="when">2025 – 2026</span>
+              </div>
+              <div class="edu-item">
+                <div class="edu-mark">B.Sc.</div>
+                <div><h4>Industrial Engineering</h4><p>Islamic Azad University</p></div>
+                <span class="when">2017 – 2021</span>
+              </div>
+            </div>
+
+            <h3 class="col-title">Certifications</h3>
+            <ul class="cert-list">
+              <li><span class="cert-badge">AI</span><div><b>Generative AI for Beginners</b><em>Microsoft · 2026</em></div></li>
+              <li><span class="cert-badge">PE</span><div><b>Prompt Engineering for Developers</b><em>DeepLearning.AI · 2026</em></div></li>
+              <li><span class="cert-badge">DA</span><div><b>Complete Data Analyst Bootcamp (62h)</b><em>Udemy · 2025</em></div></li>
+              <li><span class="cert-badge">ML</span><div><b>Machine Learning</b><em>Andrew Ng · Coursera · 2023</em></div></li>
+            </ul>
+
+            <h3 class="col-title">Toolbox</h3>
+            <div id="toolbox" class="toolbox"></div>
+
+            <p class="langs"><span>Persian · native</span><span>English · upper-intermediate</span><span>Spanish · basic</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="section contact" id="contact" data-glow="pink-mint">
+      <div class="wrap">
+        <div class="cta">
+          <div class="cta-copy">
+            <h2>Have a dataset that needs a decision?</h2>
+            <p>Dashboards, models, or the pipeline underneath them — I'd like to hear what you're building.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="mailto:pantea.mohamadkhani1999@gmail.com">pantea.mohamadkhani1999@gmail.com</a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/panteamkh" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a class="btn btn-ghost" href="https://github.com/panteamkhh" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ============ MODAL ============ -->
-  <div class="modal" id="modal" hidden>
-    <div class="modal-backdrop" data-close></div>
-    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button class="modal-close" data-close aria-label="Close">×</button>
-      <div class="modal-body" id="modal-body"></div>
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>© <span id="year">2026</span> Pantea Mohamadkhani</span>
+      <span class="footer-note">Built with vanilla HTML/CSS/JS · Three.js background</span>
     </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lb-close" id="lb-close" aria-label="Close image">�</button>
+    <img id="lightbox-img" alt="" />
+    <p class="lb-cap" id="lightbox-cap"></p>
   </div>
 
-  <!-- ============ SECTION TEMPLATES ============ -->
-  <template id="tpl-about">
-    <h2 class="modal-title" id="modal-title">About <span class="hl hl-violet">me</span></h2>
-    <p>I'm a data professional who enjoys the unglamorous parts as much as the modelling: cleaning, validation, tests and reproducibility. My work spans applied machine learning, NLP and business intelligence, always aimed at decision-ready insights for stakeholders.</p>
-    <p>I work mostly in Python (pandas, NumPy, scikit-learn, matplotlib) and the BI stack (Power BI, Power Query, DAX, star schemas), with SQL Server/T-SQL, Snowflake and Spark/Databricks for data engineering. I've also been building with LLMs, embeddings, agents and prompt engineering, and I care about data quality, lineage and governance as much as model scores.</p>
-    <div class="about-tags">
-      <span class="chip">📍 Tehran, Iran</span>
-      <span class="chip">🌍 English (upper-intermediate)</span>
-      <span class="chip">🚀 Open to data / ML roles</span>
-    </div>
-    <ul class="facts">
-      <li><span>Focus</span><strong>Data Science · ML · BI</strong></li>
-      <li><span>Core stack</span><strong>Python · SQL · Power BI</strong></li>
-      <li><span>Data engineering</span><strong>ETL · Spark · Databricks</strong></li>
-      <li><span>Lately</span><strong>NLP · LLMs · agents</strong></li>
-      <li><span>Values</span><strong>Reproducibility · clarity</strong></li>
-    </ul>
-  </template>
-
-  <template id="tpl-education">
-    <h2 class="modal-title">Edu<span class="hl hl-violet">cation</span></h2>
-    <ol class="timeline timeline-edu">
-      <li class="timeline-item">
-        <div class="timeline-marker"></div>
-        <div class="timeline-card">
-          <div class="timeline-head"><h3>M.Sc. Artificial Intelligence &amp; Robotics</h3><span class="when">2022 – 2025</span></div>
-          <p class="where">Kharazmi University</p>
-          <p class="note">Thesis: <em>Addressing Data Sparsity in Recommender Systems via Reinforcement Learning</em></p>
-        </div>
-      </li>
-      <li class="timeline-item">
-        <div class="timeline-marker"></div>
-        <div class="timeline-card">
-          <div class="timeline-head"><h3>Master of Business Administration (MBA)</h3><span class="when">2025 – 2026</span></div>
-          <p class="where">University of Tehran</p>
-        </div>
-      </li>
-      <li class="timeline-item">
-        <div class="timeline-marker"></div>
-        <div class="timeline-card">
-          <div class="timeline-head"><h3>B.Sc. Industrial Engineering</h3><span class="when">2017 – 2021</span></div>
-          <p class="where">Islamic Azad University</p>
-        </div>
-      </li>
-    </ol>
-  </template>
-
-  <template id="tpl-experience">
-    <h2 class="modal-title">Work <span class="hl hl-pink">experience</span></h2>
-    <ol class="timeline">
-      <li class="timeline-item">
-        <div class="timeline-marker"></div>
-        <div class="timeline-card">
-          <div class="timeline-head"><h3>Data Analyst</h3><span class="when">2023 – 2025</span></div>
-          <p class="where">Adrin Darou Iranian · Karaj, Iran</p>
-          <ul>
-            <li>Built and maintained Excel and Power BI reports and dashboards giving management recurring visibility into sales performance, product profitability and top/low performers.</li>
-            <li>Analysed sales and pricing data for pharmaceutical, supplement and medical-equipment lines, identifying demand patterns and margin trends for pricing and purchasing decisions.</li>
-            <li>Cleaned, consolidated and validated transaction, product and customer data into structured datasets, improving reporting reliability and cutting manual spreadsheet effort.</li>
-            <li>Evaluated product profitability and price competitiveness across categories, flagging high-margin and underperforming items to guide commercial decisions.</li>
-            <li>Presented findings and recommendations to non-technical management, translating sales data into practical actions.</li>
-          </ul>
-        </div>
-      </li>
-      <li class="timeline-item">
-        <div class="timeline-marker"></div>
-        <div class="timeline-card">
-          <div class="timeline-head"><h3>Data Analyst Intern</h3><span class="when">Mar 2022 – Jun 2022</span></div>
-          <p class="where">MAPNA Turbine Engineering &amp; Manufacturing Co. (TUGA) · Alborz Industrial City, Iran</p>
-          <ul>
-            <li>Supported analytical workflows in an industrial turbine manufacturing facility, processing production and operational datasets.</li>
-            <li>Implemented standardised data-cleaning procedures and reporting practices to improve operational visibility.</li>
-            <li>Collaborated with cross-functional teams to streamline data-preparation pipelines for manufacturing analytics.</li>
-          </ul>
-        </div>
-      </li>
-    </ol>
-  </template>
-
-  <template id="tpl-projects">
-    <h2 class="modal-title">Selected <span class="hl hl-teal">projects</span></h2>
-    <p class="modal-lead">Raw data → cleaning → analysis → models → dashboards.</p>
-    <div class="projects-grid" id="projects-grid"></div>
-  </template>
-
-  <template id="tpl-skills">
-    <h2 class="modal-title">Tools I <span class="hl hl-pink">reach for</span></h2>
-    <div class="skills-grid" id="skills-grid"></div>
-  </template>
-
-  <template id="tpl-extras">
-    <h2 class="modal-title">Certifications, <span class="hl hl-teal">publication</span> &amp; teaching</h2>
-    <h3 class="extras-title">Certifications</h3>
-    <ul class="cert-list">
-      <li><span class="cert-badge" style="background:linear-gradient(135deg,#a9d9ff,#7c5cff)">AI</span><div><strong>Generative AI for Beginners</strong><em>Microsoft · 2026</em></div></li>
-      <li><span class="cert-badge" style="background:linear-gradient(135deg,#7c5cff,#ff8fb1)">PE</span><div><strong>Prompt Engineering for Developers</strong><em>DeepLearning.AI · 2026</em></div></li>
-      <li><span class="cert-badge" style="background:linear-gradient(135deg,#ff8fb1,#ffd23f)">DA</span><div><strong>Complete Data Analyst Bootcamp (62h)</strong><em>Udemy · 2025</em></div></li>
-      <li><span class="cert-badge" style="background:linear-gradient(135deg,#a9d9ff,#2ec4b6)">DV</span><div><strong>Data Visualization with Python Masterclass</strong><em>Udemy · 2022</em></div></li>
-      <li><span class="cert-badge" style="background:linear-gradient(135deg,#a9d9ff,#2ec4b6)">ML</span><div><strong>Machine Learning</strong><em>Andrew Ng · Coursera · 2023</em></div></li>
-    </ul>
-    <h3 class="extras-title">Publication</h3>
-    <article class="pub-card">
-      <span class="pub-year">2026 · accepted</span>
-      <h4>Resolving Data Sparsity in Recommender Systems Using Reinforcement Learning</h4>
-      <p>Babol Noshirvani University of Technology</p>
-    </article>
-    <h3 class="extras-title">Teaching</h3>
-    <article class="pub-card">
-      <span class="pub-year">Instructor</span>
-      <h4>Data Storytelling: From Data to Effective Narrative</h4>
-      <p><a href="https://maktabkhooneh.org/course/mk16581" target="_blank" rel="noopener">maktabkhooneh.org/course/mk16581 ↗</a></p>
-    </article>
-    <h3 class="extras-title">Languages</h3>
-    <div class="lang-row">
-      <span class="chip">Persian · native</span>
-      <span class="chip">English · upper-intermediate</span>
-      <span class="chip">Spanish · basic</span>
-    </div>
-  </template>
-
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
-      }
-    }
+  <script type="importmap">    { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
   </script>
-  <script type="module" src="js/three-scene.js?v=20"></script>
-  <script type="module" src="js/main.js?v=20"></script>
+  <script type="module" src="js/three-scene.js?v=23"></script>
+  <script type="module" src="js/main.js?v=23"></script>
 </body>
 </html>
