@@ -11,11 +11,12 @@ Live at **https://panteamkhh.github.io**
 - **Selected work (01)** — three case studies, each with a dashboard preview, impact bullets, three
   metrics and an expandable, syntax-highlighted code snippet.
 - **Dashboards (02)** — the six BI / Streamlit / Excel reports with tool badges and headline metrics.
-- **Models & pipelines (03)** — 18 filterable projects (ML, NLP, vision, forecasting, analytics, labs).
-  Every card carries a metric and star count.
-- **Code (04)** — how the work is built, plus a Python pipeline window and a T-SQL window.
-- **Resume (05)** — experience, education, certifications, publication, teaching, toolbox, languages.
-- **Contact (06)** — email, LinkedIn, GitHub.
+- **Models & pipelines (03)** — 18 filterable projects (ML, NLP, vision, forecasting, analytics, labs),
+  each with a real figure and a metric. Below the grid, **Inside the query** shows the star schema,
+  a Power BI model view and two real T-SQL windows with syntax highlighting.
+- **Resume (04)** — experience, education, brand-marked certifications, publication, teaching,
+  and a full-width six-card toolbox.
+- **Contact (05)** — email, LinkedIn, GitHub.
 
 ## Design system
 
@@ -24,16 +25,20 @@ Live at **https://panteamkhh.github.io**
 - **Inter** for text, **JetBrains Mono** for numbers, metrics, labels and code.
 - Cards use a 1px hairline border, a faint top-lit gradient, and a soft glow on hover.
 - **Background reacts to the page:** each section declares `data-glow` (e.g. `sky-mint`,
-  `butter-peach`); the two glow layers cross-fade between them as you scroll and the Three.js
-  particle tint lerps to match. A soft spotlight also trails the cursor.
+  `butter-peach`); the two glow layers cross-fade between them as you scroll, and the Three.js
+  particles and wireframe floors lerp to the same palette. A soft spotlight trails the cursor.
+- **Certifications** use brand marks (Microsoft, DeepLearning.AI, Udemy, Coursera, LinkedIn
+  Learning) instead of initials.
 
 ## Three.js background
 
-`js/three-scene.js` renders three flat point clouds (620 + 220 + 90 points) at different depths,
-tinted with the pastel palette, with additive blending and a radial glow sprite. It drifts slowly,
-parallaxes with the pointer and the scroll position, pauses when the tab is hidden, and renders a
-single static frame when `prefers-reduced-motion` is set. If WebGL or the CDN import fails, the
-canvas is simply hidden — the page is unaffected.
+`js/three-scene.js` renders three point clouds (620 + 220 + 90 points) plus **two undulating
+wireframe floors** at different depths — a near, brighter grid and a far, calmer one — so the
+background has real parallax and height instead of a flat gradient. Everything is tinted with the
+pastel palette and with the current section; the scene drifts slowly, follows the pointer and the
+scroll position, pauses when the tab is hidden, and renders one static frame when
+`prefers-reduced-motion` is set. If WebGL or the CDN import fails, the canvas is hidden and the page
+is unaffected.
 
 ## Structure
 

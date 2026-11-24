@@ -83,39 +83,41 @@ clf.<span class="f">fit</span>(X_train, y_train)
   },
   {
     num: "03",
-    title: "Car price prediction with explainability",
-    repo: "car-price-predictor-ml",
-    url: "https://github.com/panteamkhh/car-price-predictor-ml",
-    chips: ["XGBoost", "SHAP", "Optuna", "Docker"],
-    desc: "Predicting how much a customer will pay for a car — with the explainability a pricing team needs before they trust a single number.",
+    title: "CEFR lexical intelligence",
+    repo: "cefr-lexical-intelligence",
+    url: "https://github.com/panteamkhh/cefr-lexical-intelligence",
+    chips: ["NLP", "Embeddings", "UMAP", "Clustering"],
+    desc: "Vocabulary mapped by meaning instead of by a word list. Sentence embeddings and UMAP clustering show how words actually group across CEFR levels — and where the textbook levels disagree with the data.",
     impact: [
-      "Nine models compared under cross-validation; the best tuned with Optuna",
-      "SHAP explanations show which features move each individual prediction",
-      "Served via FastAPI + Docker with input validation and versioned artifacts",
+      "Sentence-transformer embeddings for the full vocabulary, projected to 2D with UMAP",
+      "Clusters compared against the original CEFR labels to expose drift between levels",
+      "Random-forest and SVM classifiers trained on the same features as a sanity check",
     ],
     metrics: [
-      { v: "0.91", k: "R² score" },
-      { v: "9", k: "Models tested" },
-      { v: "26", k: "Figures" },
+      { v: "8", k: "GitHub stars" },
+      { v: "A1–C2", k: "Level coverage" },
+      { v: "UMAP", k: "2D projection" },
     ],
     code: {
-      file: "explain.py",
+      file: "map.py",
       lang: "Python",
-      html:
-`<span class="k">import</span> shap
+      html: `<span class="k">from</span> sentence_transformers <span class="k">import</span> SentenceTransformer
+<span class="k">import</span> umap
 
-explainer = shap.<span class="f">TreeExplainer</span>(best_model)
-shap_values = explainer.<span class="f">shap_values</span>(X_sample)
+model = <span class="f">SentenceTransformer</span>(<span class="s">"all-MiniLM-L6-v2"</span>)
+X = model.<span class="f">encode</span>(vocab, normalize_embeddings=<span class="k">True</span>)
 
-<span class="c"># top drivers per prediction, not just global</span>
-shap.<span class="f">summary_plot</span>(shap_values, X_sample)`,
+map2d = umap.<span class="f">UMAP</span>(
+    n_neighbors=<span class="n">15</span>, min_dist=<span class="n">0.1</span>,
+    metric=<span class="s">"cosine"</span>,
+).<span class="f">fit_transform</span>(X)`,
     },
-    img: "assets/projects/car/models.png",
+    img: "assets/projects/cefr/umap.png",
     thumbs: [
-      { src: "assets/projects/car/pred-actual.png", cap: "Predicted vs actual" },
-      { src: "assets/projects/car/corr.png", cap: "Feature correlation" },
+      { src: "assets/projects/cefr/categories.png", cap: "Semantic categories" },
+      { src: "assets/projects/cefr/confusion.png", cap: "Random-forest confusion" },
     ],
-    art: "line",
+    art: "scatter",
   },
 ];
 
@@ -196,6 +198,17 @@ export const dashboards = [
 
 export const projects = [
   {
+    name: "car-price-predictor-ml",
+    title: "Car price prediction",
+    url: "https://github.com/panteamkhh/car-price-predictor-ml",
+    cat: "ML",
+    desc: "Regression with nine models, cross-validation, Optuna tuning, SHAP explainability and a FastAPI service.",
+    tags: ["XGBoost", "SHAP", "Optuna"],
+    metric: { v: "0.91", k: "R² score" },
+    stars: 0,
+    img: "assets/projects/car/pred-actual.png",
+    art: "line",
+  },  {
     name: "traffic-sign-classification",
     title: "Traffic sign recognition",
     url: "https://github.com/panteamkhh/traffic-sign-classification",
@@ -242,18 +255,6 @@ export const projects = [
     stars: 1,
     img: "assets/projects/spam/topwords.png",
     art: "bars",
-  },
-  {
-    name: "cefr-lexical-intelligence",
-    title: "CEFR lexical intelligence",
-    url: "https://github.com/panteamkhh/cefr-lexical-intelligence",
-    cat: "NLP",
-    desc: "Sentence embeddings, UMAP clustering and semantic search across CEFR levels.",
-    tags: ["Embeddings", "UMAP"],
-    metric: { v: "8", k: "stars" },
-    stars: 8,
-    img: "assets/projects/cefr/umap.png",
-    art: "scatter",
   },
   {
     name: "movie-recommender-system",
@@ -419,4 +420,56 @@ export const toolbox = [
 export const stack = [
   "Python", "SQL Server", "Power BI", "DAX", "pandas", "scikit-learn", "LightGBM", "PyTorch",
   "Streamlit", "FastAPI", "Docker", "Power Query", "Excel", "Git",
+];
+
+export const queries = [
+  {
+    kind: "image",
+    img: "assets/projects/sales/data-model.png",
+    tag: "SQL Server",
+    cap: "Sales star schema: fact table plus product, customer and date dimensions.",
+  },
+  {
+    kind: "image",
+    img: "assets/projects/spotify/model-view.png",
+    tag: "Power BI",
+    cap: "Power BI model view: relationships, cardinality and filter direction.",
+  },
+  {
+    kind: "sql",
+    file: "06_business_analysis.sql",
+    tag: "T-SQL",
+    cap: "Monthly revenue with MoM and YoY growth, built on window functions.",
+    code: `;WITH Monthly AS (
+    SELECT d.[Year], d.[Month], SUM(f.Net_Sales) AS Net_Sales
+    FROM core.FactSales f
+    JOIN core.DimDate d ON d.DateKey = f.OrderDateKey
+    GROUP BY d.[Year], d.[Month]
+)
+SELECT
+    [Year], [Month], Net_Sales,
+    LAG(Net_Sales, 1) OVER (ORDER BY [Year], [Month]) AS Prev_Month_Sales,
+    ROUND(100.0 * (Net_Sales - LAG(Net_Sales, 1) OVER (ORDER BY [Year], [Month]))
+          / NULLIF(LAG(Net_Sales, 1) OVER (ORDER BY [Year], [Month]), 0), 1) AS MoM_Growth_Pct
+FROM Monthly
+ORDER BY [Year], [Month];`,
+  },
+  {
+    kind: "sql",
+    file: "01_kpi_metrics.sql",
+    tag: "T-SQL",
+    cap: "Pizza sales: headline KPIs read straight from the staging table.",
+    code: `-- 1. Total revenue
+SELECT ROUND(SUM(total_price), 2) AS total_revenue
+FROM dbo.pizza_sales;
+
+-- 4. Average order value
+SELECT ROUND(SUM(total_price) / COUNT(DISTINCT order_id), 2) AS average_order_value
+FROM dbo.pizza_sales;
+
+-- 5. Average pizzas per order
+SELECT CAST(SUM(quantity) * 1.0 / COUNT(DISTINCT order_id) AS DECIMAL(10, 2))
+       AS average_pizzas_per_order
+FROM dbo.pizza_sales;`,
+  },
 ];

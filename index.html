@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=25" />
+  <link rel="stylesheet" href="css/style.css?v=27" />
 </head>
 <body>
   <div class="bg" aria-hidden="true">
@@ -35,7 +35,6 @@
       <nav class="nav" id="nav" aria-label="Sections">
         <a href="#work">Work</a>
         <a href="#dashboards">Dashboards</a>
-        <a href="#code">Code</a>
         <a href="#resume">Resume</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -84,7 +83,7 @@
 
         <aside class="hero-card">
           <div class="hero-photo">
-            <img src="assets/portrait.jpg" alt="Portrait of Pantea Mohamadkhani" />
+            <img src="assets/portrait.jpg?v=27" alt="Portrait of Pantea Mohamadkhani" />
             <span class="hero-photo-badge"><i></i> Open to roles</span>
             <div class="hero-photo-meta">
               <strong>Pantea Mohamadkhani</strong>
@@ -158,57 +157,13 @@
         </div>
         <div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
         <div class="cards" id="cards"></div>
-      </div>
-    </section>
 
-    <!-- ================= CODE ================= -->
-    <section class="section" id="code" data-glow="mint-sky">
-      <div class="wrap code-grid">
-        <div class="code-copy">
-          <p class="kicker"><span class="k-num">04</span> The code</p>
-          <h2>The part most portfolios hide.</h2>
-          <p class="lead">Notebooks, figures and tests ship with every repository. Nothing here is a screenshot-only claim.</p>
-          <ol class="principles">
-            <li><b>Clean first.</b> Documented cleaning pipelines with audit logs, not silent drops.</li>
-            <li><b>Validate honestly.</b> Held-out splits, cross-validation, per-class metrics.</li>
-            <li><b>Ship it.</b> FastAPI + Docker for models, Power BI / Streamlit for people.</li>
-          </ol>
-          <a class="btn btn-ghost btn-sm" href="https://github.com/panteamkhh" target="_blank" rel="noopener">See all code on GitHub ↗</a>
-        </div>
-
-        <div class="code-windows">
-          <div class="code-window">
-            <div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span class="code-file">pipeline.py</span><span class="code-lang">Python</span></div>
-            <pre class="code-body"><code><span class="c"># 21-step cleaning pipeline, audit-logged</span>
-<span class="k">from</span> src.pipeline <span class="k">import</span> Cleaner
-
-cleaner = Cleaner(audit=<span class="s">"audit_log.jsonl"</span>)
-df = (cleaner
-      .<span class="f">drop_duplicates</span>(keys=<span class="s">"order_id"</span>)
-      .<span class="f">coerce_types</span>(schema=<span class="s">"orders"</span>)
-      .<span class="f">fix_dates</span>(tz=<span class="s">"Asia/Tehran"</span>)
-      .<span class="f">flag_outliers</span>(cols=PRICE_COLS)
-      .<span class="f">run</span>())
-
-<span class="c"># every change is reversible and logged</span>
-<span class="f">print</span>(df.shape, cleaner.summary())</code></pre>
+        <div class="query-block">
+          <div class="query-head">
+            <h3>Inside the query</h3>
+            <p>Star schema, the Power BI model view, and the T-SQL that produces the KPI tables.</p>
           </div>
-
-          <div class="code-window">
-            <div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span class="code-file">revenue.sql</span><span class="code-lang">T-SQL</span></div>
-            <pre class="code-body"><code><span class="c">-- star schema: margin by category, YoY</span>
-<span class="k">SELECT</span>  p.category,
-        <span class="f">SUM</span>(f.revenue) <span class="k">AS</span> revenue,
-        <span class="f">SUM</span>(f.revenue - f.cost) <span class="k">AS</span> margin,
-        <span class="f">ROUND</span>(<span class="n">100.0</span> * <span class="f">SUM</span>(f.revenue - f.cost)
-              / <span class="f">NULLIF</span>(<span class="f">SUM</span>(f.revenue), <span class="n">0</span>), <span class="n">1</span>) <span class="k">AS</span> margin_pct
-<span class="k">FROM</span>    fact_sales      <span class="k">AS</span> f
-<span class="k">JOIN</span>    dim_product     <span class="k">AS</span> p <span class="k">ON</span> p.product_key = f.product_key
-<span class="k">JOIN</span>    dim_date        <span class="k">AS</span> d <span class="k">ON</span> d.date_key    = f.date_key
-<span class="k">WHERE</span>   d.[year] <span class="k">IN</span> (<span class="n">2025</span>, <span class="n">2026</span>)
-<span class="k">GROUP</span> <span class="k">BY</span> p.category
-<span class="k">ORDER</span> <span class="k">BY</span> margin <span class="k">DESC</span>;</code></pre>
-          </div>
+          <div id="query-grid" class="query-grid"></div>
         </div>
       </div>
     </section>
@@ -218,7 +173,7 @@ df = (cleaner
       <div class="wrap">
         <div class="section-head">
           <div>
-            <p class="kicker"><span class="k-num">05</span> Resume</p>
+            <p class="kicker"><span class="k-num">04</span> Resume</p>
             <h2>Two roles, three degrees, one publication.</h2>
             <p class="lead">Analytics in pharma distribution and industrial manufacturing, an M.Sc. in AI &amp; Robotics, an MBA, and an accepted paper on recommender systems.</p>
           </div>
@@ -322,6 +277,12 @@ df = (cleaner
                 </span>
                 <div><b>Machine Learning</b><em>Andrew Ng · Coursera · 2023</em></div>
               </li>
+              <li>
+                <span class="cert-badge cert-li" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><text x="12" y="17" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" fill="#fff">in</text></svg>
+                </span>
+                <div><b>LinkedIn Learning course</b><em>LinkedIn Learning · 2026</em></div>
+              </li>
             </ul>
 
 
@@ -372,7 +333,7 @@ df = (cleaner
 
   <script type="importmap">    { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
   </script>
-  <script type="module" src="js/three-scene.js?v=25"></script>
-  <script type="module" src="js/main.js?v=25"></script>
+  <script type="module" src="js/three-scene.js?v=27"></script>
+  <script type="module" src="js/main.js?v=27"></script>
 </body>
 </html>

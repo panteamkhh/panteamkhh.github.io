@@ -1,4 +1,4 @@
-import { featured, dashboards, projects, toolbox, stack } from "./projects.js";
+import { featured, dashboards, projects, toolbox, stack, queries } from "./projects.js";
 
 /* ---------------- helpers ---------------- */
 
@@ -323,6 +323,52 @@ if (toolboxEl) {
 
 const stackEl = document.getElementById("stack-list");
 if (stackEl) stackEl.innerHTML = stack.map((s) => `<li>${s}</li>`).join("");
+
+/* ---------------- render: query workspace ---------------- */
+
+const SQL_KW = /\b(WITH|SELECT|FROM|WHERE|JOIN|INNER|LEFT|RIGHT|OUTER|ON|GROUP|BY|ORDER|HAVING|UNION|ALL|AS|CASE|WHEN|THEN|ELSE|END|OVER|PARTITION|AND|OR|NOT|IN|IS|NULL|DESC|ASC|DISTINCT|TOP|USE|GO|CAST|DECIMAL|ROUND|SUM|COUNT|AVG|MIN|MAX|LAG|LEAD|RANK|NULLIF)\b/gi;
+
+function escHTML(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function sqlToHTML(code) {
+  return code
+    .split("\n")
+    .map((line, i) => {
+      const ci = line.indexOf("--");
+      const codePart = ci >= 0 ? line.slice(0, ci) : line;
+      const comment = ci >= 0 ? line.slice(ci) : "";
+      let body = escHTML(codePart)
+        .replace(SQL_KW, '<span class="kw">$1</span>')
+        .replace(/('[^']*')/g, '<span class="st">$1</span>')
+        .replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="nu">$1</span>');
+      if (comment) body += '<span class="cm">' + escHTML(comment) + "</span>";
+      const n = String(i + 1).padStart(2, "0");
+      return `<span class="ql"><span class="ln">${n}</span><span class="lc">${body || "&nbsp;"}</span></span>`;
+    })
+    .join("");
+}
+
+const queryEl = document.getElementById("query-grid");
+if (queryEl) {
+  queryEl.innerHTML = queries
+    .map((q) =>
+      q.kind === "image"
+        ? `<figure class="q-card">
+            <button type="button" class="q-media" data-full="${q.img}" data-cap="${q.cap}" aria-label="Enlarge: ${q.cap}">
+              <img src="${q.img}" alt="${q.cap}" loading="lazy" decoding="async" />
+            </button>
+            <figcaption><span class="q-tag">${q.tag}</span><span class="q-cap">${q.cap}</span></figcaption>
+          </figure>`
+        : `<figure class="q-card q-sql">
+            <div class="q-bar"><span class="dots"><i></i><i></i><i></i></span><span class="q-file">${q.file}</span><span class="q-tag">${q.tag}</span></div>
+            <pre class="q-code">${sqlToHTML(q.code)}</pre>
+            <figcaption><span class="q-cap">${q.cap}</span></figcaption>
+          </figure>`
+    )
+    .join("");
+}
 
 /* ---------------- lightbox ---------------- */
 
