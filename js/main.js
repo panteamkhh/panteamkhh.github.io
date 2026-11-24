@@ -1,4 +1,4 @@
-import { featured, dashboards, projects, toolbox } from "./projects.js";
+import { featured, projects, toolbox } from "./projects.js";
 
 /* ---------------- helpers ---------------- */
 
@@ -217,43 +217,6 @@ if (casesEl) {
 
 /* ---------------- render: dashboards ---------------- */
 
-const dashEl = document.getElementById("dashboards-grid");
-if (dashEl) {
-  const dashCard = (d) => {
-    if (d.placeholder) {
-      return `
-    <article class="dash-card is-placeholder reveal">
-      <div class="dash-slot" aria-label="${d.title} — dashboard slot in progress">
-        <span class="tool-badge">${d.tool}</span>
-        <div class="dash-slot-inner">
-          <span class="slot-ring">+</span>
-          <span class="slot-title">Dashboard in progress</span>
-          <span class="slot-note">slot reserved</span>
-        </div>
-      </div>
-      <div class="dash-body">
-        <span class="dash-title is-static">${d.title}</span>
-        <p>${d.desc}</p>
-        <div class="tags">${d.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
-        <div class="dash-foot"><b>${d.metric.v}</b><em>${d.metric.k}</em></div>
-      </div>
-    </article>`;
-    }
-    return `
-    <article class="dash-card reveal">
-      ${shotBtn(d.img, d.title, "dash-media")}
-      <span class="tool-badge">${d.tool}</span>
-      <div class="dash-body">
-        <a class="dash-title" href="${d.url}" target="_blank" rel="noopener">${d.title} <span>↗</span></a>
-        <p>${d.desc}</p>
-        <div class="tags">${d.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
-        <div class="dash-foot"><b>${d.metric.v}</b><em>${d.metric.k}</em></div>
-      </div>
-    </article>`;
-  };
-  dashEl.innerHTML = dashboards.map(dashCard).join("");
-}
-
 /* ---------------- render: project cards ---------------- */
 
 const cardsEl = document.getElementById("cards");
@@ -261,7 +224,7 @@ const filtersEl = document.getElementById("filters");
 
 function cardHTML(p) {
   const visual = p.img
-    ? `<div class="card-art plate"><img src="${p.img}" alt="${p.title}" loading="lazy" decoding="async" /></div>`
+    ? `<div class="card-art ${p.tool ? "shot" : "plate"}"><img src="${p.img}" alt="${p.title}" loading="lazy" decoding="async" /></div>`
     : `<div class="card-art">${artSVG(p.art, p.name)}</div>`;
   return `
     <article class="card reveal" data-cat="${p.cat}">
@@ -269,7 +232,7 @@ function cardHTML(p) {
       ${visual}
       <div class="card-body">
         <div class="card-head">
-          <span class="cat">${p.cat}</span>
+          <span class="cat">${p.tool ? p.cat + " · " + p.tool : p.cat}</span>
           ${p.stars ? `<span class="stars mono">★ ${p.stars}</span>` : ""}
         </div>
         <h3>${p.title}</h3>

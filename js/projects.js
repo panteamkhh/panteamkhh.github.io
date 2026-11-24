@@ -121,60 +121,70 @@ map2d = umap.<span class="f">UMAP</span>(
   },
 ];
 
-export const dashboards = [
+export const projects = [
   {
     name: "sales-data-analysis",
     title: "Retail sales dashboard",
     url: "https://github.com/panteamkhh/sales-data-analysis",
+    cat: "Dashboards",
     tool: "Power BI",
-    metric: { v: "5 pages", k: "sales · profit" },
-    desc: "Power BI report on sales, profit, discounts, product mix and geographic performance.",
+    desc: "Sales, profit, discounts, product mix and geographic performance, modelled and shipped as a Power BI report.",
     tags: ["Power BI", "DAX", "pandas"],
+    metric: { v: "5 pages", k: "report" },
+    stars: 1,
     img: "assets/projects/sales/overview.png",
+    art: "line",
   },
   {
     name: "pizza-sales-dashboard",
     title: "Pizza sales dashboard",
     url: "https://github.com/panteamkhh/pizza-sales-dashboard",
+    cat: "Dashboards",
     tool: "Excel",
-    metric: { v: "4 KPIs", k: "SQL + Excel" },
     desc: "Revenue, order trends and product performance analysed in SQL Server and reported in Excel.",
     tags: ["SQL Server", "Excel", "KPI"],
+    metric: { v: "4 KPIs", k: "SQL + Excel" },
+    stars: 0,
     img: "assets/projects/pizza/dashboard.png",
-  },
-  {
-    name: "upi-transactions-data-analysis",
-    title: "UPI transactions report",
-    url: "https://github.com/panteamkhh/upi-transactions-data-analysis",
-    tool: "Streamlit",
-    metric: { v: "2 views", k: "Streamlit + BI" },
-    desc: "A fintech transaction pipeline with an interactive Streamlit dashboard and a Power BI report.",
-    tags: ["Fintech", "Streamlit", "Power BI"],
-    img: "assets/projects/upi/trend.png",
+    art: "bars",
   },
   {
     name: "ecommerce-orders-lens",
     title: "E-commerce orders lens",
     url: "https://github.com/panteamkhh/ecommerce-orders-lens",
+    cat: "Dashboards",
     tool: "HTML",
-    metric: { v: "13 charts", k: "RFM segments" },
-    desc: "A 21-step documented cleaning pipeline with audit log, RFM KMeans segmentation and a self-contained HTML dashboard.",
+    desc: "A 21-step documented cleaning pipeline with audit log, RFM KMeans segmentation and a self-contained dashboard.",
     tags: ["scikit-learn", "KMeans", "Dashboard"],
+    metric: { v: "13 charts", k: "RFM segments" },
+    stars: 0,
     img: "assets/projects/ecommerce/hero.png",
+    art: "heat",
   },
-];
-export const projects = [
+  {
+    name: "upi-transactions-data-analysis",
+    title: "UPI transactions report",
+    url: "https://github.com/panteamkhh/upi-transactions-data-analysis",
+    cat: "Dashboards",
+    tool: "Streamlit",
+    desc: "A fintech transaction pipeline with an interactive Streamlit dashboard and a Power BI report.",
+    tags: ["Fintech", "Streamlit", "Power BI"],
+    metric: { v: "2 views", k: "Streamlit + BI" },
+    stars: 0,
+    img: "assets/projects/upi/trend.png",
+    art: "line",
+  },
   {
     name: "car-price-predictor-ml",
     title: "Car price prediction",
     url: "https://github.com/panteamkhh/car-price-predictor-ml",
     cat: "ML",
-    desc: "Regression with nine models, cross-validation, Optuna tuning, SHAP explainability and a FastAPI service.",
+    desc: "Nine models under cross-validation, Optuna tuning, SHAP explainability and a FastAPI service.",
     tags: ["XGBoost", "SHAP", "Optuna"],
     metric: { v: "0.91", k: "R² score" },
     stars: 0,
     img: "assets/projects/car/pred-actual.png",
-    art: "line",
+    art: "scatter",
   },
   {
     name: "traffic-sign-classification",
@@ -188,20 +198,6 @@ export const projects = [
     img: "assets/projects/traffic/curves.png",
     art: "heat",
   },
-
-  {
-    name: "yelp-review-classification",
-    title: "Yelp review sentiment",
-    url: "https://github.com/panteamkhh/yelp-review-classification",
-    cat: "NLP",
-    desc: "TF-IDF plus linear models on Yelp reviews, served with FastAPI.",
-    tags: ["NLP", "TF-IDF"],
-    metric: { v: "0.95", k: "F1" },
-    stars: 1,
-    img: "assets/projects/yelp/topwords.png",
-    art: "bars",
-  },
-
   {
     name: "movie-recommender-system",
     title: "Movie recommender",
@@ -214,7 +210,18 @@ export const projects = [
     img: "assets/projects/movie/top-rated.png",
     art: "scatter",
   },
-
+  {
+    name: "yelp-review-classification",
+    title: "Yelp review sentiment",
+    url: "https://github.com/panteamkhh/yelp-review-classification",
+    cat: "NLP",
+    desc: "TF-IDF plus linear models on Yelp reviews, served with FastAPI.",
+    tags: ["NLP", "TF-IDF"],
+    metric: { v: "0.95", k: "F1" },
+    stars: 1,
+    img: "assets/projects/yelp/topwords.png",
+    art: "bars",
+  },
   {
     name: "avocado-price-forecasting",
     title: "Avocado price forecasting",
@@ -227,20 +234,18 @@ export const projects = [
     img: "assets/projects/avocado/seasonality.png",
     art: "line",
   },
-
   {
     name: "maintenance-data-pipeline",
     title: "Maintenance KPI pipeline",
     url: "https://github.com/panteamkhh/maintenance-data-pipeline",
     cat: "Analytics",
-    desc: "CMMS data-quality audit, MTTR / availability / PM compliance KPIs and Pareto root cause.",
+    desc: "CMMS data-quality audit, MTTR and availability KPIs, and a Pareto root-cause view.",
     tags: ["Streamlit", "KPI", "Pareto"],
     metric: { v: "5 KPIs", k: "MTTR" },
     stars: 0,
     img: "assets/projects/maintenance/pareto.png",
     art: "bars",
   },
-
   {
     name: "ab-testing",
     title: "A/B test analysis",
@@ -253,7 +258,6 @@ export const projects = [
     img: "assets/projects/ab-testing/retention.png",
     art: "matrix",
   },
-
   {
     name: "google-play-store-analytics",
     title: "Play Store app analytics",
@@ -266,7 +270,6 @@ export const projects = [
     img: "assets/projects/google-play/models.png",
     art: "bars",
   },
-
 ];
 
 export const toolbox = [
