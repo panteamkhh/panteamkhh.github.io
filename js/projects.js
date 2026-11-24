@@ -133,16 +133,6 @@ export const dashboards = [
     img: "assets/projects/sales/overview.png",
   },
   {
-    name: "spotify-powerbi-analytics",
-    title: "Spotify analytics dashboard",
-    url: "https://github.com/panteamkhh/spotify-powerbi-analytics",
-    tool: "Power BI",
-    metric: { v: "3 pages", k: "audio features" },
-    desc: "Cleaning and modelling on Spotify data, finished as an interactive listening dashboard.",
-    tags: ["Power Query", "Modelling", "DAX"],
-    img: "assets/projects/spotify/overview.png",
-  },
-  {
     name: "pizza-sales-dashboard",
     title: "Pizza sales dashboard",
     url: "https://github.com/panteamkhh/pizza-sales-dashboard",
@@ -153,14 +143,14 @@ export const dashboards = [
     img: "assets/projects/pizza/dashboard.png",
   },
   {
-    name: "insurance-data-analysis",
-    title: "Insurance portfolio dashboard",
-    url: "https://github.com/panteamkhh/insurance-data-analysis",
-    tool: "Power BI",
-    metric: { v: "Loss ratio", k: "claims" },
-    desc: "Premium, claims, loss ratios and trends for an insurance portfolio, built into a Power BI report.",
-    tags: ["Power BI", "Risk", "pandas"],
-    img: "assets/projects/insurance/dashboard.png",
+    name: "upi-transactions-data-analysis",
+    title: "UPI transactions report",
+    url: "https://github.com/panteamkhh/upi-transactions-data-analysis",
+    tool: "Streamlit",
+    metric: { v: "2 views", k: "Streamlit + BI" },
+    desc: "A fintech transaction pipeline with an interactive Streamlit dashboard and a Power BI report.",
+    tags: ["Fintech", "Streamlit", "Power BI"],
+    img: "assets/projects/upi/trend.png",
   },
   {
     name: "ecommerce-orders-lens",
@@ -172,30 +162,7 @@ export const dashboards = [
     tags: ["scikit-learn", "KMeans", "Dashboard"],
     img: "assets/projects/ecommerce/hero.png",
   },
-  {
-    name: "upi-transactions-data-analysis",
-    title: "UPI transactions report",
-    url: "https://github.com/panteamkhh/upi-transactions-data-analysis",
-    tool: "Streamlit",
-    metric: { v: "2 views", k: "Streamlit + BI" },
-    desc: "A fintech transaction pipeline with an interactive Streamlit dashboard and a Power BI star-schema report.",
-    tags: ["Fintech", "Streamlit", "Power BI"],
-    img: "assets/projects/upi/trend.png",
-  },
-  {
-    // Reserved slot: drop the finished report in assets/projects/sales/ and
-    // replace `placeholder: true` with `img: "assets/projects/sales/<file>.png"`.
-    name: "sales-performance-dashboard",
-    title: "Sales performance dashboard",
-    url: "https://github.com/panteamkhh/sales-data-analysis",
-    tool: "Power BI",
-    metric: { v: "In progress", k: "new build" },
-    desc: "A rebuilt sales report with margin, discount and territory views. This slot is reserved for the finished dashboard.",
-    tags: ["Power BI", "DAX", "Star schema"],
-    placeholder: true,
-  },
 ];
-
 export const projects = [
   {
     name: "car-price-predictor-ml",
@@ -208,7 +175,8 @@ export const projects = [
     stars: 0,
     img: "assets/projects/car/pred-actual.png",
     art: "line",
-  },  {
+  },
+  {
     name: "traffic-sign-classification",
     title: "Traffic sign recognition",
     url: "https://github.com/panteamkhh/traffic-sign-classification",
@@ -220,18 +188,7 @@ export const projects = [
     img: "assets/projects/traffic/curves.png",
     art: "heat",
   },
-  {
-    name: "cifar10-image-classification",
-    title: "CIFAR-10 classifier",
-    url: "https://github.com/panteamkhh/cifar10-image-classification",
-    cat: "Vision",
-    desc: "CNN training with EDA, learning curves and full evaluation.",
-    tags: ["PyTorch", "Deep learning"],
-    metric: { v: "23", k: "figures" },
-    stars: 1,
-    img: "assets/projects/cifar10/loss.png",
-    art: "heat",
-  },
+
   {
     name: "yelp-review-classification",
     title: "Yelp review sentiment",
@@ -244,18 +201,7 @@ export const projects = [
     img: "assets/projects/yelp/topwords.png",
     art: "bars",
   },
-  {
-    name: "spam-email-classifier",
-    title: "Spam email classifier",
-    url: "https://github.com/panteamkhh/spam-email-classifier",
-    cat: "NLP",
-    desc: "Naive Bayes and linear models on TF-IDF features, deployed in Docker.",
-    tags: ["Naive Bayes", "scikit-learn"],
-    metric: { v: "0.99", k: "F1" },
-    stars: 1,
-    img: "assets/projects/spam/topwords.png",
-    art: "bars",
-  },
+
   {
     name: "movie-recommender-system",
     title: "Movie recommender",
@@ -268,6 +214,7 @@ export const projects = [
     img: "assets/projects/movie/top-rated.png",
     art: "scatter",
   },
+
   {
     name: "avocado-price-forecasting",
     title: "Avocado price forecasting",
@@ -280,18 +227,7 @@ export const projects = [
     img: "assets/projects/avocado/seasonality.png",
     art: "line",
   },
-  {
-    name: "chicago-crime-rate-forecasting",
-    title: "Chicago crime forecasting",
-    url: "https://github.com/panteamkhh/chicago-crime-rate-forecasting",
-    cat: "Forecasting",
-    desc: "Statsmodels and XGBoost on city crime time series, wrapped in FastAPI.",
-    tags: ["statsmodels", "XGBoost"],
-    metric: { v: "26", k: "figures" },
-    stars: 1,
-    img: "assets/projects/chicago/overview.png",
-    art: "line",
-  },
+
   {
     name: "maintenance-data-pipeline",
     title: "Maintenance KPI pipeline",
@@ -304,6 +240,7 @@ export const projects = [
     img: "assets/projects/maintenance/pareto.png",
     art: "bars",
   },
+
   {
     name: "ab-testing",
     title: "A/B test analysis",
@@ -316,6 +253,7 @@ export const projects = [
     img: "assets/projects/ab-testing/retention.png",
     art: "matrix",
   },
+
   {
     name: "google-play-store-analytics",
     title: "Play Store app analytics",
@@ -328,27 +266,14 @@ export const projects = [
     img: "assets/projects/google-play/models.png",
     art: "bars",
   },
-  {
-    name: "student-performance-ml",
-    title: "Student performance study",
-    url: "https://github.com/panteamkhh/student-performance-ml",
-    cat: "ML",
-    desc: "Classification, regression and K-Means with an interactive Streamlit dashboard.",
-    tags: ["scikit-learn", "Streamlit"],
-    metric: { v: "3", k: "ML tasks" },
-    stars: 0,
-    img: "assets/projects/student/importance.png",
-    art: "kpi",
-  },
+
 ];
 
 export const toolbox = [
-  { title: "Languages", items: ["Python", "SQL"] },
-  { title: "Analytics & ML", items: ["pandas", "NumPy", "scikit-learn", "LightGBM / XGBoost", "PyTorch", "NLP & embeddings", "Recommenders", "Feature engineering"] },
-  { title: "BI & reporting", items: ["Power BI", "DAX", "Power Query", "Data modelling", "Star schema", "Dashboards", "Excel"] },
-  { title: "Data platforms", items: ["SQL Server (T-SQL)", "Snowflake", "Spark", "Databricks", "ETL", "OLAP"] },
-  { title: "Engineering", items: ["FastAPI", "Docker", "Streamlit", "REST APIs", "Git & GitHub"] },
-  { title: "Business", items: ["KPI analysis", "Sales & pricing", "Segmentation", "Management reporting", "Data governance"] },
+  { title: "Languages & data", items: ["Python", "SQL", "pandas", "NumPy", "Matplotlib"] },
+  { title: "Modeling", items: ["scikit-learn", "LightGBM / XGBoost", "PyTorch", "NLP & embeddings", "Recommenders", "Feature engineering"] },
+  { title: "BI & platforms", items: ["Power BI", "DAX", "Power Query", "Star schema", "Excel", "SQL Server (T-SQL)", "Snowflake", "Spark / Databricks"] },
+  { title: "Engineering", items: ["FastAPI", "Docker", "Streamlit", "ETL", "Git & GitHub"] },
 ];
 
 export const stack = [
