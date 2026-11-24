@@ -273,50 +273,5 @@ export const toolbox = [
   { title: "Languages & data", items: ["Python", "SQL", "pandas", "NumPy", "Matplotlib"] },
   { title: "Modeling", items: ["scikit-learn", "LightGBM / XGBoost", "PyTorch", "NLP & embeddings", "Recommenders", "Feature engineering"] },
   { title: "BI & platforms", items: ["Power BI", "DAX", "Power Query", "Star schema", "Excel", "SQL Server (T-SQL)", "Snowflake", "Spark / Databricks"] },
-  { title: "Engineering", items: ["FastAPI", "Docker", "Streamlit", "ETL", "Git & GitHub"] },
-];
-
-export const stack = [
-  "Python", "SQL Server", "Power BI", "DAX", "pandas", "scikit-learn", "LightGBM", "PyTorch",
-  "Streamlit", "FastAPI", "Docker", "Power Query", "Excel", "Git",
-];
-
-export const queries = [
-  {
-    kind: "sql",
-    file: "06_business_analysis.sql",
-    tag: "T-SQL",
-    cap: "Monthly revenue with MoM and YoY growth, built on window functions.",
-    code: `;WITH Monthly AS (
-    SELECT d.[Year], d.[Month], SUM(f.Net_Sales) AS Net_Sales
-    FROM core.FactSales f
-    JOIN core.DimDate d ON d.DateKey = f.OrderDateKey
-    GROUP BY d.[Year], d.[Month]
-)
-SELECT
-    [Year], [Month], Net_Sales,
-    LAG(Net_Sales, 1) OVER (ORDER BY [Year], [Month]) AS Prev_Month_Sales,
-    ROUND(100.0 * (Net_Sales - LAG(Net_Sales, 1) OVER (ORDER BY [Year], [Month]))
-          / NULLIF(LAG(Net_Sales, 1) OVER (ORDER BY [Year], [Month]), 0), 1) AS MoM_Growth_Pct
-FROM Monthly
-ORDER BY [Year], [Month];`,
-  },
-  {
-    kind: "sql",
-    file: "01_kpi_metrics.sql",
-    tag: "T-SQL",
-    cap: "Pizza sales: headline KPIs read straight from the staging table.",
-    code: `-- 1. Total revenue
-SELECT ROUND(SUM(total_price), 2) AS total_revenue
-FROM dbo.pizza_sales;
-
--- 4. Average order value
-SELECT ROUND(SUM(total_price) / COUNT(DISTINCT order_id), 2) AS average_order_value
-FROM dbo.pizza_sales;
-
--- 5. Average pizzas per order
-SELECT CAST(SUM(quantity) * 1.0 / COUNT(DISTINCT order_id) AS DECIMAL(10, 2))
-       AS average_pizzas_per_order
-FROM dbo.pizza_sales;`,
-  },
+  { title: "Engineering &amp; automation", items: ["FastAPI", "Docker", "Streamlit", "ETL", "n8n", "LLM agents", "Git & GitHub"] },
 ];
