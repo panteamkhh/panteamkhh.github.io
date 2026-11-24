@@ -340,72 +340,6 @@ export const projects = [
     img: "assets/projects/student/importance.png",
     art: "kpi",
   },
-  {
-    name: "llm-engineering-lab",
-    title: "LLM engineering lab",
-    url: "https://github.com/panteamkhh/llm-engineering-lab",
-    cat: "Lab",
-    desc: "LLM foundations, tokenization, deployment strategies and system design.",
-    tags: ["GenAI", "LLM"],
-    metric: { v: "14", k: "stars" },
-    stars: 14,
-    art: "heat",
-  },
-  {
-    name: "ml-course-from-scratch",
-    title: "ML from scratch",
-    url: "https://github.com/panteamkhh/ml-course-from-scratch",
-    cat: "Lab",
-    desc: "Algorithms implemented from first principles, validated against scikit-learn.",
-    tags: ["ML theory", "NumPy"],
-    metric: { v: "11", k: "stars" },
-    stars: 11,
-    art: "line",
-  },
-  {
-    name: "python-data-lab",
-    title: "Python data lab",
-    url: "https://github.com/panteamkhh/python-data-lab",
-    cat: "Lab",
-    desc: "Fifteen hands-on sessions across NumPy, pandas and Matplotlib.",
-    tags: ["pandas", "Matplotlib"],
-    metric: { v: "15", k: "sessions" },
-    stars: 0,
-    art: "bars",
-  },
-  {
-    name: "build-mcp-agents",
-    title: "Building MCP agents",
-    url: "https://github.com/panteamkhh/build-mcp-agents",
-    cat: "Lab",
-    desc: "Code-first playbook: MCP servers and agents, ten phases to production.",
-    tags: ["MCP", "Agents"],
-    metric: { v: "10", k: "phases" },
-    stars: 0,
-    art: "matrix",
-  },
-  {
-    name: "python-self-study-course",
-    title: "Python self-study course",
-    url: "https://github.com/panteamkhh/python-self-study-course",
-    cat: "Lab",
-    desc: "A complete self-paced course: lessons, runnable examples, exercises and quizzes.",
-    tags: ["Python", "Education"],
-    metric: { v: "15", k: "lessons" },
-    stars: 1,
-    art: "kpi",
-  },
-  {
-    name: "Math-for-AI-From-Zero-to-Intelligence",
-    title: "Math for AI",
-    url: "https://github.com/panteamkhh/Math-for-AI-From-Zero-to-Intelligence",
-    cat: "Lab",
-    desc: "The intuitive math behind AI: one ten-minute lesson a day for 80 days.",
-    tags: ["Math", "AI"],
-    metric: { v: "80", k: "lessons" },
-    stars: 1,
-    art: "scatter",
-  },
 ];
 
 export const toolbox = [
@@ -420,33 +354,6 @@ export const toolbox = [
 export const stack = [
   "Python", "SQL Server", "Power BI", "DAX", "pandas", "scikit-learn", "LightGBM", "PyTorch",
   "Streamlit", "FastAPI", "Docker", "Power Query", "Excel", "Git",
-];
-
-export const tools = [
-  {
-    tool: "Excel",
-    title: "Pivot reports",
-    img: "assets/projects/pizza/dashboard.png",
-    cap: "Pivot tables, KPI cards and management reporting built in Excel.",
-  },
-  {
-    tool: "SQL Server",
-    title: "Star schemas",
-    img: "assets/projects/sales/data-model.png",
-    cap: "Fact and dimension models, with joins, CTEs and window functions.",
-  },
-  {
-    tool: "Python",
-    title: "Analysis & models",
-    img: "assets/projects/hotel-cancel/by-country.png",
-    cap: "pandas, scikit-learn, PyTorch and matplotlib for the analysis behind each report.",
-  },
-  {
-    tool: "Power BI",
-    title: "Reports & DAX",
-    img: "assets/projects/spotify/overview.png",
-    cap: "Power Query, DAX measures and interactive reports on a clean model.",
-  },
 ];
 
 export const queries = [
