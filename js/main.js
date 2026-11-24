@@ -224,7 +224,7 @@ const filtersEl = document.getElementById("filters");
 
 function cardHTML(p) {
   const visual = p.img
-    ? `<div class="card-art ${p.tool ? "shot" : "plate"}"><img src="${p.img}" alt="${p.title}" loading="lazy" decoding="async" /></div>`
+    ? `<div class="card-art ${p.tool && !p.chart ? "shot" : "plate"}"><img src="${p.img}" alt="${p.title}" loading="lazy" decoding="async" /></div>`
     : `<div class="card-art">${artSVG(p.art, p.name)}</div>`;
   return `
     <article class="card reveal" data-cat="${p.cat}">
