@@ -314,7 +314,7 @@ const toolboxEl = document.getElementById("toolbox");
 if (toolboxEl) {
   toolboxEl.innerHTML = toolbox
     .map(
-      (g) => `<div class="tb-group"><h4>${g.title}</h4><div class="tags">${g.items
+      (g) => `<div class="tb-group"><h4>${g.title}<span class="tb-count">${g.items.length}</span></h4><div class="tags">${g.items
         .map((i) => `<span class="tag">${i}</span>`)
         .join("")}</div></div>`
     )

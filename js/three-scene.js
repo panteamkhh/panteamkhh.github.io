@@ -15,6 +15,8 @@ let paused = false;
 const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
 let scrollY = 0;
 const tintTargets = [];
+let terrain, terrainBase;
+const terrainTarget = new THREE.Color(0x34d399);
 
 function glowTexture() {
   const size = 64;
@@ -104,6 +106,21 @@ function init() {
   );
 
   group.children.forEach(() => tintTargets.push(new THREE.Color(0xffffff)));
+
+  // undulating wireframe "data grid" below the particle field
+  const gridGeo = new THREE.PlaneGeometry(130, 96, 46, 34);
+  gridGeo.rotateX(-Math.PI / 2);
+  const gridMat = new THREE.MeshBasicMaterial({
+    color: 0x34d399,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.085,
+    depthWrite: false,
+  });
+  terrain = new THREE.Mesh(gridGeo, gridMat);
+  terrain.position.set(0, -9.5, -14);
+  terrainBase = Float32Array.from(gridGeo.attributes.position.array);
+  scene.add(terrain);
   window.addEventListener("bg-theme", (e) => {
     const { a, b } = e.detail || {};
     if (!a || !b) return;
@@ -114,6 +131,7 @@ function init() {
       const t = n > 1 ? i / (n - 1) : 0;
       tintTargets[i].copy(ca).lerp(cb, t).multiplyScalar(0.85);
     });
+    terrainTarget.copy(ca).multiplyScalar(0.95);
   });
 
   resize();
@@ -182,6 +200,19 @@ function tick() {
   group.children.forEach((child, i) => {
     if (tintTargets[i] && child.material) child.material.color.lerp(tintTargets[i], 0.03);
   });
+
+  if (terrain) {
+    const pos = terrain.geometry.attributes.position;
+    for (let i = 0; i < pos.count; i++) {
+      const x = terrainBase[i * 3];
+      const z = terrainBase[i * 3 + 2];
+      pos.array[i * 3 + 1] =
+        Math.sin(x * 0.11 + t * 0.32) * Math.cos(z * 0.14 + t * 0.2) * 0.9 +
+        Math.sin((x + z) * 0.05 - t * 0.16) * 0.55;
+    }
+    pos.needsUpdate = true;
+    terrain.material.color.lerp(terrainTarget, 0.02);
+  }
 
   renderer.render(scene, camera);
   requestAnimationFrame(tick);

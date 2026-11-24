@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=23" />
+  <link rel="stylesheet" href="css/style.css?v=25" />
 </head>
 <body>
   <div class="bg" aria-hidden="true">
@@ -65,6 +65,15 @@
             <a class="btn btn-primary" href="#work">View case studies</a>
             <a class="btn btn-ghost" href="#dashboards">Browse dashboards</a>
           </div>
+          <nav class="quick-jump" aria-label="Jump to a section">
+            <span class="qj-label">Jump to</span>
+            <a href="#resume">Resume</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#contact">Contact</a>
+          </nav>
           <dl class="kpi-strip">
             <div><dt>0.922</dt><dd>ROC-AUC, best model</dd></div>
             <div><dt>119k</dt><dd>bookings analysed</dd></div>
@@ -113,8 +122,8 @@
         <div class="section-head">
           <div>
             <p class="kicker"><span class="k-num">01</span> Selected work</p>
-            <h2>Case studies, not screenshots of a homepage.</h2>
-            <p class="lead">Three projects with the full arc: the problem, the method, the numbers, and the dashboard or endpoint that delivered it.</p>
+            <h2>Case studies with the messy middle left in.</h2>
+            <p class="lead">Each one opens with the problem and closes with the artifact � including the decisions that didn't survive the data.</p>
           </div>
           <a class="link-arrow" href="https://github.com/panteamkhh?tab=repositories" target="_blank" rel="noopener">All 30 repositories →</a>
         </div>
@@ -129,7 +138,7 @@
         <div class="section-head">
           <div>
             <p class="kicker"><span class="k-num">02</span> Dashboards</p>
-            <h2>Reports managers actually open.</h2>
+            <h2>Built for the Monday meeting, not the screenshot.</h2>
             <p class="lead">Power BI, Streamlit and Excel reporting built on clean star schemas — sales, operations, fintech and music analytics.</p>
           </div>
         </div>
@@ -143,7 +152,7 @@
         <div class="section-head">
           <div>
             <p class="kicker"><span class="k-num">03</span> Models &amp; pipelines</p>
-            <h2>From raw rows to a scored, served result.</h2>
+            <h2>Messy rows in. A number you can defend out.</h2>
             <p class="lead">Classification, regression, forecasting, NLP and computer vision — every project evaluated, documented and reproducible.</p>
           </div>
         </div>
@@ -157,8 +166,8 @@
       <div class="wrap code-grid">
         <div class="code-copy">
           <p class="kicker"><span class="k-num">04</span> The code</p>
-          <h2>Readable, reproducible, tested.</h2>
-          <p class="lead">Every repository ships with the notebooks, the figures and the tests that produced the numbers on this page. No screenshot-only claims.</p>
+          <h2>The part most portfolios hide.</h2>
+          <p class="lead">Notebooks, figures and tests ship with every repository. Nothing here is a screenshot-only claim.</p>
           <ol class="principles">
             <li><b>Clean first.</b> Documented cleaning pipelines with audit logs, not silent drops.</li>
             <li><b>Validate honestly.</b> Held-out splits, cross-validation, per-class metrics.</li>
@@ -210,19 +219,20 @@ df = (cleaner
         <div class="section-head">
           <div>
             <p class="kicker"><span class="k-num">05</span> Resume</p>
-            <h2>Experience, education &amp; the rest.</h2>
-            <p class="lead">Two years in analytics roles, an M.Sc. in AI &amp; Robotics, an MBA, and one accepted publication.</p>
+            <h2>Two roles, three degrees, one publication.</h2>
+            <p class="lead">Analytics in pharma distribution and industrial manufacturing, an M.Sc. in AI &amp; Robotics, an MBA, and an accepted paper on recommender systems.</p>
           </div>
           <a class="btn btn-ghost btn-sm" href="assets/cv.pdf" download="Pantea_Mohamadkhani_Data_Analytics_CV.pdf">Download PDF ↓</a>
         </div>
 
         <div class="resume-flags">
-          <div class="flag"><span class="flag-k">Best model</span><b>0.922 ROC-AUC</b><span>LightGBM � 119k bookings</span></div>
-          <div class="flag"><span class="flag-k">Dashboards</span><b>6 shipped</b><span>Power BI � Streamlit � Excel</span></div>
+          <div class="flag"><span class="flag-k">Best model</span><b>0.922 ROC-AUC</b><span>LightGBM � 119k bookings</span></div>
+          <div class="flag"><span class="flag-k">Dashboards</span><b>6 shipped</b><span>Power BI � Streamlit � Excel</span></div>
           <div class="flag"><span class="flag-k">Data quality</span><b>21-step pipeline</b><span>audit-logged &amp; reproducible</span></div>
         </div>
 
-        <div class="resume-grid">          <div class="resume-col">
+        <div class="resume-grid">
+          <div class="resume-col" id="experience">
             <h3 class="col-title">Experience</h3>
             <div class="timeline">
               <article class="tl">
@@ -260,7 +270,7 @@ df = (cleaner
           </div>
 
           <div class="resume-col">
-            <h3 class="col-title">Education</h3>
+            <h3 class="col-title" id="education">Education</h3>
             <div class="edu-list">
               <div class="edu-item">
                 <div class="edu-mark">M.Sc.</div>
@@ -279,19 +289,52 @@ df = (cleaner
               </div>
             </div>
 
-            <h3 class="col-title">Certifications</h3>
+            <h3 class="col-title" id="certifications">Certifications</h3>
             <ul class="cert-list">
-              <li><span class="cert-badge">AI</span><div><b>Generative AI for Beginners</b><em>Microsoft · 2026</em></div></li>
-              <li><span class="cert-badge">PE</span><div><b>Prompt Engineering for Developers</b><em>DeepLearning.AI · 2026</em></div></li>
-              <li><span class="cert-badge">DA</span><div><b>Complete Data Analyst Bootcamp (62h)</b><em>Udemy · 2025</em></div></li>
-              <li><span class="cert-badge">ML</span><div><b>Machine Learning</b><em>Andrew Ng · Coursera · 2023</em></div></li>
+              <li>
+                <span class="cert-badge cert-ms" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="2" y="2" width="9" height="9" fill="#f25022"/><rect x="13" y="2" width="9" height="9" fill="#7fba00"/><rect x="2" y="13" width="9" height="9" fill="#00a4ef"/><rect x="13" y="13" width="9" height="9" fill="#ffb900"/></svg>
+                </span>
+                <div><b>Generative AI for Beginners</b><em>Microsoft · 2026</em></div>
+              </li>
+              <li>
+                <span class="cert-badge cert-dl" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6">
+                    <circle cx="6" cy="12" r="2.1"/><circle cx="17" cy="6" r="2.1"/><circle cx="17" cy="18" r="2.1"/>
+                    <path d="M8 11.2 15 7M8 12.8 15 17"/>
+                  </svg>
+                </span>
+                <div><b>Prompt Engineering for Developers</b><em>DeepLearning.AI · 2026</em></div>
+              </li>
+              <li>
+                <span class="cert-badge cert-udemy" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round">
+                    <path d="M7 5v8.5a5 5 0 0 0 10 0V5"/>
+                  </svg>
+                </span>
+                <div><b>Complete Data Analyst Bootcamp (62h)</b><em>Udemy · 2025</em></div>
+              </li>
+              <li>
+                <span class="cert-badge cert-coursera" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round">
+                    <path d="M17 7.2A6.2 6.2 0 1 0 17 16.8"/>
+                  </svg>
+                </span>
+                <div><b>Machine Learning</b><em>Andrew Ng · Coursera · 2023</em></div>
+              </li>
             </ul>
 
-            <h3 class="col-title">Toolbox</h3>
-            <div id="toolbox" class="toolbox"></div>
 
             <p class="langs"><span>Persian · native</span><span>English · upper-intermediate</span><span>Spanish · basic</span></p>
           </div>
+        </div>
+
+        <div class="toolbox-block">
+          <div class="toolbox-head">
+            <h3 class="col-title" id="skills">Toolbox</h3>
+            <p>The stack behind the projects above, grouped by what each tool is actually for.</p>
+          </div>
+          <div id="toolbox" class="toolbox"></div>
         </div>
       </div>
     </section>
@@ -322,14 +365,14 @@ df = (cleaner
   </footer>
 
   <div class="lightbox" id="lightbox" hidden>
-    <button class="lb-close" id="lb-close" aria-label="Close image">�</button>
+    <button class="lb-close" id="lb-close" aria-label="Close image">�</button>
     <img id="lightbox-img" alt="" />
     <p class="lb-cap" id="lightbox-cap"></p>
   </div>
 
   <script type="importmap">    { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
   </script>
-  <script type="module" src="js/three-scene.js?v=23"></script>
-  <script type="module" src="js/main.js?v=23"></script>
+  <script type="module" src="js/three-scene.js?v=25"></script>
+  <script type="module" src="js/main.js?v=25"></script>
 </body>
 </html>
