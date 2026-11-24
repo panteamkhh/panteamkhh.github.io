@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=27" />
+  <link rel="stylesheet" href="css/style.css?v=29" />
 </head>
 <body>
   <div class="bg" aria-hidden="true">
@@ -83,7 +83,7 @@
 
         <aside class="hero-card">
           <div class="hero-photo">
-            <img src="assets/portrait.jpg?v=27" alt="Portrait of Pantea Mohamadkhani" />
+            <img src="assets/portrait.jpg?v=29" alt="Portrait of Pantea Mohamadkhani" />
             <span class="hero-photo-badge"><i></i> Open to roles</span>
             <div class="hero-photo-meta">
               <strong>Pantea Mohamadkhani</strong>
@@ -121,13 +121,22 @@
         <div class="section-head">
           <div>
             <p class="kicker"><span class="k-num">01</span> Selected work</p>
-            <h2>Case studies with the messy middle left in.</h2>
-            <p class="lead">Each one opens with the problem and closes with the artifact � including the decisions that didn't survive the data.</p>
+            <h2>Projects I built, end to end.</h2>
+            <p class="lead">Problem, method and result for each one, plus the dashboard or API that shipped it.</p>
           </div>
           <a class="link-arrow" href="https://github.com/panteamkhh?tab=repositories" target="_blank" rel="noopener">All 30 repositories →</a>
         </div>
 
         <div class="cases" id="cases"></div>
+
+        <div class="proof">
+          <div class="proof-head">
+            <h3>Everything here was built in Excel, SQL Server, Python and Power BI.</h3>
+            <p>Four tools, four kinds of evidence: pivot reports, star schemas, models and query windows.</p>
+          </div>
+          <div id="tools-grid" class="tools-grid"></div>
+          <div id="query-grid" class="query-grid"></div>
+        </div>
       </div>
     </section>
 
@@ -137,8 +146,8 @@
         <div class="section-head">
           <div>
             <p class="kicker"><span class="k-num">02</span> Dashboards</p>
-            <h2>Built for the Monday meeting, not the screenshot.</h2>
-            <p class="lead">Power BI, Streamlit and Excel reporting built on clean star schemas — sales, operations, fintech and music analytics.</p>
+            <h2>Dashboards I built.</h2>
+            <p class="lead">Real Power BI, Excel and Streamlit reports, with the screenshots to prove it.</p>
           </div>
         </div>
         <div class="dash-grid" id="dashboards-grid"></div>
@@ -151,20 +160,14 @@
         <div class="section-head">
           <div>
             <p class="kicker"><span class="k-num">03</span> Models &amp; pipelines</p>
-            <h2>Messy rows in. A number you can defend out.</h2>
+            <h2>Models and pipelines I built.</h2>
             <p class="lead">Classification, regression, forecasting, NLP and computer vision — every project evaluated, documented and reproducible.</p>
           </div>
         </div>
         <div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
         <div class="cards" id="cards"></div>
 
-        <div class="query-block">
-          <div class="query-head">
-            <h3>Inside the query</h3>
-            <p>Star schema, the Power BI model view, and the T-SQL that produces the KPI tables.</p>
-          </div>
-          <div id="query-grid" class="query-grid"></div>
-        </div>
+
       </div>
     </section>
 
@@ -253,34 +256,19 @@
                 <div><b>Generative AI for Beginners</b><em>Microsoft · 2026</em></div>
               </li>
               <li>
-                <span class="cert-badge cert-dl" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6">
-                    <circle cx="6" cy="12" r="2.1"/><circle cx="17" cy="6" r="2.1"/><circle cx="17" cy="18" r="2.1"/>
-                    <path d="M8 11.2 15 7M8 12.8 15 17"/>
-                  </svg>
-                </span>
+                <span class="cert-badge cert-brand cert-dl"><img src="assets/brands/deeplearningai.png" alt="DeepLearning.AI" loading="lazy" /></span>
                 <div><b>Prompt Engineering for Developers</b><em>DeepLearning.AI · 2026</em></div>
               </li>
               <li>
-                <span class="cert-badge cert-udemy" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round">
-                    <path d="M7 5v8.5a5 5 0 0 0 10 0V5"/>
-                  </svg>
-                </span>
+                <span class="cert-badge cert-brand cert-udemy"><img src="assets/brands/udemy.svg" alt="Udemy" loading="lazy" /></span>
                 <div><b>Complete Data Analyst Bootcamp (62h)</b><em>Udemy · 2025</em></div>
               </li>
               <li>
-                <span class="cert-badge cert-coursera" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round">
-                    <path d="M17 7.2A6.2 6.2 0 1 0 17 16.8"/>
-                  </svg>
-                </span>
+                <span class="cert-badge cert-brand cert-coursera"><img src="assets/brands/coursera.svg" alt="Coursera" loading="lazy" /></span>
                 <div><b>Machine Learning</b><em>Andrew Ng · Coursera · 2023</em></div>
               </li>
               <li>
-                <span class="cert-badge cert-li" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><text x="12" y="17" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" fill="#fff">in</text></svg>
-                </span>
+                <span class="cert-badge cert-brand cert-li"><img src="assets/brands/linkedin.png" alt="LinkedIn" loading="lazy" /></span>
                 <div><b>LinkedIn Learning course</b><em>LinkedIn Learning · 2026</em></div>
               </li>
             </ul>
@@ -333,7 +321,7 @@
 
   <script type="importmap">    { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
   </script>
-  <script type="module" src="js/three-scene.js?v=27"></script>
-  <script type="module" src="js/main.js?v=27"></script>
+  <script type="module" src="js/three-scene.js?v=29"></script>
+  <script type="module" src="js/main.js?v=29"></script>
 </body>
 </html>

@@ -422,19 +422,34 @@ export const stack = [
   "Streamlit", "FastAPI", "Docker", "Power Query", "Excel", "Git",
 ];
 
-export const queries = [
+export const tools = [
   {
-    kind: "image",
+    tool: "Excel",
+    title: "Pivot reports",
+    img: "assets/projects/pizza/dashboard.png",
+    cap: "Pivot tables, KPI cards and management reporting built in Excel.",
+  },
+  {
+    tool: "SQL Server",
+    title: "Star schemas",
     img: "assets/projects/sales/data-model.png",
-    tag: "SQL Server",
-    cap: "Sales star schema: fact table plus product, customer and date dimensions.",
+    cap: "Fact and dimension models, with joins, CTEs and window functions.",
   },
   {
-    kind: "image",
-    img: "assets/projects/spotify/model-view.png",
-    tag: "Power BI",
-    cap: "Power BI model view: relationships, cardinality and filter direction.",
+    tool: "Python",
+    title: "Analysis & models",
+    img: "assets/projects/hotel-cancel/by-country.png",
+    cap: "pandas, scikit-learn, PyTorch and matplotlib for the analysis behind each report.",
   },
+  {
+    tool: "Power BI",
+    title: "Reports & DAX",
+    img: "assets/projects/spotify/overview.png",
+    cap: "Power Query, DAX measures and interactive reports on a clean model.",
+  },
+];
+
+export const queries = [
   {
     kind: "sql",
     file: "06_business_analysis.sql",

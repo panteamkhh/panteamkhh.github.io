@@ -1,4 +1,4 @@
-import { featured, dashboards, projects, toolbox, stack, queries } from "./projects.js";
+import { featured, dashboards, projects, toolbox, stack, tools, queries } from "./projects.js";
 
 /* ---------------- helpers ---------------- */
 
@@ -347,6 +347,24 @@ function sqlToHTML(code) {
       const n = String(i + 1).padStart(2, "0");
       return `<span class="ql"><span class="ln">${n}</span><span class="lc">${body || "&nbsp;"}</span></span>`;
     })
+    .join("");
+}
+
+const toolsEl = document.getElementById("tools-grid");
+if (toolsEl) {
+  toolsEl.innerHTML = tools
+    .map(
+      (t) => `<article class="tool-card">
+        <button type="button" class="tool-media" data-full="${t.img}" data-cap="${t.tool} — ${t.title}" aria-label="Enlarge: ${t.title}">
+          <img src="${t.img}" alt="${t.title}" loading="lazy" decoding="async" />
+        </button>
+        <div class="tool-body">
+          <span class="tool-tag">${t.tool}</span>
+          <b>${t.title}</b>
+          <span>${t.cap}</span>
+        </div>
+      </article>`
+    )
     .join("");
 }
 
